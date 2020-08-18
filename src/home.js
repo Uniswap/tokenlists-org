@@ -10,8 +10,10 @@ function Home() {
   return (
     <div className="app">
       <Header />
-      <Hero />
-      <Featured />
+      <div className="home-content">
+        <Hero />
+        <Featured />
+      </div>
       <Footer />
     </div>
   )

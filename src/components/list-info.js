@@ -7,8 +7,6 @@ export default function Info({ url, list }) {
     <section className="info">
       <Card list={list} url={url} customImage={false} />
       <span className="info-description">
-        <h3 className="reset">{list.name}</h3>
-
         <span className="grid">
           <small>Source URL</small>
           <a href={url}>{url}</a>
@@ -27,26 +25,26 @@ export default function Info({ url, list }) {
         <span>
           <small>Version</small>
           <p>
-            {/* {list.version.major +
+            {list.version.major +
               '.' +
               list.version.minor +
               '.' +
-              list.version.patch} */}
+              list.version.patch}
           </p>
         </span>
-        <span className="grid">
+        {/* <span className="grid">
           <a className="button" href={url}>
             View list homepage ↗
           </a>
 
           <a
             style={{ backgroundColor: '#ff007a' }}
-            className="button"
+            className="button disabled"
             href={'https://app.uniswap.org/#/' + url}
           >
             Open with Uniswap ↗
           </a>
-        </span>
+        </span> */}
       </span>
     </section>
   )

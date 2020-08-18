@@ -10,6 +10,21 @@
     "icon": "kleros.png"
   },
   {
+    "name": "Roll",
+    "url": "https://roll-exchange-files.s3.amazonaws.com/prod/latest-roll-exchange-list.json",
+    "icon": "roll.png"
+  },
+  {
+    "name": "Defiprime",
+    "url": "https://defiprime.com/defiprime.tokenlist.json",
+    "icon": "defiprime.png"
+  },
+  {
+    "name": "1inch",
+    "url": "http://tokens.1inch.eth.link/",
+    "icon": "1inch.svg"
+  },
+  {
     "name": "Uniswap",
     "url": "https://unpkg.com/@uniswap/default-token-list@latest",
     "icon": "uni-icon.png"

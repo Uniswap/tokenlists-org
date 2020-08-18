@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { usePalette } from 'react-palette'
-
+import { transparentize } from 'polished'
 import { useFetch } from '../utils/useFetch'
 import { Link } from 'react-router-dom'
 
@@ -24,16 +24,26 @@ export default function Card({ url, list, customImage }) {
 
   return (
     <Link
-      to={'/list?url=' + url}
+      to={'/token-list?url=' + url}
       className="card"
-      style={{ backgroundColor: data.vibrant }}
+      style={{
+        // background: ` radial-gradient(ellipse at top, transparent, ${data.vibrant}),
+        // radial-gradient(ellipse at bottom, ${data.vibrant}, transparent)`,
+        border: `1px solid ${data.vibrant}`,
+        color: data.vibrant,
+        boxShadow: ` -8px 8px 0 ${data.vibrant}`,
+      }}
     >
       <img
         alt="icon"
         src={
-          urlType === 'ipfs'
-            ? list.logoURI &&
-              'https://ipfs.io/ipfs/' + list.logoURI.split('//')[1]
+          !customImage
+            ? urlType === 'ipfs'
+              ? list.logoURI &&
+                'https://ipfs.io/ipfs/' + list.logoURI.split('//')[1]
+              : list.logoURI
+              ? list.logoURI
+              : 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
             : '/icons/' + list.icon
         }
         onError={(e) => {

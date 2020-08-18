@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import List from './list'
+import List from './token-list'
 import Home from './home'
+import Why from './why'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
@@ -10,7 +11,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Route exact path="/" component={Home} />
-      <Route path="/list" component={List} />
+      <Route path="/token-list" component={List} />
+      <Route path="/why" component={Why} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

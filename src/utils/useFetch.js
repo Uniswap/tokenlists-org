@@ -7,7 +7,11 @@ function useFetch(url) {
 
   async function fetchUrl() {
     try {
-      const response = await fetch('https://cors-anywhere.herokuapp.com/' + url)
+      // const response = await fetch('https://test.cors.workers.dev/?' + url)
+      const response = await fetch(
+        'https://snowy-dawn-4154.uniswap-lists.workers.dev/?' + url
+      )
+
       const json = await response.json()
       setData(json)
       setLoading(false)
@@ -18,7 +22,7 @@ function useFetch(url) {
   }
   useEffect(() => {
     fetchUrl()
-  })
+  }, [])
   return [data, loading, error]
 }
 export { useFetch }

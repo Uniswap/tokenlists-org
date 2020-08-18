@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from './card'
-import { Search } from 'react-feather'
 import Moment from 'react-moment'
+import { Search, X } from 'react-feather'
+
+import FilterResults from 'react-filter-search'
 
 import { useFetch } from '../utils/useFetch'
 
@@ -19,7 +21,7 @@ function ListItem({ list }) {
         <span>loading...</span>
       ) : (
         <>
-          <Link to={'/list?url=' + list.url}>
+          <Link to={'/token-list?url=' + list.url}>
             <p>{tokenlist.name}</p>
           </Link>
           <p>
@@ -33,18 +35,18 @@ function ListItem({ list }) {
 }
 
 export default function Featured() {
+  const [value, setValue] = useState('')
 
-  
+  function handleChange(e) {
+    const { value } = e.target
+    setValue(value)
+  }
+
   return (
     <section className="featured">
-      <div className="flex-between" style={{ marginBottom: '1rem' }}>
-        <h2>Discover Lists</h2>
-        <Search size={20} />
-      </div>
-
-      <small style={{ width: '100%', maxWidth: '640px', padding: '1rem 0' }}>
+      {/* <small style={{ width: '100%', maxWidth: '640px', padding: '1rem 0' }}>
         Highlighted Lists
-      </small>
+      </small> */}
       <div className="card-wrapper ">
         {featuredLists.map((list, i) => (
           <Card key={i} url={list.url} list={list} customImage={true} />
@@ -52,14 +54,52 @@ export default function Featured() {
       </div>
 
       <div className="lists-wrapper" style={{ marginTop: '4rem' }}>
+        <div className="flex-between" style={{ marginBottom: '1rem' }}>
+          <p className="description">Discover Lists</p>
+          <form className="search">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => handleChange(e)}
+            />
+
+            {value === '' ? (
+              <Search
+                style={{
+                  marginLeft: '-24px',
+                  pointerEvents: 'none',
+                }}
+                size={20}
+              />
+            ) : (
+              <X
+                style={{
+                  marginLeft: '-24px',
+                  cursor: 'pointer',
+                }}
+                onClick={() => setValue('')}
+                size={20}
+              />
+            )}
+          </form>
+        </div>
         <section className="list-item">
           <p>Name</p>
           <p>Last Updated</p>
           <p>Tokens</p>
         </section>
-        {allLists.map((list, i) => (
-          <ListItem key={i} list={list} />
-        ))}
+
+        <FilterResults
+          value={value}
+          data={featuredLists}
+          renderResults={(results) => (
+            <div>
+              {results.map((data, i) => (
+                <ListItem key={i} list={data} />
+              ))}
+            </div>
+          )}
+        />
       </div>
     </section>
   )

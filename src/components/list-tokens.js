@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Search as SearchIcon } from 'react-feather'
-import { useFuzzy } from 'react-use-fuzzy'
+import { Search as SearchIcon, X } from 'react-feather'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 
+import FilterResults from 'react-filter-search'
+
 function ListItem({ token }) {
-  const [urlType, setUrlType] = useState('ipfs')
+  const [urlType, setUrlType] = useState('')
 
   useEffect(() => {
     token.logoURI && token.logoURI.substring(0, 4) === 'ipfs'
       ? setUrlType('ipfs')
       : setUrlType('url')
-  }, [token])
+  }, [])
 
   return (
     <section className="token-item">
@@ -50,6 +51,13 @@ function ListItem({ token }) {
         )}
         <span>{token.name}</span>
       </span>
+      <span>
+        {token.tags &&
+          token.tags.map((data, i) => (
+            <div className="tag">{data.toUpperCase()}</div>
+          ))}
+      </span>
+
       <span>{token.symbol}</span>
       <a
         href={
@@ -65,35 +73,69 @@ function ListItem({ token }) {
 }
 
 export default function Tokens({ tokens }) {
-  const [filteredTokens, setFilteredTokens] = useState(tokens)
+  const [value, setValue] = useState('')
 
-  const { result, keyword, search } = useFuzzy(filteredTokens, {
-    keys: ['name'],
-  })
+  function handleChange(e) {
+    const { value } = e.target
+    setValue(value)
+  }
 
   return (
-    <section className="featured" style={{ marginTop: '4rem' }}>
+    <section className="featured">
       <div className="flex-between">
         <h2>Tokens</h2>
-        <input
-          type="text"
-          placeholder="Search tokens"
-          value={keyword}
-          onChange={(e) => search(e.target.value)}
-        />
-        <SearchIcon size={20} />
+        <form className="search">
+          <input
+            type="text"
+            value={value}
+            // placeholder={'Filter tokens...'}
+            onChange={(e) => handleChange(e)}
+          />
+
+          {value === '' ? (
+            <SearchIcon
+              style={{
+                marginLeft: '-24px',
+                pointerEvents: 'none',
+              }}
+              size={20}
+            />
+          ) : (
+            <X
+              style={{
+                marginLeft: '-24px',
+                cursor: 'pointer',
+              }}
+              onClick={() => setValue('')}
+              size={20}
+            />
+          )}
+        </form>
       </div>
 
       <div className="token-wrapper" style={{ marginTop: '1rem' }}>
         <section className="token-item">
           <p>Name</p>
+          <p>Tags</p>
           <p>Symbol</p>
           <p>Address</p>
         </section>
 
-        {result.length > 0
-          ? result.map((token, i) => console.log(token.item))
-          : tokens.map((token, i) => <ListItem key={i} token={token} />)}
+        <FilterResults
+          value={value}
+          data={tokens}
+          renderResults={(results) => (
+            <div>
+              {results.map((data, i) => (
+                <ListItem key={i} token={data} />
+              ))}
+            </div>
+          )}
+        />
+
+        {/* {tokens.map((token, i) => (
+          <ListItem key={i} token={token} />
+        ))} */}
       </div>
     </section>
   )

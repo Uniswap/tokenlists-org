@@ -16,7 +16,6 @@ function useQuery() {
 function List() {
   let query = useQuery()
   const [data, loading, error] = useFetch(query.get('url'))
-
   return (
     <div className="app">
       <Header back={true} />
@@ -35,8 +34,10 @@ function List() {
         </div>
       ) : (
         <>
-          <Info url={query.get('url')} list={data} />
-          <Tokens tokens={data.tokens} />
+          <div className="content">
+            <Info url={query.get('url')} list={data} />
+            <Tokens tokens={data.tokens} />
+          </div>
           <Footer />
         </>
       )}

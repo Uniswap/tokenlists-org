@@ -3,24 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
     "ethereumjs-util": "^7.0.3",
-    "fuse.js": "^6.4.1",
     "moment": "^2.27.0",
+    "polished": "^3.6.5",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
-    "react-color-extractor": "^1.1.2",
     "react-dom": "^16.13.1",
     "react-feather": "^2.0.8",
+    "react-filter-search": "^1.0.11",
     "react-moment": "^0.9.7",
     "react-palette": "^1.0.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-use-fuzzy": "^1.0.4"
+    "react-scripts": "3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
