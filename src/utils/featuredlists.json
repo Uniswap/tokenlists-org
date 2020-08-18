@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Coingecko Verified Tokens",
+    "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json",
+    "icon": "coingecko.png"
+  },
+  {
+    "name": "Kleros T2CR",
+    "url": "http://t2crtokens.eth.link/",
+    "icon": "kleros.png"
+  },
+  {
+    "name": "Uniswap",
+    "url": "https://unpkg.com/@uniswap/default-token-list@latest",
+    "icon": "uni-icon.png"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "UMA",
+    "url": "https://raw.githubusercontent.com/Uniswap/token-lists/master/test/schema/bigexample.tokenlist.json",
+    "icon": "uma.png"
+  },
+  {
+    "name": "Coingecko Verified Tokens",
+    "url": "https://raw.githubusercontent.com/Uniswap/token-lists/master/test/schema/bigexample.tokenlist.json",
+    "icon": "coingecko.png"
+  },
+  {
+    "name": "The token list by Defipulse",
+    "url": "https://raw.githubusercontent.com/Uniswap/token-lists/master/test/schema/bigexample.tokenlist.json",
+    "icon": "defipulse.png"
+  }
+]
