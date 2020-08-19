@@ -25,8 +25,13 @@
     "icon": "1inch.svg"
   },
   {
+    "name": "Synthetix",
+    "url": "http://synths.snx.eth.link/",
+    "icon": "synthetix.png"
+  },
+  {
     "name": "Uniswap",
-    "url": "https://unpkg.com/@uniswap/default-token-list@latest",
+    "url": "https://tokens.uniswap.org",
     "icon": "uni-icon.png"
   }
 ]

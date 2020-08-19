@@ -27,7 +27,7 @@ function ListItem({ list }) {
           <p>
             <Moment fromNow>{tokenlist.timestamp}</Moment>
           </p>
-          <p>{tokenlist.tokens.length}</p>
+          <p style={{ textAlign: 'right' }}>{tokenlist.tokens.length}</p>
         </>
       )}
     </section>
@@ -41,6 +41,9 @@ export default function Featured() {
     const { value } = e.target
     setValue(value)
   }
+
+  const random = featuredLists[Math.floor(Math.random() * featuredLists.length)]
+  console.log(random)
 
   return (
     <section className="featured">
@@ -86,7 +89,7 @@ export default function Featured() {
         <section className="list-item">
           <p>Name</p>
           <p>Last Updated</p>
-          <p>Tokens</p>
+          <p style={{ textAlign: 'right' }}>Tokens</p>
         </section>
 
         <FilterResults

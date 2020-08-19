@@ -28,9 +28,11 @@ export default function Header() {
         inclusive, transparent, decentralized and open source.
       </p>
 
-      <Link to="/why">Why token lists?</Link>
+      <Link style={{ marginTop: '.5rem', width: 'fit-content' }} to="/why">
+        Why token lists?
+      </Link>
       <a
-        style={{ marginTop: '.5rem' }}
+        style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
         Learn how to make your own.

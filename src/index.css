@@ -32,6 +32,10 @@ body:before {
   z-index: -1;
 }
 
+p {
+  line-height: 1.4;
+}
+
 a {
   color: #2172e5;
   text-decoration: none;
@@ -70,6 +74,9 @@ a {
   position: sticky;
   top: 0;
   border-bottom: 1px solid #1f1f1f;
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .header a {
   color: #0f0f0f;
@@ -214,11 +221,17 @@ a {
   width: 100%;
 }
 
+.list-title {
+  font-weight: 500;
+  color: #1f1f1f60;
+}
+
 .list-item {
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
   grid-template-columns: 1fr 128px 64px;
+  height: 36px;
 }
 
 .list-item a {

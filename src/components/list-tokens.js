@@ -60,6 +60,7 @@ function ListItem({ token }) {
 
       <span>{token.symbol}</span>
       <a
+        style={{ textAlign: 'right' }}
         href={
           'https://etherscan.io/address/' + toChecksumAddress(token.address)
         }
@@ -114,11 +115,11 @@ export default function Tokens({ tokens }) {
       </div>
 
       <div className="token-wrapper" style={{ marginTop: '1rem' }}>
-        <section className="token-item">
+        <section className="list-title token-item">
           <p>Name</p>
           <p>Tags</p>
           <p>Symbol</p>
-          <p>Address</p>
+          <p style={{ textAlign: 'right' }}>Address</p>
         </section>
 
         <FilterResults
