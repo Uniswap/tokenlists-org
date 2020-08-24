@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from './card'
 import Moment from 'react-moment'
+import CopyHelper from './copy'
 
 export default function Info({ url, list }) {
   return (
@@ -9,8 +10,15 @@ export default function Info({ url, list }) {
       <span className="info-description">
         <span className="grid">
           <small>Source URL</small>
-          <a href={url}>{url}</a>
+          <span>
+            <a href={url}>{url}</a> <CopyHelper toCopy={url} />
+          </span>
         </span>
+
+        <div className="helper">
+          Use this url to import this list anywhere the token lists
+          specification is supported.
+        </div>
 
         <span>
           <small>Tokens</small>

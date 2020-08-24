@@ -12,8 +12,15 @@ export default function Header({ back }) {
       </Link>
 
       <nav className="nav">
-        <Link to="/why">Why lists?</Link>
-        <Link to="/how">Make a list</Link>
+        <Link className="hide-small" to="/why">
+          Why lists?
+        </Link>
+        <a
+          className="hide-small"
+          href="https://github.com/Uniswap/token-lists#authoring-token-lists"
+        >
+          Make a list
+        </a>
         <a
           className="button"
           style={{ color: 'white  ' }}

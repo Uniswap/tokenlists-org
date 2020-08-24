@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { usePalette } from 'react-palette'
-import { transparentize } from 'polished'
 import { useFetch } from '../utils/useFetch'
 import { Link } from 'react-router-dom'
 
 export default function Card({ url, list, customImage }) {
   const [urlType, setUrlType] = useState('ipfs')
+  
 
   useEffect(() => {
     list.logoURI && list.logoURI.substring(0, 4) === 'ipfs'
       ? setUrlType('ipfs')
       : setUrlType('url')
+
+    
   }, [list])
 
   const [tokenlist, loading] = useFetch(url)
@@ -57,9 +59,9 @@ export default function Card({ url, list, customImage }) {
         {loading ? (
           <span>loading...</span>
         ) : (
-          <small>
+          <span>
             {tokenlist.tokens ? tokenlist.tokens.length + ' tokens' : ''}
-          </small>
+          </span>
         )}
       </section>
     </Link>

@@ -11,7 +11,7 @@
   },
   {
     "name": "Roll",
-    "url": "https://roll-exchange-files.s3.amazonaws.com/prod/latest-roll-exchange-list.json",
+    "url": "https://app.tryroll.com/tokens.json",
     "icon": "roll.png"
   },
   {
@@ -28,10 +28,5 @@
     "name": "Synthetix",
     "url": "http://synths.snx.eth.link/",
     "icon": "synthetix.png"
-  },
-  {
-    "name": "Uniswap",
-    "url": "https://tokens.uniswap.org",
-    "icon": "uni-icon.png"
   }
 ]

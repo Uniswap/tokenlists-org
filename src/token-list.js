@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './components/header'
 import Info from './components/list-info'
 import Tokens from './components/list-tokens'
@@ -14,6 +14,10 @@ function useQuery() {
 }
 
 function List() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   let query = useQuery()
   const [data, loading, error] = useFetch(query.get('url'))
   return (

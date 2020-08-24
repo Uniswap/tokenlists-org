@@ -54,6 +54,7 @@ a {
   grid-template-columns: 300px 640px;
   grid-gap: 48px;
   position: relative;
+  box-sizing: border-box;
   /* min-height: 960px; */
 }
 
@@ -62,6 +63,7 @@ a {
   grid-template-columns: 1fr 1fr;
   /* grid-gap: 48px; */
   position: relative;
+  box-sizing: border-box;
   /* min-height: 960px; */
 }
 
@@ -96,8 +98,7 @@ a {
 .hero {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
-  transition: all 0.25s ease;
+  margin-top: 6rem;
   position: sticky;
   top: 6rem;
   height: fit-content;
@@ -111,11 +112,14 @@ a {
   width: fit-content;
 }
 
+.nav > * {
+  margin-left: 1rem;
+}
+
 .hero p {
   text-align: left;
   max-width: 450px;
   font-size: 18px;
-  font-weight: 400;
 }
 
 .hero .title {
@@ -138,7 +142,7 @@ a {
   max-width: 640px;
   min-height: 400px;
   width: 100%;
-  padding: 3rem 0 6rem 0;
+  padding: 5rem 0 6rem 0;
   /* color: white; */
   display: flex;
   flex-direction: column;
@@ -168,16 +172,15 @@ a {
 .card {
   border-radius: 8px;
   padding: 1.5rem;
-  /* min-width: 172px; */
-  min-height: 220px;
-  max-width: 172px;
+
+  height: 200px;
+  max-width: 164px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  transition: all 0.25s ease;
+  transition: box-shadow 0.25s ease;
   scale: 1;
   background-color: white;
-  /* border: 1px solid black; */
   text-decoration: none;
   color: #0f0f0f;
 }
@@ -194,7 +197,7 @@ a {
 .card img {
   max-width: 64px;
   width: fit-content;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
 .search {
@@ -223,7 +226,7 @@ a {
 
 .list-title {
   font-weight: 500;
-  color: #1f1f1f60;
+  color: #1f1f1f80;
 }
 
 .list-item {
@@ -231,7 +234,11 @@ a {
   max-width: 960px;
   grid-gap: 1rem;
   grid-template-columns: 1fr 128px 64px;
-  height: 36px;
+  height: fit-content;
+  margin-bottom: 1rem;
+}
+.list-item p {
+  margin: 0;
 }
 
 .list-item a {
@@ -366,4 +373,74 @@ a {
 .grid {
   display: grid;
   grid-gap: 0.5rem;
+}
+
+.uniswap {
+  color: #ff007a;
+}
+
+.helper {
+  padding: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.5);
+
+  border-radius: 8px;
+  font-size: 11px;
+  font-style: italic;
+  max-width: 200px;
+}
+
+@media screen and (max-width: 960px) {
+  .content {
+    grid-template-columns: 1fr;
+    width: 100%;
+    grid-gap: 24px;
+    padding: 0 1.5rem;
+  }
+  .home-content {
+    grid-template-columns: 1fr;
+    width: 100%;
+    grid-gap: 24px;
+    padding: 0 1.5rem;
+  }
+  .hero {
+    position: relative;
+    top: initial;
+    margin-top: 2rem;
+  }
+  .hero .title {
+    margin-bottom: 2rem;
+    font-size: 35px;
+  }
+  .info {
+    position: relative;
+    top: initial;
+    margin-top: 2rem;
+    height: fit-content;
+    padding: 0;
+  }
+  .info .card {
+    width: 100%;
+    max-width: unset;
+    box-sizing: border-box;
+  }
+  .card-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+  .home-content .featured {
+    padding: 2rem 0 2rem 0;
+  }
+  .featured {
+    padding: 0 0 2rem 0;
+  }
+  .hide-small {
+    display: none;
+  }
+  .token-item {
+    display: grid;
+    max-width: 960px;
+    grid-gap: 1rem;
+    grid-template-columns: 24px 96px 1fr;
+    margin-bottom: 1rem;
+  }
 }

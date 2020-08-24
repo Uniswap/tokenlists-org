@@ -49,9 +49,9 @@ function ListItem({ token }) {
             alt={token.name + ' token icon'}
           />
         )}
-        <span>{token.name}</span>
+        <span className="hide-small">{token.name}</span>
       </span>
-      <span>
+      <span className="hide-small">
         {token.tags &&
           token.tags.map((data, i) => (
             <div className="tag">{data.toUpperCase()}</div>
@@ -84,7 +84,7 @@ export default function Tokens({ tokens }) {
   return (
     <section className="featured">
       <div className="flex-between">
-        <h2>Tokens</h2>
+        <h3>List Tokens</h3>
         <form className="search">
           <input
             type="text"
@@ -115,11 +115,13 @@ export default function Tokens({ tokens }) {
       </div>
 
       <div className="token-wrapper" style={{ marginTop: '1rem' }}>
-        <section className="list-title token-item">
-          <p>Name</p>
-          <p>Tags</p>
-          <p>Symbol</p>
-          <p style={{ textAlign: 'right' }}>Address</p>
+        <section className="list-title token-item ">
+          <p className="hide-small">Name</p>
+          <p className="hide-small">Tags</p>
+          <p className="hide-small">Symbol</p>
+          <p className="hide-small" style={{ textAlign: 'right' }}>
+            Address
+          </p>
         </section>
 
         <FilterResults

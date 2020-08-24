@@ -69,7 +69,7 @@ export default function Featured() {
             {value === '' ? (
               <Search
                 style={{
-                  marginLeft: '-24px',
+                  marginLeft: '-32px',
                   pointerEvents: 'none',
                 }}
                 size={20}
@@ -86,7 +86,7 @@ export default function Featured() {
             )}
           </form>
         </div>
-        <section className="list-item">
+        <section className="list-item list-title">
           <p>Name</p>
           <p>Last Updated</p>
           <p style={{ textAlign: 'right' }}>Tokens</p>
@@ -94,7 +94,7 @@ export default function Featured() {
 
         <FilterResults
           value={value}
-          data={featuredLists}
+          data={allLists}
           renderResults={(results) => (
             <div>
               {results.map((data, i) => (

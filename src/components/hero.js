@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 export default function Header() {
   return (
     <section className="hero">
-      <small style={{ marginTop: '4rem', marginBottom: '1rem' }}>
-        A Uniswap project
+      <small style={{ marginBottom: '1rem' }}>
+        A <span className="uniswap">Uniswap</span> project
       </small>
 
       <p className="title">
@@ -13,7 +13,7 @@ export default function Header() {
       </p>
       {/* <img className="list" src={list} alt="list screenshot" /> */}
 
-      <a className="button" href="https://github.com/Uniswap/token-lists">
+      <a className="button " href="https://github.com/Uniswap/token-lists">
         <img
           style={{ filter: 'invert(1)', width: 16, marginRight: 8 }}
           src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
