@@ -1,18 +1,56 @@
 import React from 'react'
+import styled from 'styled-components'
 import Card from './card'
 import Moment from 'react-moment'
 import CopyHelper from './copy'
 
+const StyledInfo = styled.section`
+  display: grid;
+  grid-template-row: 224px 1fr;
+  grid-gap: 2rem;
+  max-width: 960px;
+  box-sizing: border-box;
+  padding: 3rem 0;
+  min-height: 400px;
+  position: sticky;
+  top: 3rem;
+  height: 400px;
+  small {
+    font-size: 16px;
+    line-height: 150%;
+    color: #131313;
+  }
+`
+
+const InfoDescription = styled.span`
+  display: grid;
+  grid-gap: 1rem;
+  font-size: 1rem;
+  max-width: 960px;
+  span p {
+    margin: 0.25rem 0;
+    color: #797878;
+  }
+`
+
+const InfoLoading = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 400px;
+`
+
 export default function Info({ url, list }) {
   return (
-    <section className="info">
+    <StyledInfo>
       <Card list={list} url={url} customImage={false} />
-      <span className="info-description">
+      <InfoDescription>
         <span className="grid">
-          <small>Source URL</small>
-          <span>
+          <small style={{ fontWeight: 600 }}>Source URL</small>{' '}
+          <CopyHelper toCopy={url} />
+          {/* <span>
             <a href={url}>{url}</a> <CopyHelper toCopy={url} />
-          </span>
+          </span> */}
         </span>
 
         <div className="helper">
@@ -53,7 +91,7 @@ export default function Info({ url, list }) {
             Open with Uniswap ↗
           </a>
         </span> */}
-      </span>
-    </section>
+      </InfoDescription>
+    </StyledInfo>
   )
 }

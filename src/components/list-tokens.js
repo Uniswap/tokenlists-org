@@ -1,7 +1,61 @@
 import React, { useState, useEffect } from 'react'
-import { Search as SearchIcon, X } from 'react-feather'
+import styled from 'styled-components'
+import Search from './search'
+import CopyHelper from './copy'
+
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
+
+const TokenItem = styled.section`
+  display: grid;
+  max-width: 960px;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 128px 96px 148px;
+  margin-bottom: 1rem;
+`
+const TokenInfo = styled.span`
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  grid-gap: 1rem;
+  height: fit-content;
+  align-items: center;
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`
+
+const TokenIcon = styled.img`
+  width: 16px;
+  border-radius: 32px;
+  background-color: white;
+  height: 16px;
+`
+const TokenTagWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const TokenTag = styled.div`
+  font-size: 11px;
+  background-color: rgb(230, 230, 230, 0.4);
+  color: #858585;
+  padding: 0.25rem 0.35rem;
+  margin-right: 0.2rem;
+  border-radius: 4px;
+  width: fit-content;
+`
+
+const TokenAddress = styled.span`
+  display: grid;
+  grid-template-columns: auto 16px;
+  grid-gap: 0.5rem;
+  height: fit-content;
+  align-items: center;
+  a {
+    color: #131313;
+  }
+`
 
 function ListItem({ token }) {
   const [urlType, setUrlType] = useState('')
@@ -12,11 +66,13 @@ function ListItem({ token }) {
       : setUrlType('url')
   }, [])
 
+  const tag = token.tags[0]
+
   return (
-    <section className="token-item">
-      <span className="token-info">
+    <TokenItem>
+      <TokenInfo>
         {token.logoURI ? (
-          <img
+          <TokenIcon
             className="token-icon"
             src={
               urlType === 'ipfs'
@@ -32,7 +88,7 @@ function ListItem({ token }) {
             }}
           />
         ) : (
-          <img
+          <TokenIcon
             className="token-icon"
             src={
               'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/' +
@@ -48,28 +104,56 @@ function ListItem({ token }) {
           />
         )}
         <span className="hide-small">{token.name}</span>
-      </span>
-      <span className="hide-small">
-        {token.tags &&
-          token.tags.map((data, i) => (
-            <div className="tag">{data.toUpperCase()}</div>
-          ))}
-      </span>
-
+      </TokenInfo>
       <span>{token.symbol}</span>
-      <a
-        style={{ textAlign: 'right' }}
-        href={
-          'https://etherscan.io/address/' + toChecksumAddress(token.address)
-        }
-      >
-        {toChecksumAddress(token.address)?.slice(0, 6) +
-          '...' +
-          toChecksumAddress(token.address)?.slice(38, 42)}
-      </a>
-    </section>
+      <TokenTagWrapper className="hide-small">
+        <TokenTag>{tag.toUpperCase()}</TokenTag>
+        {token.tags.length > 1 && <TokenTag>...</TokenTag>}
+        {/* {token.tags &&
+          token.tags.map((data, i) => (
+            <TokenTag>{data.toUpperCase()}</TokenTag>
+          ))} */}
+      </TokenTagWrapper>
+      <TokenAddress>
+        <a
+          style={{ textAlign: 'right' }}
+          href={
+            'https://etherscan.io/address/' + toChecksumAddress(token.address)
+          }
+        >
+          {toChecksumAddress(token.address)?.slice(0, 6) +
+            '...' +
+            toChecksumAddress(token.address)?.slice(38, 42)}
+        </a>
+        <CopyHelper toCopy={token.address} />
+      </TokenAddress>
+    </TokenItem>
   )
 }
+
+const Title = styled.h1`
+  font-size: 48px;
+  line-height: 125%;
+`
+
+const TokenWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 960px;
+  width: 100%;
+  height: fit-content;
+  min-height: 60vh;
+`
+
+const ListTitle = styled.div`
+  font-weight: 500;
+  color: #1f1f1f80;
+  display: grid;
+  max-width: 960px;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 128px 96px 148px;
+  margin-bottom: 1rem;
+`
 
 export default function Tokens({ tokens }) {
   const [value, setValue] = useState('')
@@ -80,47 +164,22 @@ export default function Tokens({ tokens }) {
   }
 
   return (
-    <section className="featured">
+    <section className="">
       <div className="flex-between">
-        <h3>List Tokens</h3>
-        <form className="search">
-          <input
-            type="text"
-            value={value}
-            // placeholder={'Filter tokens...'}
-            onChange={(e) => handleChange(e)}
-          />
-
-          {value === '' ? (
-            <SearchIcon
-              style={{
-                marginLeft: '-24px',
-                pointerEvents: 'none',
-              }}
-              size={20}
-            />
-          ) : (
-            <X
-              style={{
-                marginLeft: '-24px',
-                cursor: 'pointer',
-              }}
-              onClick={() => setValue('')}
-              size={20}
-            />
-          )}
-        </form>
+        <Title>List Tokens</Title>
+        <Search handleChange={handleChange} value={value} setValue={setValue} />
       </div>
 
-      <div className="token-wrapper" style={{ marginTop: '1rem' }}>
-        <section className="list-title token-item ">
+      <TokenWrapper>
+        <ListTitle>
           <p className="hide-small">Name</p>
-          <p className="hide-small">Tags</p>
           <p className="hide-small">Symbol</p>
+          <p className="hide-small">Tags</p>
+
           <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
           </p>
-        </section>
+        </ListTitle>
 
         <FilterResults
           value={value}
@@ -133,11 +192,7 @@ export default function Tokens({ tokens }) {
             </div>
           )}
         />
-
-        {/* {tokens.map((token, i) => (
-          <ListItem key={i} token={token} />
-        ))} */}
-      </div>
+      </TokenWrapper>
     </section>
   )
 }

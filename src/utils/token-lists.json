@@ -1,37 +1,38 @@
 [
   {
     "name": "Coingecko Verified Tokens",
-    "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json",
-    "icon": "coingecko.png"
+    "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json"
   },
   {
     "name": "Kleros T2CR",
-    "url": "http://t2crtokens.eth.link/",
-    "icon": "kleros.png"
+    "url": "http://t2crtokens.eth.link/"
   },
   {
     "name": "Roll Social Money",
-    "url": "https://app.tryroll.com/tokens.json",
-    "icon": "roll.png"
+    "url": "https://app.tryroll.com/tokens.json"
   },
   {
     "name": "Defiprime",
-    "url": "https://defiprime.com/defiprime.tokenlist.json",
-    "icon": "defiprime.png"
+    "url": "https://defiprime.com/defiprime.tokenlist.json"
   },
   {
     "name": "1inch",
-    "url": "http://tokens.1inch.eth.link/",
-    "icon": "1inch.svg"
+    "url": "http://tokens.1inch.eth.link/"
   },
   {
     "name": "Synthetix",
-    "url": "http://synths.snx.eth.link/",
-    "icon": "synthetix.png"
+    "url": "http://synths.snx.eth.link/"
   },
   {
     "name": "Uniswap",
-    "url": "https://tokens.uniswap.org",
-    "icon": "uni-icon.png"
+    "url": "https://tokens.uniswap.org"
+  },
+  {
+    "name": "UMA",
+    "url": "https://umaproject.org/uma.tokenlist.json"
+  },
+  {
+    "name": "Zerion",
+    "url": "https://cloudflare-ipfs.com/ipfs/QmVxWPWo714DU7B5ToBgenaNL7kccRbZCekBcuaCxxg5MF"
   }
 ]

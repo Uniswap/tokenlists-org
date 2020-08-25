@@ -1,20 +1,45 @@
 @import url('https://rsms.me/inter/inter.css');
 
+@font-face {
+  font-family: 'MatterSQ-Medium';
+  src: local('MatterSQ-Medium'),
+    url(./fonts/MatterSQ-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'MatterSQ-Regular';
+  src: local('MatterSQ-Regular'),
+    url(./fonts/MatterSQ-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'MatterSQ-SemiBold';
+  src: local('MatterSQ-SemiBold'),
+    url(./fonts/MatterSQ-SemiBold.woff2) format('woff2');
+}
+
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: 'MatterSQ-Regular', 'Inter', sans-serif;
 }
 @supports (font-variation-settings: normal) {
   html {
-    font-family: 'Inter var', sans-serif;
+    font-family: 'MatterSQ-Regular', 'Inter var', sans-serif;
   }
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'MatterSQ-Medium';
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'MatterSQ-Regular', 'Inter', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
+  color: #131313;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -67,23 +92,6 @@ a {
   /* min-height: 960px; */
 }
 
-.header {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 1rem;
-  box-sizing: border-box;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid #1f1f1f;
-  backdrop-filter: blur(12px);
-  z-index: 999;
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.header a {
-  color: #0f0f0f;
-}
-
 .footer {
   display: flex;
   width: 100%;
@@ -91,66 +99,6 @@ a {
   padding: 1rem;
   box-sizing: border-box;
   border-top: 1px solid #1f1f1f;
-  /* background-color: #0f0f0f; */
-  /* color: white; */
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  margin-top: 6rem;
-  position: sticky;
-  top: 6rem;
-  height: fit-content;
-}
-
-.nav {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  width: fit-content;
-}
-
-.nav > * {
-  margin-left: 1rem;
-}
-
-.hero p {
-  text-align: left;
-  max-width: 450px;
-  font-size: 18px;
-}
-
-.hero .title {
-  text-align: left;
-  max-width: 450px;
-  font-size: 48px;
-  margin-top: 0;
-}
-
-.hero .icon {
-  width: 48px;
-}
-
-.hero .list {
-  max-width: 960px;
-}
-
-.featured {
-  /* background-color: #0f0f0f; */
-  max-width: 640px;
-  min-height: 400px;
-  width: 100%;
-  padding: 5rem 0 6rem 0;
-  /* color: white; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* position: sticky;
-  top: 3rem; */
-  height: fit-content;
 }
 
 .featured a {
@@ -165,6 +113,7 @@ a {
 .card-wrapper {
   display: grid;
   max-width: 960px;
+  min-width: 50vw;
   grid-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -172,7 +121,6 @@ a {
 .card {
   border-radius: 8px;
   padding: 1.5rem;
-
   height: 200px;
   max-width: 164px;
   display: flex;
@@ -198,23 +146,6 @@ a {
   max-width: 64px;
   width: fit-content;
   margin-bottom: 2rem;
-}
-
-.search {
-  display: flex;
-  align-items: center;
-}
-
-.search input {
-  border: none;
-  background-color: transparent;
-  font-size: 1rem;
-  text-align: left;
-  padding: 0.5rem;
-}
-
-.search input:focus {
-  background-color: white;
 }
 
 .lists-wrapper {
@@ -245,37 +176,6 @@ a {
   color: #2172e5;
 }
 
-.info {
-  display: grid;
-  grid-template-row: 224px 1fr;
-  grid-gap: 2rem;
-  max-width: 960px;
-  box-sizing: border-box;
-  padding: 3rem 0;
-  min-height: 400px;
-  position: sticky;
-  top: 3rem;
-  height: 400px;
-}
-
-.info-description {
-  display: grid;
-  grid-gap: 1rem;
-  font-size: 1rem;
-  max-width: 960px;
-}
-
-.info-description span p {
-  margin: 0.25rem 0;
-}
-
-.info-loading {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 400px;
-}
-
 .button {
   background-color: #010101;
   border-radius: 8px;
@@ -298,23 +198,6 @@ a {
   scale: 1.01;
 }
 
-.token-wrapper {
-  display: flex;
-  flex-direction: column;
-  max-width: 960px;
-  width: 100%;
-  height: fit-content;
-  min-height: 60vh;
-}
-
-.token-item {
-  display: grid;
-  max-width: 960px;
-  grid-gap: 1rem;
-  grid-template-columns: 1fr 128px 96px 128px;
-  margin-bottom: 1rem;
-}
-
 .tag {
   font-size: 11px;
   background-color: rgb(230, 230, 230, 0.4);
@@ -327,19 +210,6 @@ a {
 
 .token-item a {
   color: #2172e5;
-}
-
-.token-info {
-  display: grid;
-  grid-template-columns: 16px 1fr;
-  grid-gap: 1rem;
-  height: fit-content;
-  align-items: center;
-}
-
-.token-info span {
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .token-icon {
@@ -409,7 +279,6 @@ a {
     margin-top: 2rem;
   }
   .hero .title {
-    margin-bottom: 2rem;
     font-size: 35px;
   }
   .info {

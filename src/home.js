@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Header from './components/header'
 import Hero from './components/hero'
-import Featured from './components/featured'
+import AllLists from './components/allLists'
 import Footer from './components/footer'
 
 import './index.css'
@@ -15,7 +15,7 @@ function Home() {
       <Header />
       <div className="home-content">
         <Hero />
-        <Featured />
+        <AllLists />
       </div>
       <Footer />
     </div>
