@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Search as SearchIcon, X } from 'react-feather'
-
 import { toChecksumAddress } from 'ethereumjs-util'
-
 import FilterResults from 'react-filter-search'
 
 function ListItem({ token }) {

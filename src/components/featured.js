@@ -7,8 +7,7 @@ import FilterResults from 'react-filter-search'
 
 import { useFetch } from '../utils/useFetch'
 
-import featuredLists from '../utils/featuredlists.json'
-import allLists from '../utils/lists.json'
+import tokenLists from '../utils/token-lists.json'
 
 import { Link } from 'react-router-dom'
 
@@ -42,16 +41,13 @@ export default function Featured() {
     setValue(value)
   }
 
-  const random = featuredLists[Math.floor(Math.random() * featuredLists.length)]
-  console.log(random)
-
   return (
     <section className="featured">
       {/* <small style={{ width: '100%', maxWidth: '640px', padding: '1rem 0' }}>
         Highlighted Lists
       </small> */}
       <div className="card-wrapper ">
-        {featuredLists.map((list, i) => (
+        {tokenLists.map((list, i) => (
           <Card key={i} url={list.url} list={list} customImage={true} />
         ))}
       </div>
@@ -94,7 +90,7 @@ export default function Featured() {
 
         <FilterResults
           value={value}
-          data={allLists}
+          data={tokenLists}
           renderResults={(results) => (
             <div>
               {results.map((data, i) => (
