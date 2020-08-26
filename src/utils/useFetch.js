@@ -8,7 +8,7 @@ export function useFetch(url) {
     if (url) {
       let stale = false
 
-      fetch(url)
+      fetch(url.startsWith('http://') ? `https://snowy-dawn-4154.uniswap-lists.workers.dev/?${url}` : url)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok')
