@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-// import { usePalette } from 'react-palette'
-import { useFetch } from '../utils/useFetch'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { getURLFromQuery } from '../pages/list'
+import { useFetch } from '../utils/useFetch'
 
 const StyledCard = styled(Link)`
   border-radius: 8px;
@@ -19,10 +19,6 @@ const StyledCard = styled(Link)`
   color: #0f0f0f;
   border: 0.75px solid #131313;
   box-shadow: -10px 10px 0px #d6fdff;
-
-  :hover {
-    box-shadow: ;
-  }
 
   h3 {
     font-size: 24px;
@@ -46,74 +42,48 @@ const TokensListed = styled.span`
   line-height: 150%;
 `
 
-export default function Card({ url, list, customImage }) {
-  let linkedURL =
-    url.split(':')[0] === 'https' || url.split(':')[0] === 'http'
-      ? url
-      : `http://${url}.link/`
+function getLogoURL(logoURI) {
+  if (logoURI?.startsWith('ipfs://')) {
+    return `https://ipfs.io/ipfs/${logoURI.split('//')[1]}`
+  } else if (typeof logoURI === 'string') {
+    return logoURI
+  } else {
+    return null
+  }
+}
 
-  console.log(linkedURL)
+export default function Card({ query, list }) {
+  // because list is optional, we have to fetch it if not passed
+  const url = getURLFromQuery(query)
+  const [, fetchedList, error] = useFetch(list ? null : url)
+  console.log(url)
 
-  const [urlType, setUrlType] = useState('ipfs')
-  const [tokenlist, loading] = useFetch(linkedURL)
+  const loadedList = list ?? fetchedList
 
-  useEffect(() => {
-    tokenlist.logoURI && tokenlist.logoURI.substring(0, 4) === 'ipfs'
-      ? setUrlType('ipfs')
-      : setUrlType('url')
-  }, [tokenlist])
-
-  // const { data } = usePalette(
-  //   !customImage
-  //     ? urlType === 'ipfs'
-  //       ? tokenlist.logoURI &&
-  //         'https://ipfs.io/ipfs/' + tokenlist.logoURI.split('//')[1]
-  //       : '/icons/uni-icon.png'
-  //     : '/icons/' + list.icon
-  // )
+  const logoURL = getLogoURL(loadedList?.logoURI ?? null)
 
   return (
     <StyledCard
-      to={'/token-list?url=' + url}
+      to={'/token-list?url=' + query}
       className="card"
-      style={
-        {
-          // background: ` radial-gradient(ellipse at top, transparent, ${data.vibrant}),
-          // radial-gradient(ellipse at bottom, ${data.vibrant}, transparent)`,
-          // border: `1px solid ${data.vibrant}`,
-          // color: data.vibrant,
-          // boxShadow: ` -8px 8px 0 ${data.vibrant}`,
-        }
-      }
     >
       <img
         alt="icon"
-        src={
-          !customImage
-            ? urlType === 'ipfs'
-              ? tokenlist.logoURI &&
-                'https://ipfs.io/ipfs/' + tokenlist.logoURI.split('//')[1]
-              : tokenlist.logoURI
-              ? tokenlist.logoURI
-              : 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
-            : '/icons/' + tokenlist.icon
-        }
+        src={logoURL ?? 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'}
         onError={(e) => {
           e.target.className = 'replace'
-          e.target.src =
-            'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+          e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
         }}
       />
       <section>
-        <h3>{tokenlist.name}</h3>
-        {loading ? (
-          <TokensListed>loading...</TokensListed>
-        ) : (
+        <h3>{loadedList?.name}</h3>
+        {loadedList?.tokens?.length > 0 ? (
           <TokensListed>
-            {tokenlist.tokens ? tokenlist.tokens.length + ' tokens' : ''}
+            {loadedList.tokens.length} tokens
           </TokensListed>
-        )}
+        ) : error ? 'Error' : 'Loading...'}
       </section>
     </StyledCard>
   )
 }
+

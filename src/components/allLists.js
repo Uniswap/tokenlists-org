@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Card from './card'
 import Search from './search'
 import FilterResults from 'react-filter-search'
-import tokenLists from '../utils/token-lists.json'
+import tokenLists from '../token-lists.json'
 
 const StyledAllLists = styled.section`
   min-height: 80vh;
@@ -55,18 +55,15 @@ export default function AllLists() {
         <FilterResults
           value={value}
           data={tokenLists}
-          renderResults={(results) => (
-            <>
-              {results.map((list, i) => (
-                <Card key={list.url} url={list.url} list={list} />
-              ))}
-            </>
-          )}
+          renderResults={(results) => results.map((list) => (
+            <Card key={list.url} query={list.url} />
+          ))}
         />
       </CardWrapper>
       <AddButton>
         <a
           target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
         >
           + add a list

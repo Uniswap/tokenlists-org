@@ -47,15 +47,16 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <a target="_blank" href="http://community.tokenlists.org/">
+        <a target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
           Community
         </a>
-        <a target="_blank" href="https://uniswap.org/blog/token-lists/">
+        <a target="_blank" rel="noopener noreferrer" href="https://uniswap.org/blog/token-lists/">
           Why lists?
         </a>
         <a
           className="hide-small"
           target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/Uniswap/token-lists#authoring-token-lists"
         >
           Make a list
@@ -63,8 +64,9 @@ export default function Header({ back }) {
 
         <a
           className="button"
-          style={{ color: 'white  ' }}
+          style={{ color: 'white' }}
           target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/Uniswap/token-lists"
         >
           <img

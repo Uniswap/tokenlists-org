@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import Header from '../components/header'
-import Footer from '../components/footer'
 
 import '../index.css'
 
@@ -8,6 +7,7 @@ function Home() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
   return (
     <div className="app">
       <Header />

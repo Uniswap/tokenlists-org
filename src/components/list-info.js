@@ -57,29 +57,24 @@ const Helper = styled.div`
   color: rgba(0, 0, 0);
   border-radius: 8px;
   font-size: 14px;
-  /* max-width: 200px; */
 `
 
-export default function Info({ url, list }) {
-  let linkedURL =
-    url.split(':')[0] !== 'https' ? `https://app.ens.domains/name/${url}` : url
-
+export default function Info({ query, url, list }) {
   return (
     <StyledInfo>
-      <Card list={list} url={url} customImage={false} />
+      <Card query={query} list={list} />
       <InfoDescription>
         <span className="grid">
           <small style={{ fontWeight: 600 }}>
-            Source <CopyHelper toCopy={url} />
-          </small>{' '}
+            Source <CopyHelper toCopy={query} />
+          </small>
           <span>
-            <a href={linkedURL}>{url}</a>
+            <a href={url}>{query}</a>
           </span>
         </span>
 
         <Helper>
-          Use this url to import this list anywhere the token lists
-          specification is supported.
+          Copy to import this list anywhere the token lists specification is supported.
         </Helper>
 
         <span>
@@ -91,26 +86,9 @@ export default function Info({ url, list }) {
         <span>
           <small>Version</small>
           <p>
-            {list.version.major +
-              '.' +
-              list.version.minor +
-              '.' +
-              list.version.patch}
+            {`${list.version.major}.${list.version.minor}.${list.version.patch}`}
           </p>
         </span>
-        {/* <span className="grid">
-          <a className="button" href={url}>
-            View list homepage ↗
-          </a>
-
-          <a
-            style={{ backgroundColor: '#ff007a' }}
-            className="button disabled"
-            href={'https://app.uniswap.org/#/' + url}
-          >
-            Open with Uniswap ↗
-          </a>
-        </span> */}
       </InfoDescription>
     </StyledInfo>
   )

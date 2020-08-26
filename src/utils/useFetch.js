@@ -1,30 +1,42 @@
-// hooks.js
 import { useState, useEffect } from 'react'
 
-function useFetch(url) {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+export function useFetch(url) {
+  const [list, setList] = useState()
   const [error, setError] = useState(false)
 
-  async function fetchUrl() {
-    try {
-      // const response = await fetch('https://test.cors.workers.dev/?' + url)
-      const response = await fetch(
-        'https://snowy-dawn-4154.uniswap-lists.workers.dev/?' + url
-      )
-
-      const json = await response.json()
-      setData(json)
-      setLoading(false)
-    } catch (err) {
-      console.log("Couldn't get this list")
-      setError(true)
-    }
-  }
   useEffect(() => {
-    fetchUrl()
-  }, [])
-  return [data, loading, error]
-}
+    if (url) {
+      let stale = false
 
-export { useFetch }
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok')
+          }
+          return response.json()
+        })
+        .then(json => {
+          if (!stale) {
+            setList(json)
+            setError(false)
+          }
+        })
+        .catch(error => {
+          if (!stale) {
+            console.error(`Failed to fetch ${url}`, error)
+            setList(undefined)
+            setError(true)
+          }
+          })
+
+      return () => {
+        stale = true
+
+        setList(undefined)
+        setError(false)
+      }
+    }
+  }, [url])
+
+  return [!!!list, list, error]
+}

@@ -32,8 +32,14 @@ const Loading = styled.div`
   flex-direction: column;
 `
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search)
+export function getURLFromQuery(query) {
+  if (query?.startsWith('https://')) {
+    return query
+  } else if (query?.endsWith('.eth')) {
+    return `http://${query}.link`
+  } else {
+    return null
+  }
 }
 
 function List() {
@@ -41,40 +47,34 @@ function List() {
     window.scrollTo(0, 0)
   }, [])
 
-  let query = useQuery()
-
-  let linkedURL =
-    query.get('url').split(':')[0] !== 'https'
-      ? `http://${query.get('url')}.link/`
-      : query.get('url')
-
-  console.log(query.get('url').split(':')[0] !== 'http')
-
-  const [data, loading, error] = useFetch(linkedURL)
+  const search = useLocation()?.search ?? ''
+  const query = new URLSearchParams(search).get('url')
+  const url = getURLFromQuery(query)
+  const [loading, list, error] = useFetch(url)
 
   return (
     <div className="app">
       <Header back={true} />
-      {loading ? (
+      {url === null ? (
         <Loading>
-          {error ? (
-            <>
-              <p>Sorry, I'm having trouble loading this list :(</p>
-              <small>
-                <a href={linkedURL}>{linkedURL}</a>
-              </small>
-            </>
-          ) : (
-            <p>Loading...</p>
-          )}
+          {query ? <>Invalid URL<code>{query}</code></> : 'Invalid URL'}
+        </Loading>
+      ) : error ? (
+        <Loading>
+          <p>Sorry, we're having trouble loading this list.</p>
+          <small>
+            <a href={url}>{query}</a>
+          </small>
+        </Loading>
+      ) : loading ? (
+        <Loading>
+          <p>Loading...</p>
         </Loading>
       ) : (
-        <>
-          <Content>
-            <Info url={query.get('url')} list={data} />
-            <Tokens tokens={data.tokens} />
-          </Content>
-        </>
+        <Content>
+          <Info query={query} url={url} list={list} />
+          <Tokens tokens={list.tokens} />
+        </Content>
       )}
     </div>
   )

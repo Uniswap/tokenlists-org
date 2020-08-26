@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Hero = styled.section`
@@ -81,24 +80,27 @@ export default function Header() {
       </p>
       <a
         target="_blank"
+        rel="noopener noreferrer"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://uniswap.org/blog/token-lists/"
       >
-        -> Why token lists?
+        {'->'} Why token lists?
       </a>
       <a
         target="_blank"
+        rel="noopener noreferrer"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
-        -> Make your own
+        {'->'} Make your own
       </a>
       <a
         target="_blank"
+        rel="noopener noreferrer"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="http://community.tokenlists.org/"
       >
-        -> Community
+        {'->'} Community
       </a>
     </Hero>
   )
