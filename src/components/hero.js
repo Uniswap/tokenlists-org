@@ -57,6 +57,16 @@ const Hero = styled.section`
   }
 `
 
+const HoverLink = styled.a`
+  transition: box-shadow 0.25s ease, translate 0.25s ease;
+  margin-top: 0.5rem;
+  width: fit-content;
+  :hover {
+    box-shadow: -6px 6px 0px #d6fdff;
+    translate: 1px -1px;
+  }
+`
+
 export default function Header() {
   return (
     <Hero>
@@ -79,27 +89,27 @@ export default function Header() {
         reputation and trust in ERC20 token lists in a manner that is inclusive,
         transparent, and decentralized.
       </p>
-      <a
+      <HoverLink
         target="_blank"
-        style={{ marginTop: '.5rem', width: 'fit-content' }}
+        rel="noopener noreferrer"
         href="https://uniswap.org/blog/token-lists/"
       >
         -> Why token lists?
-      </a>
-      <a
+      </HoverLink>
+      <HoverLink
         target="_blank"
-        style={{ marginTop: '.5rem', width: 'fit-content' }}
+        rel="noopener noreferrer"
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
         -> Make your own
-      </a>
-      <a
+      </HoverLink>
+      <HoverLink
         target="_blank"
-        style={{ marginTop: '.5rem', width: 'fit-content' }}
+        rel="noopener noreferrer"
         href="http://community.tokenlists.org/"
       >
         -> Community
-      </a>
+      </HoverLink>
     </Hero>
   )
 }

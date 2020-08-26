@@ -68,5 +68,10 @@
     "name": "Compound",
     "url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
     "homepage": ""
+  },
+  {
+    "name": "AAVE",
+    "url": "https://cloudflare-ipfs.com/ipfs/QmVNCFc3y1DMt8n4K42d8BYubUhQ7FgcNxzEHxSEHszUhL",
+    "homepage": ""
   }
 ]

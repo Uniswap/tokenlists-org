@@ -83,6 +83,7 @@ export default function AllLists() {
       <AddButton>
         <a
           target="_blank"
+          rel="noopener noreferrer"
           href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
         >
           + add a list

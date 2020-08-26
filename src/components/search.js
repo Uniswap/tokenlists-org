@@ -14,12 +14,12 @@ const StyledSearch = styled.form`
     border: 0.5px solid #838383;
     font-size: 14px;
     text-align: left;
-    padding: 6px;
+    padding: 8px;
     padding-left: 2rem;
     width: 164px;
 
     border: 0.5px solid #838383;
-    border-radius: 4px;
+    border-radius: 8px;
   }
 
   input:focus {
