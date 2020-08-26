@@ -21,6 +21,13 @@ const StyledSearch = styled.form`
     border: 0.5px solid #838383;
     border-radius: 8px;
   }
+  @media screen and (max-width: 414px) {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
 
   input:focus {
     background-color: white;
