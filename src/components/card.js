@@ -23,6 +23,10 @@ const StyledCard = styled(Link)`
   @media screen and (max-width: 960px) {
     max-width: initial;
   }
+  @media screen and (max-width: 414px) {
+    width: 100%;
+    box-sizing: border-box;
+  }
   :hover {
     box-shadow: -12px 12px 0px #d6fdff;
     translate: 2px -2px;
@@ -71,27 +75,29 @@ export default function Card({ query, list }) {
   const logoURL = getLogoURL(loadedList?.logoURI ?? null)
 
   return (
-    <StyledCard
-      to={'/token-list?url=' + query}
-      className="card"
-    >
+    <StyledCard to={'/token-list?url=' + query} className="card">
       <img
         alt="icon"
-        src={logoURL ?? 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'}
+        src={
+          logoURL ??
+          'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+        }
         onError={(e) => {
           e.target.className = 'replace'
-          e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+          e.target.src =
+            'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
         }}
       />
       <section>
         <h3>{loadedList?.name}</h3>
         {loadedList?.tokens?.length > 0 ? (
-          <TokensListed>
-            {loadedList.tokens.length} tokens
-          </TokensListed>
-        ) : error ? 'Error' : 'Loading...'}
+          <TokensListed>{loadedList.tokens.length} tokens</TokensListed>
+        ) : error ? (
+          'Error'
+        ) : (
+          'Loading...'
+        )}
       </section>
     </StyledCard>
   )
 }
-

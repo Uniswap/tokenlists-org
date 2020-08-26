@@ -179,6 +179,11 @@ const TokenWrapper = styled.div`
   margin-bottom: 2rem;
 `
 
+const ListWrapper = styled.section`
+  @media screen and (max-width: 414px) {
+  }
+`
+
 const ListTitle = styled.div`
   font-weight: 500;
   color: #1f1f1f80;
@@ -187,11 +192,13 @@ const ListTitle = styled.div`
   grid-gap: 1rem;
   grid-template-columns: 1fr 128px 96px 148px;
   margin-bottom: 1rem;
+  @media screen and (max-width: 414px) {
+    display: none;
+  }
 `
 
 const ListHeader = styled.div`
   display: flex;
-
   align-items: baseline;
   @media screen and (max-width: 640px) {
     flex-direction: column;
@@ -208,7 +215,7 @@ export default function Tokens({ tokens }) {
   }
 
   return (
-    <section>
+    <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
         <Search handleChange={handleChange} value={value} setValue={setValue} />
@@ -237,6 +244,6 @@ export default function Tokens({ tokens }) {
           )}
         />
       </TokenWrapper>
-    </section>
+    </ListWrapper>
   )
 }

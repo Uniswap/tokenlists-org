@@ -1,7 +1,42 @@
 [
   {
+    "name": "1inch",
+    "url": "tokens.1inch.eth",
+    "homepage": ""
+  },
+  {
+    "name": "AAVE",
+    "url": "https://cloudflare-ipfs.com/ipfs/QmS2jN2FEQdc36a4V5zttTwrTPGBCU56JJQcRXSPmZCzPN",
+    "homepage": ""
+  },
+  {
+    "name": "CMC Defi",
+    "url": "defi.cmc.eth",
+    "homepage": ""
+  },
+  {
+    "name": "CMC ERC20",
+    "url": "erc20.cmc.eth",
+    "homepage": ""
+  },
+  {
+    "name": "CMC Stablecoins",
+    "url": "stablecoin.cmc.eth",
+    "homepage": ""
+  },
+  {
     "name": "Coingecko Verified Tokens",
     "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json",
+    "homepage": ""
+  },
+  {
+    "name": "Compound",
+    "url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
+    "homepage": ""
+  },
+  {
+    "name": "Defiprime",
+    "url": "https://defiprime.com/defiprime.tokenlist.json",
     "homepage": ""
   },
   {
@@ -17,16 +52,6 @@
   {
     "name": "Roll Social Money",
     "url": "https://app.tryroll.com/tokens.json",
-    "homepage": ""
-  },
-  {
-    "name": "Defiprime",
-    "url": "https://defiprime.com/defiprime.tokenlist.json",
-    "homepage": ""
-  },
-  {
-    "name": "1inch",
-    "url": "tokens.1inch.eth",
     "homepage": ""
   },
   {
@@ -47,31 +72,6 @@
   {
     "name": "Zerion",
     "url": "tokenlist.zerion.eth",
-    "homepage": ""
-  },
-  {
-    "name": "CMC Defi",
-    "url": "defi.cmc.eth",
-    "homepage": ""
-  },
-  {
-    "name": "CMC ERC20",
-    "url": "erc20.cmc.eth",
-    "homepage": ""
-  },
-  {
-    "name": "CMC Stablecoins",
-    "url": "stablecoin.cmc.eth",
-    "homepage": ""
-  },
-  {
-    "name": "Compound",
-    "url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
-    "homepage": ""
-  },
-  {
-    "name": "AAVE",
-    "url": "https://cloudflare-ipfs.com/ipfs/QmVNCFc3y1DMt8n4K42d8BYubUhQ7FgcNxzEHxSEHszUhL",
     "homepage": ""
   }
 ]

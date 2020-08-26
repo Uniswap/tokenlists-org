@@ -36,7 +36,9 @@ const CardWrapper = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 414px) {
+    display: flex;
+    flex-wrap: wrap;
     max-width: initial;
     min-width: initial;
     grid-template-columns: 1fr;
@@ -71,9 +73,9 @@ export default function AllLists() {
         <FilterResults
           value={value}
           data={tokenLists}
-          renderResults={(results) => results.map((list) => (
-            <Card key={list.url} query={list.url} />
-          ))}
+          renderResults={(results) =>
+            results.map((list) => <Card key={list.url} query={list.url} />)
+          }
         />
       </CardWrapper>
       <AddButton>

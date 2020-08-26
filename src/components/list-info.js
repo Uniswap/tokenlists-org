@@ -35,9 +35,11 @@ const StyledInfo = styled.section`
     padding: 0;
   }
 
-  @media screen and (max-width: 640px) {
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
+  @media screen and (max-width: 414px) {
+    grid-template-columns: max-content;
+    width: 100%;
+    max-width: 320px;
+    overflow: hidden;
   }
 `
 
@@ -53,6 +55,7 @@ const InfoDescription = styled.span`
 
   @media screen and (max-width: 960px) {
     max-width: initial;
+    max-width: 260px;
   }
 `
 
@@ -79,7 +82,7 @@ export default function Info({ query, url, list }) {
         </span>
 
         <Helper>
-          Copy to import this list anywhere the token lists specification is supported.
+          Copy to import this list anywhere Token Lists are supported.
         </Helper>
 
         <span>
