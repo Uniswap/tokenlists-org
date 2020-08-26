@@ -48,6 +48,9 @@ export default function Header({ back }) {
 
       <Nav>
         <a target="_blank" href="https://uniswap.org/blog/token-lists/">
+          Community
+        </a>
+        <a target="_blank" href="https://uniswap.org/blog/token-lists/">
           Why lists?
         </a>
         <a

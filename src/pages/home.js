@@ -8,7 +8,8 @@ import '../index.css'
 
 const Content = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 460px 1fr;
+  grid-gap: 48px;
   position: relative;
   box-sizing: border-box;
 `

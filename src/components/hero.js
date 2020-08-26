@@ -80,17 +80,25 @@ export default function Header() {
         transparent, and decentralized.
       </p>
       <a
+        target="_blank"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://uniswap.org/blog/token-lists/"
       >
         -> Why token lists?
       </a>
-
       <a
+        target="_blank"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
-        -> Learn how to make your own
+        -> Make your own
+      </a>
+      <a
+        target="_blank"
+        style={{ marginTop: '.5rem', width: 'fit-content' }}
+        href="https://uniswap.org/blog/token-lists/"
+      >
+        -> Community
       </a>
     </Hero>
   )

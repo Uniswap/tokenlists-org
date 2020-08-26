@@ -6,12 +6,12 @@
   },
   {
     "name": "Dharma",
-    "url": "http://tokenlist.dharma.eth.link/",
+    "url": "http://tokenlist.dharma.eth.link",
     "homepage": ""
   },
   {
     "name": "Kleros T2CR",
-    "url": "http://t2crtokens.eth.link/",
+    "url": "http://t2crtokens.eth.link",
     "homepage": ""
   },
   {
@@ -26,17 +26,17 @@
   },
   {
     "name": "1inch",
-    "url": "http://tokens.1inch.eth.link/",
+    "url": "http://tokens.1inch.eth.link",
     "homepage": ""
   },
   {
     "name": "Synthetix",
-    "url": "http://synths.snx.eth.link/",
+    "url": "http://synths.snx.eth.link",
     "homepage": ""
   },
   {
     "name": "Uniswap",
-    "url": "https://tokens.uniswap.org",
+    "url": "http://uniswap.eth.link",
     "homepage": ""
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "name": "Zerion",
-    "url": "https://cloudflare-ipfs.com/ipfs/QmVxWPWo714DU7B5ToBgenaNL7kccRbZCekBcuaCxxg5MF",
+    "url": "http://tokenlist.zerion.eth.link",
     "homepage": ""
   },
   {
