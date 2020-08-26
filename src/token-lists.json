@@ -5,12 +5,12 @@
     "homepage": ""
   },
   {
-    "name": "AAVE",
+    "name": "AAVE token list",
     "url": "https://cloudflare-ipfs.com/ipfs/QmS2jN2FEQdc36a4V5zttTwrTPGBCU56JJQcRXSPmZCzPN",
     "homepage": ""
   },
   {
-    "name": "CMC Defi",
+    "name": "CMC DeFi",
     "url": "defi.cmc.eth",
     "homepage": ""
   },
@@ -20,12 +20,12 @@
     "homepage": ""
   },
   {
-    "name": "CMC Stablecoins",
+    "name": "CMC Stablecoin",
     "url": "stablecoin.cmc.eth",
     "homepage": ""
   },
   {
-    "name": "Coingecko Verified Tokens",
+    "name": "CoinGecko DeFi 100",
     "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json",
     "homepage": ""
   },
@@ -40,7 +40,7 @@
     "homepage": ""
   },
   {
-    "name": "Dharma",
+    "name": "Dharma Token List",
     "url": "tokenlist.dharma.eth",
     "homepage": ""
   },
@@ -60,7 +60,7 @@
     "homepage": ""
   },
   {
-    "name": "Uniswap",
+    "name": "Uniswap Default List",
     "url": "https://gateway.ipfs.io/ipns/tokens.uniswap.org",
     "homepage": ""
   },
@@ -70,7 +70,7 @@
     "homepage": ""
   },
   {
-    "name": "Zerion",
+    "name": "Zerion Explore",
     "url": "tokenlist.zerion.eth",
     "homepage": ""
   }
