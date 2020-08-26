@@ -41,6 +41,11 @@ const Hero = styled.section`
     font-family: 'MatterSQ-SemiBold';
   }
 
+  .uniswap {
+    color: #ff007a;
+    font-family: 'MatterSQ-Regular';
+  }
+
   @media screen and (max-width: 960px) {
     position: relative;
     top: initial;
@@ -55,9 +60,13 @@ const Hero = styled.section`
 export default function Header() {
   return (
     <Hero>
-      <small style={{ marginBottom: '1rem' }}>
-        A <span className="uniswap">Uniswap</span> Project
-      </small>
+      <span style={{ marginBottom: '1rem' }}>
+        A{' '}
+        <a href="https://uniswap.org/" className="uniswap">
+          Uniswap
+        </a>{' '}
+        Project
+      </span>
 
       <p className="title">A new Ethereum token list standard.</p>
 
@@ -66,19 +75,22 @@ export default function Header() {
         className="description"
         id="why-lists"
       >
-        Token Lists aim to solve the problem of the Ethereum community creating,
-        discovering and maintaining lists of reputable tokens in a way that is
-        inclusive, transparent, decentralized and open source.
+        Token Lists is a community-led initiative to improve discoverability,
+        reputation and trust in ERC20 token lists in a manner that is inclusive,
+        transparent, and decentralized.
       </p>
-
-      <Link style={{ marginTop: '.5rem', width: 'fit-content' }} to="/why">
+      <a
+        style={{ marginTop: '.5rem', width: 'fit-content' }}
+        href="https://uniswap.org/blog/token-lists/"
+      >
         -> Why token lists?
-      </Link>
+      </a>
+
       <a
         style={{ marginTop: '.5rem', width: 'fit-content' }}
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
-        -> Learn how to make your own.
+        -> Learn how to make your own
       </a>
     </Hero>
   )

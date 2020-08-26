@@ -12,13 +12,14 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
   position: sticky;
   top: 0;
-  backdrop-filter: blur(12px);
+  /* backdrop-filter: blur(12px); */
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.01);
   a {
     color: #0f0f0f;
   }
   .title {
+    font-size: 1.25rem;
     font-family: 'MatterSQ-SemiBold';
   }
 `
@@ -46,21 +47,21 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <Link className="hide-small" to="/why">
+        <a target="_blank" href="https://uniswap.org/blog/token-lists/">
           Why lists?
-        </Link>
+        </a>
         <a
           className="hide-small"
+          target="_blank"
           href="https://github.com/Uniswap/token-lists#authoring-token-lists"
         >
           Make a list
         </a>
-        <Link className="hide-small" to="/browse">
-          Explore lists
-        </Link>
+
         <a
           className="button"
           style={{ color: 'white  ' }}
+          target="_blank"
           href="https://github.com/Uniswap/token-lists"
         >
           <img

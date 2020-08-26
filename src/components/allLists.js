@@ -18,6 +18,14 @@ const StyledAllLists = styled.section`
   height: fit-content;
 `
 
+const CardWrapper = styled.div`
+  display: grid;
+  max-width: 960px;
+  min-width: 50vw;
+  grid-gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+`
+
 export default function AllLists() {
   const [value, setValue] = useState('')
   // const [data, loading, error] = useGetAll()
@@ -31,9 +39,9 @@ export default function AllLists() {
   }
 
   return (
-    <StyledAllLists className="featured">
+    <StyledAllLists>
       <Search handleChange={handleChange} value={value} setValue={setValue} />
-      <div className="card-wrapper ">
+      <CardWrapper>
         <FilterResults
           value={value}
           data={tokenLists}
@@ -45,7 +53,14 @@ export default function AllLists() {
             </>
           )}
         />
-      </div>
+      </CardWrapper>
+      <a
+        target="_blank"
+        href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
+      >
+        {' '}
+        Add a list
+      </a>
     </StyledAllLists>
   )
 }

@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react'
+import styled from 'styled-components'
 import Header from '../components/header'
 import Hero from '../components/hero'
 import AllLists from '../components/allLists'
-import Footer from '../components/footer'
 
 import '../index.css'
+
+const Content = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  box-sizing: border-box;
+`
 
 function Home() {
   useEffect(() => {
@@ -13,11 +20,10 @@ function Home() {
   return (
     <div className="app">
       <Header />
-      <div className="home-content">
+      <Content>
         <Hero />
         <AllLists />
-      </div>
-      <Footer />
+      </Content>
     </div>
   )
 }

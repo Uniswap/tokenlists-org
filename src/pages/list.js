@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Header from '../components/header'
 import Info from '../components/list-info'
 import Tokens from '../components/list-tokens'
-import Footer from '../components/footer'
 import { useFetch } from '../utils/useFetch'
 
 import { useLocation } from 'react-router-dom'
@@ -12,10 +11,25 @@ import '../index.css'
 
 const Content = styled.section`
   display: grid;
-  grid-template-columns: 300px 640px;
+  grid-template-columns: 300px 800px;
   grid-gap: 48px;
   position: relative;
   box-sizing: border-box;
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    grid-gap: 24px;
+    padding: 0 1.5rem;
+  }
+`
+
+const Loading = styled.div`
+  height: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
 
 function useQuery() {
@@ -28,30 +42,36 @@ function List() {
   }, [])
 
   let query = useQuery()
-  const [data, loading, error] = useFetch(query.get('url'))
+  let linkedURL =
+    query.get('url').split('.')[2] === 'eth' &&
+    query.get('url').split('.')[3] !== 'link'
+      ? `http://${query.get('url')}.link/`
+      : query.get('url')
+
+  const [data, loading, error] = useFetch(linkedURL)
+
   return (
     <div className="app">
       <Header back={true} />
       {loading ? (
-        <div className="info-loading">
+        <Loading>
           {error ? (
             <>
               <p>Sorry, I'm having trouble loading this list :(</p>
               <small>
-                <a href={query.get('url')}>{query.get('url')}</a>
+                <a href={linkedURL}>{linkedURL}</a>
               </small>
             </>
           ) : (
             <p>Loading...</p>
           )}
-        </div>
+        </Loading>
       ) : (
         <>
           <Content>
-            <Info url={query.get('url')} list={data} />
+            <Info url={linkedURL} list={data} />
             <Tokens tokens={data.tokens} />
           </Content>
-          <Footer />
         </>
       )}
     </div>

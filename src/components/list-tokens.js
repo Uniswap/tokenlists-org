@@ -12,6 +12,9 @@ const TokenItem = styled.section`
   grid-gap: 1rem;
   grid-template-columns: 1fr 128px 96px 148px;
   margin-bottom: 1rem;
+  a {
+    color: #131313;
+  }
 `
 const TokenInfo = styled.span`
   display: grid;
@@ -43,6 +46,7 @@ const TokenTag = styled.div`
   padding: 0.25rem 0.35rem;
   margin-right: 0.2rem;
   border-radius: 4px;
+  height: 14px;
   width: fit-content;
 `
 
@@ -52,9 +56,6 @@ const TokenAddress = styled.span`
   grid-gap: 0.5rem;
   height: fit-content;
   align-items: center;
-  a {
-    color: #131313;
-  }
 `
 
 function ListItem({ token }) {
@@ -103,7 +104,17 @@ function ListItem({ token }) {
             alt={token.name + ' token icon'}
           />
         )}
-        <span className="hide-small">{token.name}</span>
+        <span className="hide-small">
+          {' '}
+          <a
+            style={{ textAlign: 'right' }}
+            href={
+              'https://etherscan.io/address/' + toChecksumAddress(token.address)
+            }
+          >
+            {token.name}
+          </a>
+        </span>
       </TokenInfo>
       <span>{token.symbol}</span>
       <TokenTagWrapper className="hide-small">
@@ -147,6 +158,7 @@ const TokenWrapper = styled.div`
   width: 100%;
   height: fit-content;
   min-height: 60vh;
+  margin-bottom: 2rem;
 `
 
 const ListTitle = styled.div`
@@ -159,6 +171,11 @@ const ListTitle = styled.div`
   margin-bottom: 1rem;
 `
 
+const ListHeader = styled.div`
+  display: flex;
+  align-items: baseline;
+`
+
 export default function Tokens({ tokens }) {
   const [value, setValue] = useState('')
 
@@ -168,11 +185,11 @@ export default function Tokens({ tokens }) {
   }
 
   return (
-    <section className="">
-      <div className="flex-between">
+    <section>
+      <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
         <Search handleChange={handleChange} value={value} setValue={setValue} />
-      </div>
+      </ListHeader>
 
       <TokenWrapper>
         <ListTitle>

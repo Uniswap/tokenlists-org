@@ -48,5 +48,25 @@
     "name": "Zerion",
     "url": "https://cloudflare-ipfs.com/ipfs/QmVxWPWo714DU7B5ToBgenaNL7kccRbZCekBcuaCxxg5MF",
     "homepage": ""
+  },
+  {
+    "name": "CMC Defi",
+    "url": "http://defi.cmc.eth.link",
+    "homepage": ""
+  },
+  {
+    "name": "CMC ERC20",
+    "url": "http://erc20.cmc.eth.link",
+    "homepage": ""
+  },
+  {
+    "name": "CMC Stablecoins",
+    "url": "http://stablecoin.cmc.eth.link",
+    "homepage": ""
+  },
+  {
+    "name": "Compound",
+    "url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
+    "homepage": ""
   }
 ]
