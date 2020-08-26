@@ -8,17 +8,25 @@ const StyledCard = styled(Link)`
   border-radius: 8px;
   padding: 1.5rem;
   height: 264px;
-  width: 172px;
+  max-width: 172px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  transition: box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease, translate 0.25s ease;
   scale: 1;
   background-color: white;
   text-decoration: none;
   color: #0f0f0f;
   border: 0.75px solid #131313;
-  box-shadow: -10px 10px 0px #d6fdff;
+  box-shadow: -8px 8px 0px #d6fdff;
+
+  @media screen and (max-width: 960px) {
+    max-width: initial;
+  }
+  :hover {
+    box-shadow: -12px 12px 0px #d6fdff;
+    translate: 2px -2px;
+  }
 
   h3 {
     font-size: 24px;

@@ -23,17 +23,21 @@ const StyledInfo = styled.section`
   }
 
   @media screen and (max-width: 960px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
     position: relative;
+    align-items: flex-start;
+    min-height: initial;
     top: initial;
     margin-top: 2rem;
     height: fit-content;
-    grid-template-rows: 1fr;
     padding: 0;
-    .card {
-      width: 100%;
-      max-width: unset;
-      box-sizing: border-box;
-    }
+  }
+
+  @media screen and (max-width: 640px) {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
   }
 `
 
@@ -46,8 +50,9 @@ const InfoDescription = styled.span`
     margin: 0.25rem 0;
     color: #797878;
   }
+
   @media screen and (max-width: 960px) {
-    max-width: 100%;
+    max-width: initial;
   }
 `
 

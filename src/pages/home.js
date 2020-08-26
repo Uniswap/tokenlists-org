@@ -12,6 +12,12 @@ const Content = styled.div`
   grid-gap: 48px;
   position: relative;
   box-sizing: border-box;
+
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    width: 100%;
+  }
 `
 
 function Home() {

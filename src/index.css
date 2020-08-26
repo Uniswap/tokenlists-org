@@ -46,7 +46,7 @@ body {
 
 body:before {
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -136,18 +136,7 @@ a {
     grid-gap: 24px;
     padding: 0 1.5rem;
   }
-  .hero {
-    position: relative;
-    top: initial;
-    margin-top: 2rem;
-  }
-  .hero .title {
-    font-size: 35px;
-  }
 
-  .card-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
   .home-content .featured {
     padding: 2rem 0 2rem 0;
   }
@@ -156,12 +145,5 @@ a {
   }
   .hide-small {
     display: none;
-  }
-  .token-item {
-    display: grid;
-    max-width: 960px;
-    grid-gap: 1rem;
-    grid-template-columns: 24px 96px 1fr;
-    margin-bottom: 1rem;
   }
 }

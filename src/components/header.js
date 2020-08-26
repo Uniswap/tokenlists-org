@@ -12,15 +12,21 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
   position: sticky;
   top: 0;
-  /* backdrop-filter: blur(12px); */
+  backdrop-filter: blur(20px);
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.01);
+  border-bottom: 0.75px solid #13131320;
+
   a {
     color: #0f0f0f;
   }
   .title {
     font-size: 1.25rem;
     font-family: 'MatterSQ-SemiBold';
+  }
+
+  @media screen and (max-width: 640px) {
+    position: relative;
   }
 `
 
@@ -36,6 +42,23 @@ const Nav = styled.nav`
   }
 `
 
+const ButtonLink = styled.a`
+  transition: box-shadow 0.25s ease, translate 0.25s ease;
+  background-color: #010101;
+  border-radius: 8px;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.65rem;
+  color: white;
+  font-size: 14px;
+  scale: 1;
+  :hover {
+    box-shadow: -6px 6px 0px #d6fdff;
+    translate: 1px -1px;
+  }
+`
+
 export default function Header({ back }) {
   return (
     <StyledHeader>
@@ -47,10 +70,20 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <a target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hide-small"
+          href="http://community.tokenlists.org/"
+        >
           Community
         </a>
-        <a target="_blank" rel="noopener noreferrer" href="https://uniswap.org/blog/token-lists/">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hide-small"
+          href="https://uniswap.org/blog/token-lists/"
+        >
           Why lists?
         </a>
         <a
@@ -62,9 +95,8 @@ export default function Header({ back }) {
           Make a list
         </a>
 
-        <a
+        <ButtonLink
           className="button"
-          style={{ color: 'white' }}
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/Uniswap/token-lists"
@@ -78,8 +110,8 @@ export default function Header({ back }) {
             src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
             alt="github icon"
           />
-          Github
-        </a>
+          <span style={{ color: 'white' }}>Github</span>
+        </ButtonLink>
       </Nav>
     </StyledHeader>
   )
