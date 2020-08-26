@@ -5,7 +5,7 @@
     "homepage": ""
   },
   {
-    "name": "AAVE token list",
+    "name": "Aave token list",
     "url": "https://cloudflare-ipfs.com/ipfs/QmS2jN2FEQdc36a4V5zttTwrTPGBCU56JJQcRXSPmZCzPN",
     "homepage": ""
   },
@@ -15,13 +15,13 @@
     "homepage": ""
   },
   {
-    "name": "CMC ERC20",
-    "url": "erc20.cmc.eth",
+    "name": "CMC Stablecoin",
+    "url": "stablecoin.cmc.eth",
     "homepage": ""
   },
   {
-    "name": "CMC Stablecoin",
-    "url": "stablecoin.cmc.eth",
+    "name": "CMC200 ERC20",
+    "url": "erc20.cmc.eth",
     "homepage": ""
   },
   {
