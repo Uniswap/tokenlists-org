@@ -61,6 +61,9 @@ const Helper = styled.div`
 `
 
 export default function Info({ url, list }) {
+  let linkedURL =
+    url.split(':')[0] !== 'https' ? `https://app.ens.domains/name/${url}` : url
+
   return (
     <StyledInfo>
       <Card list={list} url={url} customImage={false} />
@@ -70,7 +73,7 @@ export default function Info({ url, list }) {
             Source <CopyHelper toCopy={url} />
           </small>{' '}
           <span>
-            <a href={url}>{url}</a>
+            <a href={linkedURL}>{url}</a>
           </span>
         </span>
 

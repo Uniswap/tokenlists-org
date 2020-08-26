@@ -47,8 +47,15 @@ const TokensListed = styled.span`
 `
 
 export default function Card({ url, list, customImage }) {
+  let linkedURL =
+    url.split(':')[0] === 'https' || url.split(':')[0] === 'http'
+      ? url
+      : `http://${url}.link/`
+
+  console.log(linkedURL)
+
   const [urlType, setUrlType] = useState('ipfs')
-  const [tokenlist, loading] = useFetch(url)
+  const [tokenlist, loading] = useFetch(linkedURL)
 
   useEffect(() => {
     tokenlist.logoURI && tokenlist.logoURI.substring(0, 4) === 'ipfs'

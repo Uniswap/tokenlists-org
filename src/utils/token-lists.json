@@ -6,12 +6,12 @@
   },
   {
     "name": "Dharma",
-    "url": "http://tokenlist.dharma.eth.link",
+    "url": "tokenlist.dharma.eth",
     "homepage": ""
   },
   {
     "name": "Kleros T2CR",
-    "url": "http://t2crtokens.eth.link",
+    "url": "t2crtokens.eth",
     "homepage": ""
   },
   {
@@ -26,17 +26,17 @@
   },
   {
     "name": "1inch",
-    "url": "http://tokens.1inch.eth.link",
+    "url": "tokens.1inch.eth",
     "homepage": ""
   },
   {
     "name": "Synthetix",
-    "url": "http://synths.snx.eth.link",
+    "url": "synths.snx.eth",
     "homepage": ""
   },
   {
     "name": "Uniswap",
-    "url": "http://uniswap.eth.link",
+    "url": "https://gateway.ipfs.io/ipns/tokens.uniswap.org",
     "homepage": ""
   },
   {
@@ -46,22 +46,22 @@
   },
   {
     "name": "Zerion",
-    "url": "http://tokenlist.zerion.eth.link",
+    "url": "tokenlist.zerion.eth",
     "homepage": ""
   },
   {
     "name": "CMC Defi",
-    "url": "http://defi.cmc.eth.link",
+    "url": "defi.cmc.eth",
     "homepage": ""
   },
   {
     "name": "CMC ERC20",
-    "url": "http://erc20.cmc.eth.link",
+    "url": "erc20.cmc.eth",
     "homepage": ""
   },
   {
     "name": "CMC Stablecoins",
-    "url": "http://stablecoin.cmc.eth.link",
+    "url": "stablecoin.cmc.eth",
     "homepage": ""
   },
   {

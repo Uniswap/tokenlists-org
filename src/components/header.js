@@ -47,7 +47,7 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <a target="_blank" href="https://uniswap.org/blog/token-lists/">
+        <a target="_blank" href="http://community.tokenlists.org/">
           Community
         </a>
         <a target="_blank" href="https://uniswap.org/blog/token-lists/">

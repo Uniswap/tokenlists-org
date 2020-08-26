@@ -96,7 +96,7 @@ export default function Header() {
       <a
         target="_blank"
         style={{ marginTop: '.5rem', width: 'fit-content' }}
-        href="https://uniswap.org/blog/token-lists/"
+        href="http://community.tokenlists.org/"
       >
         -> Community
       </a>

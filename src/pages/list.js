@@ -42,11 +42,13 @@ function List() {
   }, [])
 
   let query = useQuery()
+
   let linkedURL =
-    query.get('url').split('.')[2] === 'eth' &&
-    query.get('url').split('.')[3] !== 'link'
+    query.get('url').split(':')[0] !== 'https'
       ? `http://${query.get('url')}.link/`
       : query.get('url')
+
+  console.log(query.get('url').split(':')[0] !== 'http')
 
   const [data, loading, error] = useFetch(linkedURL)
 
@@ -69,7 +71,7 @@ function List() {
       ) : (
         <>
           <Content>
-            <Info url={linkedURL} list={data} />
+            <Info url={query.get('url')} list={data} />
             <Tokens tokens={data.tokens} />
           </Content>
         </>
