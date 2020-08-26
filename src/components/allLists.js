@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Card from './card'
 import Search from './search'
 import FilterResults from 'react-filter-search'
-import { useGetAll } from '../utils/useFetch'
 import tokenLists from '../utils/token-lists.json'
 
 const StyledAllLists = styled.section`

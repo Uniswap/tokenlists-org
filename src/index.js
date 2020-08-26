@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import List from './token-list'
-import Home from './home'
-import Why from './why'
+import List from './pages/list'
+import Home from './pages/home'
+import Why from './pages/why'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 

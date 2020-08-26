@@ -1,12 +1,13 @@
-import React from 'react'
-import Header from './components/header'
-import Hero from './components/hero'
-import Featured from './components/featured'
-import Footer from './components/footer'
+import React, { useEffect } from 'react'
+import Header from '../components/header'
+import Footer from '../components/footer'
 
-import './index.css'
+import '../index.css'
 
 function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="app">
       <Header />
@@ -16,7 +17,7 @@ function Home() {
             <small style={{ marginTop: '4rem', marginBottom: '1rem' }}>
               A Uniswap project
             </small>
-            <p className="title">How to make a token list.</p>
+            <p className="title">Why tokens lists?</p>
 
             <p className="description" id="why-lists">
               Token Lists aim to solve the problem of the Ethereum community

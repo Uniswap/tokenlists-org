@@ -33,11 +33,14 @@ const InfoDescription = styled.span`
   }
 `
 
-const InfoLoading = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 400px;
+const Helper = styled.div`
+  padding: 0.5rem;
+  background-color: #d6fdff;
+  color: rgba(0, 0, 0, 0.5);
+
+  border-radius: 8px;
+  font-size: 12px;
+  max-width: 200px;
 `
 
 export default function Info({ url, list }) {
@@ -48,15 +51,15 @@ export default function Info({ url, list }) {
         <span className="grid">
           <small style={{ fontWeight: 600 }}>Source URL</small>{' '}
           <CopyHelper toCopy={url} />
-          {/* <span>
-            <a href={url}>{url}</a> <CopyHelper toCopy={url} />
-          </span> */}
+          <span>
+            <a href={url}>{url}</a>
+          </span>
         </span>
 
-        <div className="helper">
+        <Helper>
           Use this url to import this list anywhere the token lists
           specification is supported.
-        </div>
+        </Helper>
 
         <span>
           <small>Tokens</small>

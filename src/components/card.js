@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { usePalette } from 'react-palette'
+// import { usePalette } from 'react-palette'
 import { useFetch } from '../utils/useFetch'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -56,14 +56,14 @@ export default function Card({ url, list, customImage }) {
       : setUrlType('url')
   }, [tokenlist])
 
-  const { data } = usePalette(
-    !customImage
-      ? urlType === 'ipfs'
-        ? tokenlist.logoURI &&
-          'https://ipfs.io/ipfs/' + tokenlist.logoURI.split('//')[1]
-        : '/icons/uni-icon.png'
-      : '/icons/' + list.icon
-  )
+  // const { data } = usePalette(
+  //   !customImage
+  //     ? urlType === 'ipfs'
+  //       ? tokenlist.logoURI &&
+  //         'https://ipfs.io/ipfs/' + tokenlist.logoURI.split('//')[1]
+  //       : '/icons/uni-icon.png'
+  //     : '/icons/' + list.icon
+  // )
 
   return (
     <StyledCard

@@ -64,9 +64,9 @@ function ListItem({ token }) {
     token.logoURI && token.logoURI.substring(0, 4) === 'ipfs'
       ? setUrlType('ipfs')
       : setUrlType('url')
-  }, [])
+  }, [token.logoURI])
 
-  const tag = token.tags[0]
+  const tag = token.tags ? token.tags[0] : undefined
 
   return (
     <TokenItem>
@@ -107,12 +107,16 @@ function ListItem({ token }) {
       </TokenInfo>
       <span>{token.symbol}</span>
       <TokenTagWrapper className="hide-small">
-        <TokenTag>{tag.toUpperCase()}</TokenTag>
-        {token.tags.length > 1 && <TokenTag>...</TokenTag>}
-        {/* {token.tags &&
+        {tag !== undefined && (
+          <>
+            <TokenTag>{tag.toUpperCase()}</TokenTag>
+            {token.tags.length > 1 && <TokenTag>...</TokenTag>}
+            {/* {token.tags &&
           token.tags.map((data, i) => (
             <TokenTag>{data.toUpperCase()}</TokenTag>
           ))} */}
+          </>
+        )}
       </TokenTagWrapper>
       <TokenAddress>
         <a

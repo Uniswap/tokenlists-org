@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
-import Header from './components/header'
-import Hero from './components/hero'
-import AllLists from './components/allLists'
-import Footer from './components/footer'
+import Header from '../components/header'
+import Hero from '../components/hero'
+import AllLists from '../components/allLists'
+import Footer from '../components/footer'
 
-import './index.css'
+import '../index.css'
 
 function Home() {
   useEffect(() => {

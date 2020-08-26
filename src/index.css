@@ -212,13 +212,6 @@ a {
   color: #2172e5;
 }
 
-.token-icon {
-  width: 16px;
-  border-radius: 32px;
-  background-color: white;
-  height: 16px;
-}
-
 .replace {
   width: 16px;
   height: 16px;
@@ -247,17 +240,6 @@ a {
 
 .uniswap {
   color: #ff007a;
-}
-
-.helper {
-  padding: 0.5rem;
-  background-color: rgba(0, 0, 0, 0.05);
-  color: rgba(0, 0, 0, 0.5);
-
-  border-radius: 8px;
-  font-size: 11px;
-  font-style: italic;
-  max-width: 200px;
 }
 
 @media screen and (max-width: 960px) {

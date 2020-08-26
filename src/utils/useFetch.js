@@ -1,6 +1,5 @@
 // hooks.js
 import { useState, useEffect } from 'react'
-import tokenLists from '../utils/token-lists.json'
 
 function useFetch(url) {
   const [data, setData] = useState([])
@@ -28,35 +27,4 @@ function useFetch(url) {
   return [data, loading, error]
 }
 
-function useGetAll() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
-
-  async function fetchUrl(url) {
-    try {
-      // const response = await fetch('https://test.cors.workers.dev/?' + url)
-      const response = await fetch(
-        'https://snowy-dawn-4154.uniswap-lists.workers.dev/?' + url
-      )
-
-      const json = await response.json()
-      console.log(json)
-      console.log(data)
-      setData(json)
-      setLoading(false)
-    } catch (err) {
-      console.log("Couldn't get this list")
-      setError(true)
-    }
-  }
-  useEffect(() => {
-    tokenLists.map((list, i) => {
-      fetchUrl(list.url)
-    })
-  }, [])
-
-  console.log(data)
-  return [data, loading, error]
-}
-export { useFetch, useGetAll }
+export { useFetch }
