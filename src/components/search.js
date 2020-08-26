@@ -6,6 +6,7 @@ const StyledSearch = styled.form`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-self: flex-end;
 
   input {
     border: none;
@@ -15,6 +16,7 @@ const StyledSearch = styled.form`
     text-align: left;
     padding: 6px;
     padding-left: 2rem;
+    width: 164px;
 
     border: 0.5px solid #838383;
     border-radius: 4px;
@@ -44,11 +46,21 @@ export default function Search({ handleChange, value, setValue }) {
         onChange={(e) => handleChange(e)}
       />
 
-      {value !== '' && (
+      {value !== '' ? (
         <X
           style={{
             marginLeft: '-24px',
             cursor: 'pointer',
+          }}
+          onClick={() => setValue('')}
+          size={20}
+        />
+      ) : (
+        <X
+          style={{
+            marginLeft: '-24px',
+            cursor: 'pointer',
+            opacity: 0,
           }}
           onClick={() => setValue('')}
           size={20}

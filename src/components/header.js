@@ -12,7 +12,7 @@ const StyledHeader = styled.header`
   box-sizing: border-box;
   position: sticky;
   top: 0;
-  /* backdrop-filter: blur(12px); */
+  backdrop-filter: blur(12px);
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.01);
   a {
@@ -21,6 +21,10 @@ const StyledHeader = styled.header`
   .title {
     font-size: 1.25rem;
     font-family: 'MatterSQ-SemiBold';
+  }
+
+  @media screen and (max-width: 640px) {
+    position: relative;
   }
 `
 
@@ -47,10 +51,18 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <a target="_blank" href="http://community.tokenlists.org/">
+        <a
+          target="_blank"
+          className="hide-small"
+          href="http://community.tokenlists.org/"
+        >
           Community
         </a>
-        <a target="_blank" href="https://uniswap.org/blog/token-lists/">
+        <a
+          target="_blank"
+          className="hide-small"
+          href="https://uniswap.org/blog/token-lists/"
+        >
           Why lists?
         </a>
         <a

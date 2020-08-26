@@ -15,6 +15,18 @@ const TokenItem = styled.section`
   a {
     color: #131313;
   }
+
+  @media screen and (max-width: 960px) {
+    display: grid;
+    max-width: 960px;
+    grid-gap: 1rem;
+    grid-template-columns: 24px 96px 1fr;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 360px) {
+    grid-template-columns: 24px 96px 150px;
+  }
 `
 const TokenInfo = styled.span`
   display: grid;
@@ -37,6 +49,9 @@ const TokenIcon = styled.img`
 const TokenTagWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
 `
 
 const TokenTag = styled.div`
@@ -149,6 +164,9 @@ function ListItem({ token }) {
 const Title = styled.h1`
   font-size: 48px;
   line-height: 125%;
+  @media screen and (max-width: 960px) {
+    /* margin-bottom: 1rem; */
+  }
 `
 
 const TokenWrapper = styled.div`
@@ -173,7 +191,12 @@ const ListTitle = styled.div`
 
 const ListHeader = styled.div`
   display: flex;
+
   align-items: baseline;
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
 `
 
 export default function Tokens({ tokens }) {
@@ -206,11 +229,11 @@ export default function Tokens({ tokens }) {
           value={value}
           data={tokens}
           renderResults={(results) => (
-            <div>
+            <>
               {results.map((data, i) => (
                 <ListItem key={i} token={data} />
               ))}
-            </div>
+            </>
           )}
         />
       </TokenWrapper>

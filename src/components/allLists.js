@@ -9,22 +9,38 @@ const StyledAllLists = styled.section`
   min-height: 80vh;
   width: 100%;
   padding: 5rem 0 6rem 0;
-  display: flex;
+  display: grid;
   gap: 24px;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: flex-start;
   height: fit-content;
+  @media screen and (max-width: 960px) {
+    padding: 0;
+    align-items: flex-start;
+  }
 `
 
 const CardWrapper = styled.div`
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   max-width: 720px;
   min-width: 720px;
   grid-gap: 1.5rem;
   grid-template-columns: 1fr 1fr 1fr;
+
+  @media screen and (max-width: 960px) {
+    max-width: initial;
+    min-width: initial;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (max-width: 360px) {
+    max-width: initial;
+    min-width: initial;
+    grid-template-columns: 1fr;
+  }
 `
 
 const AddButton = styled.button`
