@@ -64,7 +64,6 @@ export default function Card({ query, list }) {
   // because list is optional, we have to fetch it if not passed
   const url = getURLFromQuery(query)
   const [, fetchedList, error] = useFetch(list ? null : url)
-  console.log(url)
 
   const loadedList = list ?? fetchedList
 

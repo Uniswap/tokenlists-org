@@ -8,7 +8,8 @@ export function useFetch(url) {
     if (url) {
       let stale = false
 
-      fetch(url.startsWith('http://') ? `https://snowy-dawn-4154.uniswap-lists.workers.dev/?${url}` : url)
+      // proxy http urls through a CF worker
+      fetch(url.startsWith('http://') ? `https://wispy-bird-88a7.uniswap.workers.dev/?url=${url}` : url)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok')
