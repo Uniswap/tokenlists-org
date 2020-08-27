@@ -16,4 +16,4 @@ List url must be HTTPS, IPFS or ENS.
 
 List Address: 
 List Name: 
-Link to the official homepage of token:
+Link to the official homepage of the list manager:
