@@ -77,40 +77,48 @@ export default function AllLists() {
   const lists = useMultiFetch(listIDs)
 
   // format list data for search, using names from fetched lists if available, while falling back to hard-coded names
-  const data = useMemo(
+  const listData = useMemo(
     () => listIDs.map((listID) => ({ id: listID, name: lists[listID].list?.name ?? tokenLists[listID].name })),
     [lists]
   )
 
-  // the below is a naive way to get all tokens in all lists, unique by address
-  const allTokensByListID = useMemo(
-    () =>
-      Object.keys(lists).map((listID) => {
-        const list = lists[listID]?.list
-        const tokensInList = (list?.tokens ?? []).reduce(
-          (accumulator, token) => ({ ...accumulator, [toChecksumAddress(token.address)]: token }),
-          {}
-        )
-        return tokensInList
-      }),
-    [lists]
-  )
-  const allTokens = useMemo(
-    () =>
-      Object.keys(allTokensByListID).reduce(
-        (accumulator, listID) => ({ ...accumulator, ...allTokensByListID[listID] }),
-        {}
-      ),
-    [allTokensByListID]
-  )
+  // get all unique tokens, and all data associated with them from each list
+  const tokens = useMemo(() => {
+    // short-circuit until all list data has been returned
+    if (
+      Object.values(lists)
+        .map(({ loading }) => loading)
+        .some((loading) => loading)
+    ) {
+      return {}
+    }
+
+    const allTokens = {}
+
+    for (const listID of Object.keys(lists)) {
+      const tokensInList = lists[listID].list?.tokens ?? []
+      for (const token of tokensInList) {
+        const address = toChecksumAddress(token.address)
+        const existingEntry = allTokens[address] ?? { tokens: [], listIDs: [] }
+        allTokens[address] = {
+          tokens: existingEntry['tokens'].concat([token]),
+          listIDs: existingEntry['listIDs'].concat([listID]),
+        }
+      }
+    }
+    return allTokens
+  }, [lists])
+
   const tokenData = useMemo(
     () =>
-      Object.keys(allTokens).map((tokenAddress) => ({
-        address: tokenAddress,
-        name: allTokens[tokenAddress]?.name ?? '',
-        symbol: allTokens[tokenAddress]?.symbol ?? '',
-      })),
-    [allTokens]
+      Object.keys(tokens).map((tokenAddress) => {
+        const { tokens: listTokens } = tokens[tokenAddress]
+        const uniqueNames = Array.from(new Set(listTokens.map(({ name }) => name)))
+        const uniqueSymbols = Array.from(new Set(listTokens.map(({ symbol }) => symbol)))
+
+        return { address: tokenAddress, name: uniqueNames.join(' '), symbol: uniqueSymbols.join(' ') }
+      }),
+    [tokens]
   )
 
   return (
@@ -122,7 +130,7 @@ export default function AllLists() {
       <CardWrapper>
         <FilterResults
           value={value}
-          data={data}
+          data={listData}
           renderResults={(results) =>
             results.length === 0
               ? 'None found!'
@@ -143,7 +151,7 @@ export default function AllLists() {
             renderResults={(results) =>
               results.length === 0
                 ? 'None found!'
-                : results.map((data) => <ListItem key={data.address} token={allTokens[data.address]} />)
+                : results.map((data) => <ListItem key={data.address} token={tokens[data.address].tokens[0]} />)
             }
           />
         </>
