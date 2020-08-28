@@ -1,77 +1,62 @@
-[
-  {
+{
+  "tokens.1inch.eth": {
     "name": "1inch",
-    "url": "tokens.1inch.eth",
     "homepage": ""
   },
-  {
+  "tokenlist.aave.eth": {
     "name": "Aave Token List",
-    "url": "tokenlist.aave.eth",
     "homepage": ""
   },
-  {
+  "defi.cmc.eth": {
     "name": "CMC DeFi",
-    "url": "defi.cmc.eth",
     "homepage": ""
   },
-  {
+  "stablecoin.cmc.eth": {
     "name": "CMC Stablecoin",
-    "url": "stablecoin.cmc.eth",
     "homepage": ""
   },
-  {
+  "erc20.cmc.eth": {
     "name": "CMC200 ERC20",
-    "url": "erc20.cmc.eth",
     "homepage": ""
   },
-  {
+  "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json": {
     "name": "CoinGecko DeFi 100",
-    "url": "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json",
     "homepage": ""
   },
-  {
+  "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json": {
     "name": "Compound",
-    "url": "https://raw.githubusercontent.com/compound-finance/token-list/master/compound.tokenlist.json",
     "homepage": ""
   },
-  {
+  "https://defiprime.com/defiprime.tokenlist.json": {
     "name": "Defiprime",
-    "url": "https://defiprime.com/defiprime.tokenlist.json",
     "homepage": ""
   },
-  {
+  "tokenlist.dharma.eth": {
     "name": "Dharma Token List",
-    "url": "tokenlist.dharma.eth",
     "homepage": ""
   },
-  {
+  "t2crtokens.eth": {
     "name": "Kleros T2CR",
-    "url": "t2crtokens.eth",
     "homepage": ""
   },
-  {
+  "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
-    "url": "https://app.tryroll.com/tokens.json",
     "homepage": ""
   },
-  {
+  "synths.snx.eth": {
     "name": "Synthetix",
-    "url": "synths.snx.eth",
     "homepage": ""
   },
-  {
+  "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
-    "url": "https://gateway.ipfs.io/ipns/tokens.uniswap.org",
     "homepage": ""
   },
-  {
+  "https://umaproject.org/uma.tokenlist.json": {
     "name": "UMA",
-    "url": "https://umaproject.org/uma.tokenlist.json",
     "homepage": ""
   },
-  {
+  "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
-    "url": "tokenlist.zerion.eth",
     "homepage": ""
   }
-]
+}

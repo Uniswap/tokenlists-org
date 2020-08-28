@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Card from './card'
 import Moment from 'react-moment'
 import CopyHelper from './copy'
+import { getListURLFromListID } from '../utils/useMultiFetch'
 
 const StyledInfo = styled.section`
   display: grid;
@@ -67,23 +68,21 @@ const Helper = styled.div`
   font-size: 14px;
 `
 
-export default function Info({ query, url, list }) {
+export default function Info({ listID, list }) {
   return (
     <StyledInfo>
-      <Card query={query} list={list} />
+      <Card id={listID} list={list} />
       <InfoDescription>
         <span className="grid">
           <small style={{ fontWeight: 600 }}>
-            Source <CopyHelper toCopy={query} />
+            Source <CopyHelper toCopy={listID} />
           </small>
           <span>
-            <a href={url}>{query}</a>
+            <a href={getListURLFromListID(listID)}>{listID}</a>
           </span>
         </span>
 
-        <Helper>
-          Copy to import this list anywhere Token Lists are supported.
-        </Helper>
+        <Helper>Copy to import this list anywhere Token Lists are supported.</Helper>
 
         <span>
           <small>Last Updated</small>
@@ -93,9 +92,7 @@ export default function Info({ query, url, list }) {
         </span>
         <span>
           <small>Version</small>
-          <p>
-            {`${list.version.major}.${list.version.minor}.${list.version.patch}`}
-          </p>
+          <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
         </span>
       </InfoDescription>
     </StyledInfo>

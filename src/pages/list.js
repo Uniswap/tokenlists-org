@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import styled from 'styled-components'
 import Header from '../components/header'
 import Info from '../components/list-info'
 import Tokens from '../components/list-tokens'
-import { useFetch } from '../utils/useFetch'
+import { useMultiFetch } from '../utils/useMultiFetch'
 
 import { useLocation } from 'react-router-dom'
 
@@ -47,24 +47,20 @@ function List() {
     window.scrollTo(0, 0)
   }, [])
 
-  const search = useLocation()?.search ?? ''
-  const query = new URLSearchParams(search).get('url')
-  const url = getURLFromQuery(query)
-  const [loading, list, error] = useFetch(url)
+  const search = useLocation()?.search
+  const listID = useMemo(() => new URLSearchParams(search).get('url'), [search])
+  const listIDs = useMemo(() => [listID], [listID])
+  const { list, loading, error } = useMultiFetch(listIDs)[listID]
 
   return (
     <div className="app">
       <Header back={true} />
-      {url === null ? (
-        <Loading>
-          {query ? <>Invalid URL<code>{query}</code></> : 'Invalid URL'}
-        </Loading>
+      {!!!listID ? (
+        <Loading>Invalid URL</Loading>
       ) : error ? (
         <Loading>
           <p>Sorry, we're having trouble loading this list.</p>
-          <small>
-            <a href={url}>{query}</a>
-          </small>
+          <code>{listID}</code>
         </Loading>
       ) : loading ? (
         <Loading>
@@ -72,7 +68,7 @@ function List() {
         </Loading>
       ) : (
         <Content>
-          <Info query={query} url={url} list={list} />
+          <Info listID={listID} list={list} />
           <Tokens tokens={list.tokens} />
         </Content>
       )}

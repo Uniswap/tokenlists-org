@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
@@ -73,99 +73,57 @@ const TokenAddress = styled.span`
   align-items: center;
 `
 
-function ListItem({ token }) {
-  const [urlType, setUrlType] = useState('')
-
-  useEffect(() => {
-    token.logoURI && token.logoURI.substring(0, 4) === 'ipfs'
-      ? setUrlType('ipfs')
-      : setUrlType('url')
-  }, [token.logoURI])
-
-  const tag = token.tags ? token.tags[0] : undefined
-
+export const ListItem = memo(function ListItem({ token }) {
   return (
     <TokenItem>
       <TokenInfo>
-        {token.logoURI ? (
-          <TokenIcon
-            className="token-icon"
-            src={
-              urlType === 'ipfs'
-                ? token.logoURI &&
-                  'https://ipfs.io/ipfs/' + token.logoURI.split('//')[1]
-                : token.logoURI
-            }
-            alt={token.name + ' token icon'}
-            onError={(e) => {
-              e.target.className = 'replace'
-              e.target.src =
-                'https://systemuicons.com/images/icons/question_circle.svg'
-            }}
-          />
-        ) : (
-          <TokenIcon
-            className="token-icon"
-            src={
-              'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/' +
-              toChecksumAddress(token.address) +
-              '/logo.png'
-            }
-            onError={(e) => {
-              e.target.className = 'replace'
-              e.target.src =
-                'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
-            }}
-            alt={token.name + ' token icon'}
-          />
-        )}
+        <TokenIcon
+          className="token-icon"
+          alt={`${token.name} token icon`}
+          src={
+            !token.logoURI
+              ? `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${toChecksumAddress(
+                  token.address
+                )}/logo.png`
+              : token.logoURI.startsWith('ipfs')
+              ? `https://ipfs.io/ipfs/${token.logoURI.split('//')[1]}`
+              : token.logoURI
+          }
+          onError={(e) => {
+            e.target.className = 'replace'
+            e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+          }}
+        />
+
         <span className="hide-small">
-          {' '}
-          <a
-            style={{ textAlign: 'right' }}
-            href={
-              'https://etherscan.io/address/' + toChecksumAddress(token.address)
-            }
-          >
+          <a style={{ textAlign: 'right' }} href={`https://etherscan.io/address/${toChecksumAddress(token.address)}`}>
             {token.name}
           </a>
         </span>
       </TokenInfo>
       <span>{token.symbol}</span>
       <TokenTagWrapper className="hide-small">
-        {tag !== undefined && (
+        {token?.tags?.length > 0 && (
           <>
-            <TokenTag>{tag.toUpperCase()}</TokenTag>
+            <TokenTag>{token.tags[0].toUpperCase()}</TokenTag>
             {token.tags.length > 1 && <TokenTag>...</TokenTag>}
-            {/* {token.tags &&
-          token.tags.map((data, i) => (
-            <TokenTag>{data.toUpperCase()}</TokenTag>
-          ))} */}
           </>
         )}
       </TokenTagWrapper>
       <TokenAddress>
-        <a
-          style={{ textAlign: 'right' }}
-          href={
-            'https://etherscan.io/address/' + toChecksumAddress(token.address)
-          }
-        >
-          {toChecksumAddress(token.address)?.slice(0, 6) +
-            '...' +
-            toChecksumAddress(token.address)?.slice(38, 42)}
+        <a style={{ textAlign: 'right' }} href={`https://etherscan.io/address/${toChecksumAddress(token.address)}`}>
+          {`${toChecksumAddress(token.address)?.slice(0, 6)}...${toChecksumAddress(token.address)?.slice(38, 42)}`}
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
     </TokenItem>
   )
-}
+})
 
 const Title = styled.h1`
   font-size: 48px;
   line-height: 125%;
   @media screen and (max-width: 960px) {
-    /* margin-bottom: 1rem; */
   }
 `
 
@@ -235,13 +193,9 @@ export default function Tokens({ tokens }) {
         <FilterResults
           value={value}
           data={tokens}
-          renderResults={(results) => (
-            <>
-              {results.map((data, i) => (
-                <ListItem key={i} token={data} />
-              ))}
-            </>
-          )}
+          renderResults={(results) =>
+            results.length === 0 ? 'None found!' : results.map((data, i) => <ListItem key={i} token={data} />)
+          }
         />
       </TokenWrapper>
     </ListWrapper>
