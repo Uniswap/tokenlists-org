@@ -6,8 +6,8 @@ import Card from './card'
 import Search from './search'
 import tokenLists from '../token-lists.json'
 import { useMultiFetch } from '../utils/useMultiFetch'
-// import { ListItem } from '../components/list-tokens'
-// import { toChecksumAddress } from 'ethereumjs-util'
+import { ListItem } from '../components/list-tokens'
+import { toChecksumAddress } from 'ethereumjs-util'
 
 const listIDs = Object.keys(tokenLists)
 
@@ -82,36 +82,36 @@ export default function AllLists() {
     [lists]
   )
 
-  // // the below is a naive way to get all tokens in all lists, unique by address
-  // const allTokensByListID = useMemo(
-  //   () =>
-  //     Object.keys(lists).map((listID) => {
-  //       const list = lists[listID]?.list
-  //       const tokensInList = (list?.tokens ?? []).reduce(
-  //         (accumulator, token) => ({ ...accumulator, [toChecksumAddress(token.address)]: token }),
-  //         {}
-  //       )
-  //       return tokensInList
-  //     }),
-  //   [lists]
-  // )
-  // const allTokens = useMemo(
-  //   () =>
-  //     Object.keys(allTokensByListID).reduce(
-  //       (accumulator, listID) => ({ ...accumulator, ...allTokensByListID[listID] }),
-  //       {}
-  //     ),
-  //   [allTokensByListID]
-  // )
-  // const tokenData = useMemo(
-  //   () =>
-  //     Object.keys(allTokens).map((tokenAddress) => ({
-  //       address: tokenAddress,
-  //       name: allTokens[tokenAddress]?.name ?? '',
-  //       symbol: allTokens[tokenAddress]?.symbol ?? '',
-  //     })),
-  //   [allTokens]
-  // )
+  // the below is a naive way to get all tokens in all lists, unique by address
+  const allTokensByListID = useMemo(
+    () =>
+      Object.keys(lists).map((listID) => {
+        const list = lists[listID]?.list
+        const tokensInList = (list?.tokens ?? []).reduce(
+          (accumulator, token) => ({ ...accumulator, [toChecksumAddress(token.address)]: token }),
+          {}
+        )
+        return tokensInList
+      }),
+    [lists]
+  )
+  const allTokens = useMemo(
+    () =>
+      Object.keys(allTokensByListID).reduce(
+        (accumulator, listID) => ({ ...accumulator, ...allTokensByListID[listID] }),
+        {}
+      ),
+    [allTokensByListID]
+  )
+  const tokenData = useMemo(
+    () =>
+      Object.keys(allTokens).map((tokenAddress) => ({
+        address: tokenAddress,
+        name: allTokens[tokenAddress]?.name ?? '',
+        symbol: allTokens[tokenAddress]?.symbol ?? '',
+      })),
+    [allTokens]
+  )
 
   return (
     <StyledAllLists>
@@ -133,7 +133,7 @@ export default function AllLists() {
         />
       </CardWrapper>
 
-      {/* {value?.length > 2 && (
+      {value?.length > 2 && (
         <>
           <h1>Tokens</h1>
 
@@ -147,7 +147,7 @@ export default function AllLists() {
             }
           />
         </>
-      )} */}
+      )}
 
       <a
         target="_blank"
