@@ -57,7 +57,13 @@ function List() {
       <Header back={true} />
       {url === null ? (
         <Loading>
-          {query ? <>Invalid URL<code>{query}</code></> : 'Invalid URL'}
+          {query ? (
+            <>
+              Invalid URL<code>{query}</code>
+            </>
+          ) : (
+            'Invalid URL'
+          )}
         </Loading>
       ) : error ? (
         <Loading>

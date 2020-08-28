@@ -46,12 +46,7 @@ export default function Search({ handleChange, value, setValue }) {
         }}
         size={16}
       />
-      <input
-        placeholder="Search"
-        type="text"
-        value={value}
-        onChange={(e) => handleChange(e)}
-      />
+      <input placeholder="Search" type="text" value={value} onChange={(e) => handleChange(e)} />
 
       {value !== '' ? (
         <X

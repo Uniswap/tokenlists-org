@@ -81,9 +81,7 @@ export default function Info({ query, url, list }) {
           </span>
         </span>
 
-        <Helper>
-          Copy to import this list anywhere Token Lists are supported.
-        </Helper>
+        <Helper>Copy to import this list anywhere Token Lists are supported.</Helper>
 
         <span>
           <small>Last Updated</small>
@@ -93,9 +91,7 @@ export default function Info({ query, url, list }) {
         </span>
         <span>
           <small>Version</small>
-          <p>
-            {`${list.version.major}.${list.version.minor}.${list.version.patch}`}
-          </p>
+          <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
         </span>
       </InfoDescription>
     </StyledInfo>

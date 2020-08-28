@@ -77,9 +77,7 @@ function ListItem({ token }) {
   const [urlType, setUrlType] = useState('')
 
   useEffect(() => {
-    token.logoURI && token.logoURI.substring(0, 4) === 'ipfs'
-      ? setUrlType('ipfs')
-      : setUrlType('url')
+    token.logoURI && token.logoURI.substring(0, 4) === 'ipfs' ? setUrlType('ipfs') : setUrlType('url')
   }, [token.logoURI])
 
   const tag = token.tags ? token.tags[0] : undefined
@@ -92,15 +90,13 @@ function ListItem({ token }) {
             className="token-icon"
             src={
               urlType === 'ipfs'
-                ? token.logoURI &&
-                  'https://ipfs.io/ipfs/' + token.logoURI.split('//')[1]
+                ? token.logoURI && 'https://ipfs.io/ipfs/' + token.logoURI.split('//')[1]
                 : token.logoURI
             }
             alt={token.name + ' token icon'}
             onError={(e) => {
               e.target.className = 'replace'
-              e.target.src =
-                'https://systemuicons.com/images/icons/question_circle.svg'
+              e.target.src = 'https://systemuicons.com/images/icons/question_circle.svg'
             }}
           />
         ) : (
@@ -113,20 +109,14 @@ function ListItem({ token }) {
             }
             onError={(e) => {
               e.target.className = 'replace'
-              e.target.src =
-                'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+              e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
             }}
             alt={token.name + ' token icon'}
           />
         )}
         <span className="hide-small">
           {' '}
-          <a
-            style={{ textAlign: 'right' }}
-            href={
-              'https://etherscan.io/address/' + toChecksumAddress(token.address)
-            }
-          >
+          <a style={{ textAlign: 'right' }} href={'https://etherscan.io/address/' + toChecksumAddress(token.address)}>
             {token.name}
           </a>
         </span>
@@ -145,15 +135,8 @@ function ListItem({ token }) {
         )}
       </TokenTagWrapper>
       <TokenAddress>
-        <a
-          style={{ textAlign: 'right' }}
-          href={
-            'https://etherscan.io/address/' + toChecksumAddress(token.address)
-          }
-        >
-          {toChecksumAddress(token.address)?.slice(0, 6) +
-            '...' +
-            toChecksumAddress(token.address)?.slice(38, 42)}
+        <a style={{ textAlign: 'right' }} href={'https://etherscan.io/address/' + toChecksumAddress(token.address)}>
+          {toChecksumAddress(token.address)?.slice(0, 6) + '...' + toChecksumAddress(token.address)?.slice(38, 42)}
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>

@@ -70,12 +70,7 @@ export default function Header({ back }) {
       </Link>
 
       <Nav>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hide-small"
-          href="http://community.tokenlists.org/"
-        >
+        <a target="_blank" rel="noopener noreferrer" className="hide-small" href="http://community.tokenlists.org/">
           Community
         </a>
         <a

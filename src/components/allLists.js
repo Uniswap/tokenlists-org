@@ -73,9 +73,7 @@ export default function AllLists() {
         <FilterResults
           value={value}
           data={tokenLists}
-          renderResults={(results) =>
-            results.map((list) => <Card key={list.url} query={list.url} name={list.name} />)
-          }
+          renderResults={(results) => results.map((list) => <Card key={list.url} query={list.url} name={list.name} />)}
         />
       </CardWrapper>
       <AddButton>

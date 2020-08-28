@@ -70,7 +70,7 @@ export default function Card({ query, list, name }) {
   const [, fetchedList, error] = useFetch(list ? null : url)
 
   const actualList = list ?? fetchedList
-  const actualName = actualList?.name ?? name 
+  const actualName = actualList?.name ?? name
 
   const logoURL = getLogoURL(actualList?.logoURI ?? null)
 
@@ -78,26 +78,16 @@ export default function Card({ query, list, name }) {
     <StyledCard to={'/token-list?url=' + query} className="card">
       <img
         alt="icon"
-        src={
-          logoURL ??
-          'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
-        }
+        src={logoURL ?? 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'}
         onError={(e) => {
           e.target.className = 'replace'
-          e.target.src =
-            'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+          e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
         }}
       />
       <section>
         <h3>{actualName}</h3>
         <TokensListed>
-          {actualList?.tokens?.length > 0 ? (
-            `${actualList.tokens.length} tokens`
-          ) : error ? (
-            'Error'
-          ) : (
-            'Loading...'
-          )}
+          {actualList?.tokens?.length > 0 ? `${actualList.tokens.length} tokens` : error ? 'Error' : 'Loading...'}
         </TokensListed>
       </section>
     </StyledCard>
