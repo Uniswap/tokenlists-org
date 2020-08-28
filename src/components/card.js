@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { getURLFromQuery } from '../pages/list'
-import { useFetch } from '../utils/useFetch'
 
 const StyledCard = styled(Link)`
   border-radius: 8px;
@@ -64,18 +62,12 @@ function getLogoURL(logoURI) {
   }
 }
 
-export default function Card({ query, list, name }) {
-  // because list is optional, we have to fetch it if not passed
-  const url = getURLFromQuery(query)
-  const [, fetchedList, error] = useFetch(list ? null : url)
-
-  const actualList = list ?? fetchedList
-  const actualName = actualList?.name ?? name
-
-  const logoURL = getLogoURL(actualList?.logoURI ?? null)
+export default function Card({ id, list, name }) {
+  const actualName = list?.name ?? name // use the name from the list, falling back to the optional prop if necessary
+  const logoURL = getLogoURL(list?.logoURI ?? null)
 
   return (
-    <StyledCard to={'/token-list?url=' + query} className="card">
+    <StyledCard to={'/token-list?url=' + id} className="card">
       <img
         alt="icon"
         src={logoURL ?? 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'}
@@ -87,7 +79,7 @@ export default function Card({ query, list, name }) {
       <section>
         <h3>{actualName}</h3>
         <TokensListed>
-          {actualList?.tokens?.length > 0 ? `${actualList.tokens.length} tokens` : error ? 'Error' : 'Loading...'}
+          {list?.tokens?.length > 0 ? `${list.tokens.length} tokens` : list === null ? 'Error' : 'Loading...'}
         </TokensListed>
       </section>
     </StyledCard>

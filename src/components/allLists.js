@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
+import FilterResults from 'react-filter-search'
+
 import Card from './card'
 import Search from './search'
-import FilterResults from 'react-filter-search'
 import tokenLists from '../token-lists.json'
+import { useMultiFetch } from '../utils/useMultiFetch'
+import { ListItem } from '../components/list-tokens'
+import { toChecksumAddress } from 'ethereumjs-util'
+
+const listIDs = Object.keys(tokenLists)
 
 const StyledAllLists = styled.section`
   min-height: 80vh;
@@ -66,25 +72,90 @@ export default function AllLists() {
     setValue(value)
   }
 
+  // fetch lists
+  const lists = useMultiFetch(listIDs)
+
+  // format list data for search, using names from fetched lists if available, while falling back to hard-coded names
+  const data = useMemo(
+    () => listIDs.map((listID) => ({ id: listID, name: lists[listID].list?.name ?? tokenLists[listID].name })),
+    [lists]
+  )
+
+  // the below is a naive way to get all tokens in all lists, unique by address
+  const allTokensByListID = useMemo(
+    () =>
+      Object.keys(lists).map((listID) => {
+        const list = lists[listID]?.list
+        const tokensInList = (list?.tokens ?? []).reduce(
+          (accumulator, token) => ({ ...accumulator, [toChecksumAddress(token.address)]: token }),
+          {}
+        )
+        return tokensInList
+      }),
+    [lists]
+  )
+  const allTokens = useMemo(
+    () =>
+      Object.keys(allTokensByListID).reduce(
+        (accumulator, listID) => ({ ...accumulator, ...allTokensByListID[listID] }),
+        {}
+      ),
+    [allTokensByListID]
+  )
+  const tokenData = useMemo(
+    () =>
+      Object.keys(allTokens).map((tokenAddress) => ({
+        address: tokenAddress,
+        searchString: `${allTokens[tokenAddress]?.name?.toLowerCase() ?? ''}${
+          allTokens[tokenAddress]?.symbol?.toLowerCase() ?? ''
+        }`,
+      })),
+    [allTokens]
+  )
+
   return (
     <StyledAllLists>
       <Search handleChange={handleChange} value={value} setValue={setValue} />
+
+      <h1>Lists</h1>
+
       <CardWrapper>
         <FilterResults
           value={value}
-          data={tokenLists}
-          renderResults={(results) => results.map((list) => <Card key={list.url} query={list.url} name={list.name} />)}
+          data={data}
+          renderResults={(results) =>
+            results.length === 0
+              ? 'None found!'
+              : results.map((result) => (
+                  <Card key={result.id} id={result.id} list={lists[result.id]?.list} name={result.name} />
+                ))
+          }
         />
       </CardWrapper>
-      <AddButton>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
-        >
-          + add a list
-        </a>
-      </AddButton>
+
+      {value?.length > 2 && (
+        <>
+          <h1>Tokens</h1>
+
+          <FilterResults
+            value={value}
+            data={tokenData}
+            renderResults={(results) =>
+              results.length === 0
+                ? 'None found!'
+                : results.map((data) => <ListItem key={data.address} token={allTokens[data.address]} />)
+            }
+          />
+        </>
+      )}
+
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
+      >
+        <AddButton>+ add a list</AddButton>
+      </a>
     </StyledAllLists>
   )
 }
