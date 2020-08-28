@@ -74,7 +74,7 @@ export default function AllLists() {
           value={value}
           data={tokenLists}
           renderResults={(results) =>
-            results.map((list) => <Card key={list.url} query={list.url} />)
+            results.map((list) => <Card key={list.url} query={list.url} name={list.name} />)
           }
         />
       </CardWrapper>

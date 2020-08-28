@@ -64,14 +64,15 @@ function getLogoURL(logoURI) {
   }
 }
 
-export default function Card({ query, list }) {
+export default function Card({ query, list, name }) {
   // because list is optional, we have to fetch it if not passed
   const url = getURLFromQuery(query)
   const [, fetchedList, error] = useFetch(list ? null : url)
 
-  const loadedList = list ?? fetchedList
+  const actualList = list ?? fetchedList
+  const actualName = actualList?.name ?? name 
 
-  const logoURL = getLogoURL(loadedList?.logoURI ?? null)
+  const logoURL = getLogoURL(actualList?.logoURI ?? null)
 
   return (
     <StyledCard to={'/token-list?url=' + query} className="card">
@@ -88,14 +89,16 @@ export default function Card({ query, list }) {
         }}
       />
       <section>
-        <h3>{loadedList?.name}</h3>
-        {loadedList?.tokens?.length > 0 ? (
-          <TokensListed>{loadedList.tokens.length} tokens</TokensListed>
-        ) : error ? (
-          'Error'
-        ) : (
-          'Loading...'
-        )}
+        <h3>{actualName}</h3>
+        <TokensListed>
+          {actualList?.tokens?.length > 0 ? (
+            `${actualList.tokens.length} tokens`
+          ) : error ? (
+            'Error'
+          ) : (
+            'Loading...'
+          )}
+        </TokensListed>
       </section>
     </StyledCard>
   )
