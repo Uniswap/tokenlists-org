@@ -52,6 +52,7 @@ const CardWrapper = styled.div`
 `
 
 const AddButton = styled.button`
+  cursor: pointer;
   border: 0.75px solid #131313;
   width: 100%;
   margin-top: 1rem;
