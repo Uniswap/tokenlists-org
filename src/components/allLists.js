@@ -106,9 +106,8 @@ export default function AllLists() {
     () =>
       Object.keys(allTokens).map((tokenAddress) => ({
         address: tokenAddress,
-        searchString: `${allTokens[tokenAddress]?.name?.toLowerCase() ?? ''}${
-          allTokens[tokenAddress]?.symbol?.toLowerCase() ?? ''
-        }`,
+        name: allTokens[tokenAddress]?.name ?? '',
+        symbol: allTokens[tokenAddress]?.symbol ?? '',
       })),
     [allTokens]
   )
