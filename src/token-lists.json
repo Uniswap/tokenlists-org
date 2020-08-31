@@ -19,6 +19,10 @@
     "name": "CMC200 ERC20",
     "homepage": ""
   },
+  "https://tokens.coingecko.com/uniswap/all.json": {
+    "name": "CoinGecko",
+    "homepage": ""
+  },
   "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json": {
     "name": "CoinGecko DeFi 100",
     "homepage": ""
