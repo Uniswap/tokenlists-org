@@ -7,6 +7,10 @@
     "name": "Aave Token List",
     "homepage": ""
   },
+  "burnthestate.eth": {
+    "name": "burn the state",
+    "homepage": ""
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
@@ -61,10 +65,6 @@
   },
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
-    "homepage": ""
-  },
-  "burnthestate.eth": {
-    "name": "burn the state",
     "homepage": ""
   }
 }
