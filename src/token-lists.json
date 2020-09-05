@@ -62,5 +62,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "burnthestate.eth": {
+    "name": "burn the state",
+    "homepage": ""
   }
 }
