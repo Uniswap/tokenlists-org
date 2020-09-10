@@ -39,6 +39,10 @@
     "name": "Dharma Token List",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/Fiscus-fyi/UniSwap-token-list/master/tokenlist.json": {
+    "name": "FiscusFyi",
+    "homepage": "https://fiscus.fyi/"
+  },
   "t2crtokens.eth": {
     "name": "Kleros T2CR",
     "homepage": ""
