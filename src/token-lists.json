@@ -1,4 +1,8 @@
 {
+  "https://lunarcrush.com/api/uniswap": {
+    "name": "LunarCRUSH DeFi",
+    "homepage": "https://lunarcrush.com/",
+  },
   "tokens.1inch.eth": {
     "name": "1inch",
     "homepage": ""
