@@ -62,5 +62,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "https://relay.gxchain.org/static/json/gxc.tokenlist.json": {
+    "name": "GXChain Ecosystem",
+    "homepage": ""
   }
 }
