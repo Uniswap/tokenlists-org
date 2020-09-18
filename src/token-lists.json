@@ -35,6 +35,10 @@
     "name": "Defiprime",
     "homepage": ""
   },
+  "https://infinitywallet.io/list/tokens.json": {
+    "name": "Infinity Wallet",
+    "homepage": ""
+  },
   "tokenlist.dharma.eth": {
     "name": "Dharma Token List",
     "homepage": ""
