@@ -51,6 +51,10 @@
     "name": "Synthetix",
     "homepage": ""
   },
+  "https://trustswap.fun/tokenlist/all.json": {
+    "name": "TrustSwap Launchpad",
+    "homepage": "https://trustswap.fun"
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
