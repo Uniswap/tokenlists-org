@@ -63,7 +63,7 @@
     "name": "Zerion Explore",
     "homepage": ""
   },
-  "https://raw.githubusercontent.com/ystar-foundation/uniswap-ystar-token-list/master/src/tokens/mainnet.json": {
+  "https://raw.githubusercontent.com/ystar-foundation/uniswap-ystar-token-list/master/tokenlist.json": {
     "name": "Ystar",
     "homepage": ""
   }
