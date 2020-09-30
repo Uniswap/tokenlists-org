@@ -1,5 +1,5 @@
 ---
-name: Add list request
+name: Add Token List
 about: Add a list to tokenlist.org
 title: 'Request: add {List name}'
 labels: list-request
