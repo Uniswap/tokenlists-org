@@ -105,7 +105,7 @@ export default function Header({ back }) {
             src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
             alt="github icon"
           />
-          <span style={{ color: 'white' }}>Github</span>
+          <span style={{ color: 'white' }}>GitHub</span>
         </ButtonLink>
       </Nav>
     </StyledHeader>
