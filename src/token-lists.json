@@ -7,6 +7,10 @@
     "name": "Aave Token List",
     "homepage": ""
   },
+  "datafi.theagora.eth": {
+    "name": "Agora dataFi Tokens",
+    "homepage": ""
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
@@ -15,11 +19,6 @@
     "name": "CMC Stablecoin",
     "homepage": ""
   },
-  "datafi.theagora.eth": {
-    "name": "Agora dataFi Tokens",
-    "homepage": ""
-  },
-
   "erc20.cmc.eth": {
     "name": "CMC200 ERC20",
     "homepage": ""
@@ -60,6 +59,10 @@
     "name": "Kleros T2CR",
     "homepage": ""
   },
+  "https://messari.io/tokenlist/messari-verified": {
+    "name": "Messari Verified",
+    "homepage": ""
+  },
   "https://raw.githubusercontent.com/opynfinance/opyn-tokenlist/master/opyn-v1.tokenlist.json": {
     "name": "Opyn Token List",
     "homepage": ""
@@ -73,14 +76,14 @@
     "homepage": ""
   },
   "testnet.tokenlist.eth": {
-    "name": "Testnet Tokenlist",
+    "name": "Testnet Tokens",
     "homepage": ""
   },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
   },
-  "https://github.com/Uniswap/tokenlists-org/issues/72": {
+  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json": {
     "name": "Uniswap Token Pairs",
     "homepage": ""
   },
