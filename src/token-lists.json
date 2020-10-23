@@ -59,6 +59,10 @@
     "name": "UMA",
     "homepage": ""
   },
+  "wrapped.tokensoft.eth": {
+    "name": "Wrapped Tokens",
+    "homepage": ""
+  },
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
