@@ -7,6 +7,10 @@
     "name": "Aave Token List",
     "homepage": ""
   },
+  "datafi.theagora.eth": {
+    "name": "Agora dataFi Tokens",
+    "homepage": ""
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
@@ -17,6 +21,14 @@
   },
   "erc20.cmc.eth": {
     "name": "CMC200 ERC20",
+    "homepage": ""
+  },
+  "https://compli.fi/complifi.tokenlist.json": {
+    "name": "CompliFi Originals",
+    "homepage": ""
+  },
+  "https://tokens.coingecko.com/uniswap/all.json": {
+    "name": "CoinGecko",
     "homepage": ""
   },
   "https://www.coingecko.com/tokens_list/uniswap/defi_100/v_0_0_0.json": {
@@ -31,12 +43,28 @@
     "name": "Defiprime",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/b-u-i-d-l/bazar-tokens-list/master/dist/decentralizedFlexibleOrganizations.json": {
+    "name": "DFO Flexible Org",
+    "homepage": ""
+  },
   "tokenlist.dharma.eth": {
     "name": "Dharma Token List",
     "homepage": ""
   },
+  "https://cdn.furucombo.app/furucombo.tokenlist.json": {
+    "name": "Furucombo",
+    "homepage": ""
+  },
   "t2crtokens.eth": {
     "name": "Kleros T2CR",
+    "homepage": ""
+  },
+  "https://messari.io/tokenlist/messari-verified": {
+    "name": "Messari Verified",
+    "homepage": ""
+  },
+  "https://raw.githubusercontent.com/opynfinance/opyn-tokenlist/master/opyn-v1.tokenlist.json": {
+    "name": "Opyn Token List",
     "homepage": ""
   },
   "https://app.tryroll.com/tokens.json": {
@@ -47,12 +75,28 @@
     "name": "Synthetix",
     "homepage": ""
   },
+  "testnet.tokenlist.eth": {
+    "name": "Testnet Tokens",
+    "homepage": ""
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json": {
+    "name": "Uniswap Token Pairs",
+    "homepage": ""
+  },
   "https://umaproject.org/uma.tokenlist.json": {
     "name": "UMA",
+    "homepage": ""
+  },
+  "wrapped.tokensoft.eth": {
+    "name": "Wrapped Tokens",
+    "homepage": ""
+  },
+  "https://zapper.fi/api/token-list": {
+    "name": "Zapper Token List",
     "homepage": ""
   },
   "tokenlist.zerion.eth": {

@@ -125,7 +125,7 @@ export default function AllLists() {
     <StyledAllLists>
       <Search handleChange={handleChange} value={value} setValue={setValue} />
 
-      <h1>Lists</h1>
+      {/* <h1>Lists</h1> */}
 
       <CardWrapper>
         <FilterResults
