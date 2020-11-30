@@ -102,5 +102,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
-  }
+  },
+   "kindynos.eth": {
+    "name": "Kindynos Tokens List",
+    "homepage": "https://kindynos.mx"
+  },
 }
