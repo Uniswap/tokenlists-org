@@ -67,6 +67,10 @@
     "name": "Messari Verified",
     "homepage": ""
   },
+  "https://uniswap.mycryptoapi.com/" : {
+    "name": "MyCrypto",
+    "homepage": ""
+  },
   "https://raw.githubusercontent.com/opynfinance/opyn-tokenlist/master/opyn-v1.tokenlist.json": {
     "name": "Opyn Token List",
     "homepage": ""
