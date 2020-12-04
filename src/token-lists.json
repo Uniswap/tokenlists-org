@@ -79,7 +79,7 @@
     "name": "Roll Social Money",
     "homepage": ""
   },
-  "'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'": {
+  "https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json": {
     "name": "Set Protocol",
     "homepage": ""
   },
