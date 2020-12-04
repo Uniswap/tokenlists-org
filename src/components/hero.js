@@ -77,7 +77,7 @@ export default function Header() {
         Project
       </span>
 
-      <p className="title">A new Ethereum token list standard.</p>
+      <p className="title">An Ethereum token list standard.</p>
 
       <p style={{ fontSize: '20px', lineHeight: '150%' }} className="description" id="why-lists">
         Token Lists is a community-led initiative to improve discoverability, reputation and trust in ERC20 token lists

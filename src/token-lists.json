@@ -59,6 +59,10 @@
     "name": "Kleros T2CR",
     "homepage": ""
   },
+  "https://api.kyber.network/tokenlist": {
+    "name": "Kyber",
+    "homepage": ""
+  },
   "https://messari.io/tokenlist/messari-verified": {
     "name": "Messari Verified",
     "homepage": ""
@@ -69,6 +73,10 @@
   },
   "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
+    "homepage": ""
+  },
+  "'https://raw.githubusercontent.com/SetProtocol/uniswap-tokenlist/main/set.tokenlist.json'": {
+    "name": "Set Protocol",
     "homepage": ""
   },
   "synths.snx.eth": {
