@@ -114,5 +114,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "https://tokenlist.yfdot.finance/": {
+    "name": "YFDot Tokenlist",
+    "homepage": ""
   }
 }
