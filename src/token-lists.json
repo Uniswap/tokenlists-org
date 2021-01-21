@@ -55,6 +55,10 @@
     "name": "Furucombo",
     "homepage": ""
   },
+  "https://www.gemini.com/uniswap/manifest.json": {
+    "name": "Gemini Token List",
+    "homepage": "https://www.gemini.com/"
+  },
   "t2crtokens.eth": {
     "name": "Kleros T2CR",
     "homepage": ""
@@ -67,7 +71,7 @@
     "name": "Messari Verified",
     "homepage": ""
   },
-  "https://uniswap.mycryptoapi.com/" : {
+  "https://uniswap.mycryptoapi.com/": {
     "name": "MyCrypto",
     "homepage": ""
   },
