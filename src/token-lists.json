@@ -11,6 +11,10 @@
     "name": "Agora dataFi Tokens",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/btsecom/token-list/master/btse.tokenlist.json": {
+    "name": "BTSE Token List",
+    "homepage": "https://btse.com/"
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
