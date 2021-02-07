@@ -103,6 +103,10 @@
     "name": "Uniswap Token Pairs",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/DimensionDev/Mask-Token-List/gh-pages/mask.json": {
+    "name": "Mask Token List",
+    "homepage": ""
+  },
   "https://umaproject.org/uma.tokenlist.json": {
     "name": "UMA",
     "homepage": ""
