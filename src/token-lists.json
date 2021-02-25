@@ -11,8 +11,8 @@
     "name": "Agora dataFi Tokens",
     "homepage": ""
   },
-  "https://bafybeifguctcgw3zjxumdecr3f6w3cvzekkkt3n3h7zyxgehvn3yzdbjru.ipfs.dweb.link/": {
-    "name": "Blockchain Association",
+  "https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json": {
+    "name": "Blockchain Association SEC Non Compliant List",
     "homepage": ""
   },
   "defi.cmc.eth": {
