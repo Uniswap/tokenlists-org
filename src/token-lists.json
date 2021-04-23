@@ -122,5 +122,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "https://yearn.science/static/tokenlist.json": {
+    "name": "Yearn",
+    "homepage": "https://yearn.finance/"
   }
 }
