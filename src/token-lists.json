@@ -47,6 +47,10 @@
     "name": "Defiprime",
     "homepage": ""
   },
+  "https://infinitywallet.io/list/tokens.json": {
+    "name": "Infinity Wallet",
+  "homepage": ""
+  },
   "https://raw.githubusercontent.com/b-u-i-d-l/bazar-tokens-list/master/dist/decentralizedFlexibleOrganizations.json": {
     "name": "DFO Flexible Org",
     "homepage": ""
