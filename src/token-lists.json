@@ -115,6 +115,10 @@
     "name": "Wrapped Tokens",
     "homepage": ""
   },
+  "https://yearn.science/static/tokenlist.json": {
+    "name": "Yearn",
+    "homepage": "https://yearn.finance/"
+  },
   "https://zapper.fi/api/token-list": {
     "name": "Zapper Token List",
     "homepage": ""
