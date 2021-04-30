@@ -11,6 +11,10 @@
     "name": "Agora dataFi Tokens",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json": {
+    "name": "Blockchain Association SEC Non Compliant List",
+    "homepage": ""
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
@@ -110,6 +114,10 @@
   "wrapped.tokensoft.eth": {
     "name": "Wrapped Tokens",
     "homepage": ""
+  },
+  "https://yearn.science/static/tokenlist.json": {
+    "name": "Yearn",
+    "homepage": "https://yearn.finance/"
   },
   "https://zapper.fi/api/token-list": {
     "name": "Zapper Token List",
