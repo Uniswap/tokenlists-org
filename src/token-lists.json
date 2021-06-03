@@ -11,6 +11,10 @@
     "name": "Agora dataFi Tokens",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json": {
+    "name": "Blockchain Association SEC Non Compliant List",
+    "homepage": ""
+  },
   "https://raw.githubusercontent.com/btsecom/token-list/master/btse.tokenlist.json": {
     "name": "BTSE Token List",
     "homepage": "https://btse.com/"
@@ -114,6 +118,10 @@
   "wrapped.tokensoft.eth": {
     "name": "Wrapped Tokens",
     "homepage": ""
+  },
+  "https://yearn.science/static/tokenlist.json": {
+    "name": "Yearn",
+    "homepage": "https://yearn.finance/"
   },
   "https://zapper.fi/api/token-list": {
     "name": "Zapper Token List",
