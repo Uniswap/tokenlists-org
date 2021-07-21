@@ -83,6 +83,10 @@
     "name": "Opyn Token List",
     "homepage": ""
   },
+  "https://static.optimism.io/optimism.tokenlist.json": {
+    "name": "Optimism",
+    "homepage": "https://optimism.io/"
+  },
   "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
     "homepage": ""
