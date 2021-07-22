@@ -103,6 +103,10 @@
     "name": "Testnet Tokens",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/UnFederalReserve/token-lists/main/unfederalreserve_tokenlist.json": {
+    "name": "unFederal Reserve",
+    "homepage": "https://unfederalreserve.com"
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
