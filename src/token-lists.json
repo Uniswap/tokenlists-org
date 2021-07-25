@@ -115,9 +115,9 @@
     "name": "UMA",
     "homepage": ""
   },
-  "wrapped.tokensoft.eth": {
+  "https://wrapped.com/tokenlist.json": {
     "name": "Wrapped Tokens",
-    "homepage": ""
+    "homepage": "https://wrapped.com/"
   },
   "https://yearn.science/static/tokenlist.json": {
     "name": "Yearn",
