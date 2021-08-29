@@ -130,5 +130,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "ipfs://QmT7HYeCM22yeQAsYY9oE2XqVf3naJEnedGZqqXY81qK3p": {
+    "name": "DSeguros List",
+    "homepage": ""
   }
 }
