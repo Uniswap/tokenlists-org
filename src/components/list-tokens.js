@@ -10,7 +10,7 @@ const TokenItem = styled.section`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 128px 96px 148px;
+  grid-template-columns: 1fr 128px 96px 96px 148px;
   margin-bottom: 1rem;
   a {
     color: #131313;
@@ -20,12 +20,12 @@ const TokenItem = styled.section`
     display: grid;
     max-width: 960px;
     grid-gap: 1rem;
-    grid-template-columns: 24px 96px 1fr;
+    grid-template-columns: 24px 96px 96px 1fr;
     margin-bottom: 1rem;
   }
 
   @media screen and (max-width: 360px) {
-    grid-template-columns: 24px 96px 150px;
+    grid-template-columns: 24px 96px 96px 150px;
   }
 `
 const TokenInfo = styled.span`
@@ -102,6 +102,7 @@ export const ListItem = memo(function ListItem({ token }) {
         </span>
       </TokenInfo>
       <span>{token.symbol}</span>
+      <span>{token.chainId}</span>
       <TokenTagWrapper className="hide-small">
         {token?.tags?.length > 0 && (
           <>
@@ -148,7 +149,7 @@ const ListTitle = styled.div`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 128px 96px 148px;
+  grid-template-columns: 1fr 128px 96px 96px 148px;
   margin-bottom: 1rem;
   @media screen and (max-width: 414px) {
     display: none;
@@ -183,6 +184,7 @@ export default function Tokens({ tokens }) {
         <ListTitle>
           <p className="hide-small">Name</p>
           <p className="hide-small">Symbol</p>
+          <p className="hide-small">Chain Id</p>
           <p className="hide-small">Tags</p>
 
           <p className="hide-small" style={{ textAlign: 'right' }}>
