@@ -103,6 +103,10 @@
     "name": "Testnet Tokens",
     "homepage": ""
   },
+  "tokenlist.tkr.eth": {
+    "name": "TickerDao",
+    "homepage": "https://tkr.eth.limo"
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
