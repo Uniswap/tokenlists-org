@@ -3,6 +3,11 @@
     "name": "1inch",
     "homepage": ""
   },
+  {
+  "https://raw.githubusercontent.com/WLKR-Financial/tokenlist/main/wlkrverified.tokenlist.json": {
+    "name": "Walker Verified",
+    "homepage": ""
+  },
   "tokenlist.aave.eth": {
     "name": "Aave Token List",
     "homepage": ""
