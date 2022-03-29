@@ -103,6 +103,10 @@
     "name": "Testnet Tokens",
     "homepage": ""
   },
+  " https://raw.githubusercontent.com/tradescrow/token-lists/main/build/tradescrow-all.tokenlist.json": {
+    "name": "Tradescrow Consolidated",
+    "homepage": "https://tradescrow.one"
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
