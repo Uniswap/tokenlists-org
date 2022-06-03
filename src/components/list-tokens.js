@@ -2,6 +2,7 @@ import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
+import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
@@ -10,7 +11,7 @@ const TokenItem = styled.section`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 128px 96px 148px;
+  grid-template-columns: 1fr 100px 120px 96px 148px;
   margin-bottom: 1rem;
   a {
     color: #131313;
@@ -73,7 +74,19 @@ const TokenAddress = styled.span`
   align-items: center;
 `
 
+const Chain = styled.span`
+  display: grid;
+  grid-template-columns: auto 16px;
+  grid-gap: 0.5rem;
+  height: fit-content;
+  align-items: center;
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+`
+
 export const ListItem = memo(function ListItem({ token }) {
+  const scannerUrl = lookupScanner(token.chainId) == "" ? "" : lookupScanner(token.chainId) + `${toChecksumAddress(token.address)}`; 
   return (
     <TokenItem>
       <TokenInfo>
@@ -110,8 +123,9 @@ export const ListItem = memo(function ListItem({ token }) {
           </>
         )}
       </TokenTagWrapper>
+      <Chain>{lookUpchain(token.chainId)}</Chain>
       <TokenAddress>
-        <a style={{ textAlign: 'right' }} href={`https://etherscan.io/address/${toChecksumAddress(token.address)}`}>
+        <a style={{ textAlign: 'right' }} href={scannerUrl}>
           {`${toChecksumAddress(token.address)?.slice(0, 6)}...${toChecksumAddress(token.address)?.slice(38, 42)}`}
         </a>
         <CopyHelper toCopy={token.address} />
@@ -148,7 +162,7 @@ const ListTitle = styled.div`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 128px 96px 148px;
+  grid-template-columns: 1fr 100px 120px 96px 148px;
   margin-bottom: 1rem;
   @media screen and (max-width: 414px) {
     display: none;
@@ -166,6 +180,10 @@ const ListHeader = styled.div`
 
 export default function Tokens({ tokens }) {
   const [value, setValue] = useState('')
+  const sortedTokens = tokens.sort((a,b) =>{ 
+    return a.symbol > b.symbol ? 1 : 
+      a.symbol < b.symbol ? -1 : 0; 
+  })
 
   function handleChange(e) {
     const { value } = e.target
@@ -184,7 +202,7 @@ export default function Tokens({ tokens }) {
           <p className="hide-small">Name</p>
           <p className="hide-small">Symbol</p>
           <p className="hide-small">Tags</p>
-
+          <p className="hide-small">Chain ID</p>
           <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
           </p>
@@ -192,7 +210,7 @@ export default function Tokens({ tokens }) {
 
         <FilterResults
           value={value}
-          data={tokens}
+          data={sortedTokens}
           renderResults={(results) =>
             results.length === 0 ? 'None found!' : results.map((data, i) => <ListItem key={i} token={data} />)
           }
