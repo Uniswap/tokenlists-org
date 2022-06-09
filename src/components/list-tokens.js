@@ -201,7 +201,7 @@ export default function Tokens({ tokens }) {
         <ListTitle>
           <p className="hide-small">Name</p>
           <p className="hide-small">Chain</p>
-          <p className="hide-small"></p>
+          <p className="hide-small">Symbol</p>
           <p className="hide-small">Tags</p>
           <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
