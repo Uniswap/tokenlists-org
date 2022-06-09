@@ -114,6 +114,7 @@ export const ListItem = memo(function ListItem({ token }) {
           </a>
         </span>
       </TokenInfo>
+      <Chain>{lookUpchain(token.chainId)}</Chain>
       <span>{token.symbol}</span>
       <TokenTagWrapper className="hide-small">
         {token?.tags?.length > 0 && (
@@ -123,7 +124,6 @@ export const ListItem = memo(function ListItem({ token }) {
           </>
         )}
       </TokenTagWrapper>
-      <Chain>{lookUpchain(token.chainId)}</Chain>
       <TokenAddress>
         <a style={{ textAlign: 'right' }} href={scannerUrl}>
           {`${toChecksumAddress(token.address)?.slice(0, 6)}...${toChecksumAddress(token.address)?.slice(38, 42)}`}
@@ -200,9 +200,9 @@ export default function Tokens({ tokens }) {
       <TokenWrapper>
         <ListTitle>
           <p className="hide-small">Name</p>
-          <p className="hide-small">Symbol</p>
+          <p className="hide-small">Chain</p>
+          <p className="hide-small"></p>
           <p className="hide-small">Tags</p>
-          <p className="hide-small">Chain ID</p>
           <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
           </p>
