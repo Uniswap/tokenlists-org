@@ -1,11 +1,13 @@
 //TODO: Should probably make this dynamic
-const list =  require("./chain_list.json"); 
+// const list =  require("./chain_list.json"); 
+import list from "./chain_list.json"; 
+const typedList : any = list; 
 
-export function lookUpchain(chainId) {
-    return list[chainId] || chainId; 
+export function lookUpchain(chainId: string) {
+    return typedList[chainId] || chainId; 
 }
 
-export function lookupScanner(chainId) {
+export function lookupScanner(chainId: number) {
     switch(chainId) {
         // Mainnet
         case 1: 

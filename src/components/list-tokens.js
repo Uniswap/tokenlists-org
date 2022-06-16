@@ -86,7 +86,8 @@ const Chain = styled.span`
 `
 
 export const ListItem = memo(function ListItem({ token }) {
-  const scannerUrl = lookupScanner(token.chainId) == "" ? "" : lookupScanner(token.chainId) + `${toChecksumAddress(token.address)}`; 
+  const scanner = lookupScanner(token.chainId); 
+  const scannerUrl = scanner == "" ? "" : scanner + `${toChecksumAddress(token.address)}`; 
   return (
     <TokenItem>
       <TokenInfo>
