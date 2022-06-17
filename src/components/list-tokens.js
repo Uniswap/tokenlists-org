@@ -87,7 +87,8 @@ const Chain = styled.span`
 
 export const ListItem = memo(function ListItem({ token }) {
   const scanner = lookupScanner(token.chainId); 
-  const scannerUrl = scanner == "" ? "" : scanner + `${toChecksumAddress(token.address)}`; 
+  const tokenAddress = toChecksumAddress(token.address); 
+  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
   return (
     <TokenItem>
       <TokenInfo>
@@ -110,7 +111,7 @@ export const ListItem = memo(function ListItem({ token }) {
         />
 
         <span className="hide-small">
-          <a style={{ textAlign: 'right' }} href={`https://etherscan.io/address/${toChecksumAddress(token.address)}`}>
+          <a style={{ textAlign: 'right' }} href={scannerUrl}>
             {token.name}
           </a>
         </span>
@@ -127,7 +128,7 @@ export const ListItem = memo(function ListItem({ token }) {
       </TokenTagWrapper>
       <TokenAddress>
         <a style={{ textAlign: 'right' }} href={scannerUrl}>
-          {`${toChecksumAddress(token.address)?.slice(0, 6)}...${toChecksumAddress(token.address)?.slice(38, 42)}`}
+          {`${tokenAddress?.slice(0, 6)}...${tokenAddress?.slice(38, 42)}`}
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
