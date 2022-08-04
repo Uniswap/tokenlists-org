@@ -134,5 +134,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "https://ibbtco.github.io/tokenlist/ibbt-stablecoins.json": {
+    "name": "iBlockchain Bank Stablecoins",
+    "homepage": "https://ibbt.io"
   }
 }
