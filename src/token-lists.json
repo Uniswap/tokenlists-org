@@ -115,10 +115,6 @@
     "name": "Uniswap Extended List",
     "homepage": ""
   },
-  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json": {
-    "name": "Uniswap Token Pairs",
-    "homepage": ""
-  },
   "https://ipfs.io/ipfs/QmdA4ToJmX5WVrwtPf1tcXoJLRJTvB77FUJuL1dmuSRsdJ": {
     "name": "Uniswap Unsupported Tokens List",
     "homepage": ""
