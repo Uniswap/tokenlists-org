@@ -134,5 +134,9 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
-  }
+  },
+  "https://raw.githubusercontent.com/pro100skm/xdc-token-list/master/mainnet.tokenlist.json": {
+    "name": "XDC Mainnet",
+    "homepage": "https://xinfin.org/"
+  },
 }
