@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState, memo, useCallback, useEffect } from 'react'
 import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
@@ -90,12 +90,12 @@ const Chain = styled.span`
   }
 `
 
-export const ListItem = memo(function ListItem({ token }) {
-  const scanner = lookupScanner(token.chainId); 
-  const tokenAddress = toChecksumAddress(token.address); 
-  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
+export const ListItem = memo(function ListItem({ token, onClick }) {
+  const scanner = lookupScanner(token.chainId)
+  const tokenAddress = toChecksumAddress(token.address)
+  const scannerUrl = scanner === '' ? '' : scanner + tokenAddress
   return (
-    <TokenItem>
+    <TokenItem onClick={onClick}>
       <TokenInfo>
         <TokenIcon
           className="token-icon"
@@ -188,7 +188,7 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
-};
+}
 
 const ListHeader = styled.div`
   display: flex;
@@ -199,15 +199,100 @@ const ListHeader = styled.div`
   }
 `
 
+function EditModal({ token, open, handleClose }) {
+  const [editedToken, setEditedToken] = useState(null)
+
+  useEffect(() => {
+    setEditedToken(token)
+  }, [token])
+
+  const updateFunction = useCallback(
+    (field) => (e) => {
+      const newValue = e?.target?.value
+      newValue &&
+        setEditedToken((prev) => {
+          console.log('wow')
+
+          const newToken = { ...prev }
+          newToken[field] = newValue
+          return newToken
+        })
+    },
+    []
+  )
+  console.log(editedToken)
+
+  return (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <TextField
+          id="outlined-name-input"
+          label="Name"
+          type="name"
+          value={editedToken?.name}
+          onChange={updateFunction('name')}
+        />
+        <TextField
+          id="chain-id-input"
+          label="Chain ID"
+          type="number"
+          onChange={!token && updateFunction('chainId')}
+          disabled={!!token}
+          value={editedToken?.chainId}
+        />
+        <TextField
+          id="outlined-number"
+          label="Symbol"
+          type="symbol"
+          onInput={updateFunction('symbol')}
+          value={editedToken?.symbol}
+        />
+        <TextField
+          id="outlined-number"
+          label="Decimals"
+          type="number"
+          onInput={updateFunction('decimals')}
+          value={editedToken?.decimals}
+        />
+        <img style={{ width: '30px', height: '30px' }} src={editedToken?.logoURI} alt="icon" />
+        <TextField
+          id="logo-uri-input"
+          label="Logo URI"
+          type="logo-uri"
+          value={editedToken?.logoURI}
+          onInput={updateFunction('logoURI')}
+        />
+        <TextField
+          id="outlined-address-input"
+          label="Address"
+          type="address"
+          value={editedToken?.address}
+          onInput={!token && updateFunction('address')}
+          disabled={!!token}
+        />
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Uniswap Labs List
+        </Typography>
+        <br></br>
+        {JSON.stringify(editedToken, null, 4)}
+      </Box>
+    </Modal>
+  )
+}
+
 export default function Tokens({ tokens }) {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [addingNewToken, setAddingNewToken] = useState(false)
+  const handleOpen = () => setAddingNewToken(true)
+  const handleClose = () => setAddingNewToken(false)
 
   const [value, setValue] = useState('')
-  const sortedTokens = tokens.sort((a,b) =>{ 
-    return a.symbol > b.symbol ? 1 : 
-      a.symbol < b.symbol ? -1 : 0; 
+  const sortedTokens = tokens.sort((a, b) => {
+    return a.symbol > b.symbol ? 1 : a.symbol < b.symbol ? -1 : 0
   })
 
   function handleChange(e) {
@@ -215,70 +300,21 @@ export default function Tokens({ tokens }) {
     setValue(value)
   }
 
+  const [editToken, setEditToken] = useState(null)
+  function updateToken() {
+    // Push to backend
+    setEditToken(null)
+  }
+
+  const shouldDisplayEditModal = Boolean(!!editToken || addingNewToken)
+
   return (
     <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
         <Button onClick={handleOpen}>Edit</Button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <TextField
-              id="outlined-name-input"
-              label="Name"
-              type="name"
-            />
-            <TextField
-              id="chain-id-input"
-              label="Chain ID"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="outlined-number"
-              label="Symbol"
-              type="symbol"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="outlined-number"
-              label="Decimals"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <TextField
-              id="logo-uri-input"
-              label="Logo URI"
-              type="logo-uri"
-            />
-            <TextField
-              id="outlined-address-input"
-              label="Address"
-              type="address"
-            />
-             <TextField
-              id="chain-id-input"
-              label="Chain ID"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Uniswap Labs List
-            </Typography>
-          </Box>
-        </Modal>
+        <EditModal open={shouldDisplayEditModal} token={editToken} handleClose={updateToken} />
+
         <Search handleChange={handleChange} value={value} setValue={setValue} />
       </ListHeader>
 
@@ -297,7 +333,9 @@ export default function Tokens({ tokens }) {
           value={value}
           data={sortedTokens}
           renderResults={(results) =>
-            results.length === 0 ? 'None found!' : results.map((data, i) => <ListItem key={i} token={data} />)
+            results.length === 0
+              ? 'None found!'
+              : results.map((data, i) => <ListItem onClick={() => setEditToken(data)} key={i} token={data} />)
           }
         />
       </TokenWrapper>
