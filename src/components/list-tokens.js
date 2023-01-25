@@ -5,12 +5,17 @@ import CopyHelper from './copy'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+import ClearIcon from '@material-ui/icons/Clear';
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import Modal from '@material-ui/core/Modal'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
+import { TokenList, updateList } from '../utils/tokenListUpdater'
 
 const TokenItem = styled.section`
   display: grid;
@@ -185,8 +190,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
+  borderRadius: '24px',
   p: 4,
 };
 
@@ -204,6 +208,19 @@ export default function Tokens({ tokens }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [tokenList, setTokenList] = useState(TokenList.UNISWAP_DEFAULT);
+
+  const handleTokenListSelect = (event) => {
+    setTokenList(event.target.value);
+  };
+
+   // TODO: save state and submit token here
+  const addTokenSubmit = () => {
+    updateList(tokenList, /** TODO: add tokenChangesMap */)
+    setOpen(false)
+  }
+
+
   const [value, setValue] = useState('')
   const sortedTokens = tokens.sort((a,b) =>{ 
     return a.symbol > b.symbol ? 1 : 
@@ -219,7 +236,6 @@ export default function Tokens({ tokens }) {
     <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
-        <Button onClick={handleOpen}>Edit</Button>
         <Modal
           open={open}
           onClose={handleClose}
@@ -227,6 +243,11 @@ export default function Tokens({ tokens }) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton style={{ display: 'flex', alignItems: 'center' }} size="small" onClick={() => setOpen(false)}>
+                <ClearIcon fontSize='small'/>
+              </IconButton>
+            </div>
             <TextField
               id="outlined-name-input"
               label="Name"
@@ -241,7 +262,7 @@ export default function Tokens({ tokens }) {
               }}
             />
             <TextField
-              id="outlined-number"
+              id="outlined-symbol"
               label="Symbol"
               type="symbol"
               InputLabelProps={{
@@ -257,7 +278,7 @@ export default function Tokens({ tokens }) {
               }}
             />
             <TextField
-              id="logo-uri-input"
+              id="outlined-logo-uri-input"
               label="Logo URI"
               type="logo-uri"
             />
@@ -274,12 +295,25 @@ export default function Tokens({ tokens }) {
                 shrink: true,
               }}
             />
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Uniswap Labs List
-            </Typography>
+            <Select
+              id="token-list-select"
+              value={tokenList}
+              label="Uniswap Labs Token List"
+              onChange={handleTokenListSelect}
+            >
+              <MenuItem value={TokenList.UNISWAP_DEFAULT}>Default</MenuItem>
+              <MenuItem value={TokenList.UNISWAP_EXTENDED}>Extended</MenuItem>
+              <MenuItem value={TokenList.UNISWAP_UNSUPPORTED}>Unsupported</MenuItem>
+            </Select>
+            <div>
+              <Button variant="outlined" onClick={addTokenSubmit}>Submit</Button>
+            </div>
           </Box>
         </Modal>
-        <Search handleChange={handleChange} value={value} setValue={setValue} />
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Button onClick={handleOpen} variant="outlined" style={{margin: "12px"}}>Add Token</Button>
+          <Search handleChange={handleChange} value={value} setValue={setValue} />
+        </div>
       </ListHeader>
 
       <TokenWrapper>
