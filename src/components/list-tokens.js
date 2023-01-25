@@ -177,8 +177,9 @@ const ListTitle = styled.div`
 `
 
 const style = {
+  display: 'flex',
+  flexDirection: 'column',
   position: 'absolute',
-  display: 'block',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
