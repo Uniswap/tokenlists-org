@@ -15,6 +15,7 @@ import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
+import { TokenList, updateList } from '../utils/tokenListUpdater'
 
 const TokenItem = styled.section`
   display: grid;
@@ -202,27 +203,20 @@ const ListHeader = styled.div`
   }
 `
 
-const StyledButton = styled(Button)`
-
-`
-
-const StyledTextField = styled.div`
-  margin: 12px 0px;
-`
-
 export default function Tokens({ tokens }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [age, setAge] = useState('');
+  const [tokenList, setTokenList] = useState(TokenList.UNISWAP_DEFAULT);
 
-  const handleMenuSelect = (event) => {
-    setAge(event.target.value);
+  const handleTokenListSelect = (event) => {
+    setTokenList(event.target.value);
   };
 
   const addTokenSubmit = () => {
     // submit token here
+    updateList(tokenList, /** TODO: add tokenChangesMap */)
     setOpen(false)
   }
 
@@ -302,15 +296,14 @@ export default function Tokens({ tokens }) {
               }}
             />
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={age}
+              id="token-list-select"
+              value={tokenList}
               label="Uniswap Labs Token List"
-              onChange={handleMenuSelect}
+              onChange={handleTokenListSelect}
             >
-              <MenuItem value={10}>Default</MenuItem>
-              <MenuItem value={20}>Extended</MenuItem>
-              <MenuItem value={30}>Blocked</MenuItem>
+              <MenuItem value={TokenList.UNISWAP_DEFAULT}>Default</MenuItem>
+              <MenuItem value={TokenList.UNISWAP_EXTENDED}>Extended</MenuItem>
+              <MenuItem value={TokenList.UNISWAP_UNSUPPORTED}>Unsupported</MenuItem>
             </Select>
             <div>
               <Button variant="outlined" onClick={addTokenSubmit}>Submit</Button>
