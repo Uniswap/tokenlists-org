@@ -3,14 +3,18 @@ import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
 import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
+import ClearIcon from '@material-ui/icons/Clear'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import Modal from '@material-ui/core/Modal'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
+import { TokenList, updateList } from '../utils/tokenListUpdater'
 
 const TokenItem = styled.section`
   display: grid;
@@ -185,8 +189,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
+  borderRadius: '24px',
   p: 4,
 }
 
@@ -222,6 +225,18 @@ function EditModal({ token, open, handleClose }) {
   )
   console.log(editedToken)
 
+  const [tokenList, setTokenList] = useState(TokenList.UNISWAP_DEFAULT)
+
+  const handleTokenListSelect = (event) => {
+    setTokenList(event.target.value)
+  }
+
+  // TODO: save state and submit token here
+  const addTokenSubmit = () => {
+    updateList(tokenList /** TODO: add tokenChangesMap */)
+    handleClose()
+  }
+
   return (
     <Modal
       open={open}
@@ -230,6 +245,11 @@ function EditModal({ token, open, handleClose }) {
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton style={{ display: 'flex', alignItems: 'center' }} size="small" onClick={() => handleClose()}>
+            <ClearIcon fontSize="small" />
+          </IconButton>
+        </div>
         <TextField
           id="outlined-name-input"
           label="Name"
@@ -275,9 +295,21 @@ function EditModal({ token, open, handleClose }) {
           onInput={!token && updateFunction('address')}
           disabled={!!token}
         />
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-          Uniswap Labs List
-        </Typography>
+        <Select
+          id="token-list-select"
+          value={tokenList}
+          label="Uniswap Labs Token List"
+          onChange={handleTokenListSelect}
+        >
+          <MenuItem value={TokenList.UNISWAP_DEFAULT}>Default</MenuItem>
+          <MenuItem value={TokenList.UNISWAP_EXTENDED}>Extended</MenuItem>
+          <MenuItem value={TokenList.UNISWAP_UNSUPPORTED}>Unsupported</MenuItem>
+        </Select>
+        <div>
+          <Button variant="outlined" onClick={addTokenSubmit}>
+            Submit
+          </Button>
+        </div>
         <br></br>
         {JSON.stringify(editedToken, null, 4)}
       </Box>
