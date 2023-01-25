@@ -214,8 +214,8 @@ export default function Tokens({ tokens }) {
     setTokenList(event.target.value);
   };
 
+   // TODO: save state and submit token here
   const addTokenSubmit = () => {
-    // submit token here
     updateList(tokenList, /** TODO: add tokenChangesMap */)
     setOpen(false)
   }
