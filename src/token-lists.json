@@ -123,7 +123,7 @@
     "name": "Wrapped Tokens",
     "homepage": ""
   },
-  "https://yearn.science/static/tokenlist.json": {
+  "https://ydaemon.yearn.finance/tokenlist": {
     "name": "Yearn",
     "homepage": "https://yearn.finance/"
   },
