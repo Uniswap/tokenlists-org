@@ -2,6 +2,11 @@ import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Modal from '@material-ui/core/Modal'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
@@ -171,6 +176,20 @@ const ListTitle = styled.div`
   }
 `
 
+const style = {
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 const ListHeader = styled.div`
   display: flex;
   align-items: baseline;
@@ -181,6 +200,10 @@ const ListHeader = styled.div`
 `
 
 export default function Tokens({ tokens }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const [value, setValue] = useState('')
   const sortedTokens = tokens.sort((a,b) =>{ 
     return a.symbol > b.symbol ? 1 : 
@@ -196,6 +219,66 @@ export default function Tokens({ tokens }) {
     <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
+        <Button onClick={handleOpen}>Edit</Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <TextField
+              id="outlined-name-input"
+              label="Name"
+              type="name"
+            />
+            <TextField
+              id="chain-id-input"
+              label="Chain ID"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              id="outlined-number"
+              label="Symbol"
+              type="symbol"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              id="outlined-number"
+              label="Decimals"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              id="logo-uri-input"
+              label="Logo URI"
+              type="logo-uri"
+            />
+            <TextField
+              id="outlined-address-input"
+              label="Address"
+              type="address"
+            />
+             <TextField
+              id="chain-id-input"
+              label="Chain ID"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Uniswap Labs List
+            </Typography>
+          </Box>
+        </Modal>
         <Search handleChange={handleChange} value={value} setValue={setValue} />
       </ListHeader>
 
