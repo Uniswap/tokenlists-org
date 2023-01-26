@@ -15,6 +15,7 @@ import { lookUpchain, lookupScanner } from '../utils/getChainId'
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
 import { TokenList, updateList } from '../utils/tokenListUpdater'
+import { uploadFileApi } from '../utils/github_api'
 
 const TokenItem = styled.section`
   display: grid;
@@ -141,9 +142,13 @@ export const ListItem = memo(function ListItem({ token, onClick }) {
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
-      <div style={{display: 'flex'}}>
-        <Button variant="outlined" onClick={onClick}>Edit</Button>
-        <Button variant="outlined" style={{ margin: '0px 12px'}} size="medium">Remove</Button>
+      <div style={{ display: 'flex' }}>
+        <Button variant="outlined" onClick={onClick}>
+          Edit
+        </Button>
+        <Button variant="outlined" style={{ margin: '0px 12px' }} size="medium">
+          Remove
+        </Button>
       </div>
     </TokenItem>
   )
@@ -248,8 +253,8 @@ function EditModal({ token, open, handleClose }) {
     if (!metRequirements) {
       setShowRequiredMessage(true)
     } else {
-      updateList(tokenList, /** TODO: add tokenChangesMap */)
-      console.log('testing')
+      uploadFileApi({ test: 'hi' })
+      // updateList(tokenList /** TODO: add tokenChangesMap */)
       handleClose()
     }
   }
@@ -378,8 +383,10 @@ export default function Tokens({ tokens }) {
     <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
-        <div style={{ display: 'flex'}}>
-          <Button variant="outlined" onClick={() => setIsEditState(true)} style={{ margin: '0px 12px'}}>Edit</Button>
+        <div style={{ display: 'flex' }}>
+          <Button variant="outlined" onClick={() => setIsEditState(true)} style={{ margin: '0px 12px' }}>
+            Edit
+          </Button>
           <Search handleChange={handleChange} value={value} setValue={setValue} />
         </div>
         <EditModal open={shouldDisplayEditModal} token={editToken} handleClose={handleClose} />
@@ -400,16 +407,20 @@ export default function Tokens({ tokens }) {
           value={value}
           data={sortedTokens}
           renderResults={(results) => {
-            let resultListItems = results.map((data, i) => <ListItem onClick={() => setEditToken(data)} key={i} token={data} />)
+            let resultListItems = results.map((data, i) => (
+              <ListItem onClick={() => setEditToken(data)} key={i} token={data} />
+            ))
             if (isEditState) {
-              resultListItems.unshift(<Button variant="outlined" onClick={handleOpen}> + Add Token</Button>)
+              resultListItems.unshift(
+                <Button variant="outlined" onClick={handleOpen}>
+                  {' '}
+                  + Add Token
+                </Button>
+              )
             }
             /** add ADD TOKEN ROW here */
-            return results.length === 0
-              ? 'None found!'
-              : resultListItems
-          }
-          }
+            return results.length === 0 ? 'None found!' : resultListItems
+          }}
         />
       </TokenWrapper>
     </ListWrapper>
