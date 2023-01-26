@@ -22,5 +22,5 @@ export function uploadFileApi(changes: Changes[]) {
       forceFork: false /* optional: force creating fork even when user has write rights */,
       changes: changes,
     })
-    .then((pr) => console.log(pr?.data.number))
+    .then((pr) => console.log('create PR succeeded', pr?.data.number))
 }

@@ -8,6 +8,7 @@ import { useMultiFetch } from '../utils/useMultiFetch'
 import { useLocation } from 'react-router-dom'
 
 import '../index.css'
+import { getTokenList } from '../utils/tokenListUpdater'
 
 const Content = styled.section`
   display: grid;
@@ -69,7 +70,7 @@ function List() {
       ) : (
         <Content>
           <Info listID={listID} list={list} />
-          <Tokens tokens={list.tokens} />
+          <Tokens tokens={list.tokens} tokenList={getTokenList(list.name)} />
         </Content>
       )}
     </div>
