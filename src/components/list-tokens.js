@@ -202,8 +202,18 @@ const ListHeader = styled.div`
   }
 `
 
+const Required = styled.div`
+  &:after {
+    font-weight: bold;
+    color: red;
+    content: ' *';
+  }
+`
+
 function EditModal({ token, open, handleClose }) {
   const [editedToken, setEditedToken] = useState(null)
+  const [showRequiredMessage, setShowRequiredMessage] = useState(false)
+  const metRequirements = editedToken?.address && editedToken?.chainId
 
   useEffect(() => {
     setEditedToken(token)
@@ -212,18 +222,16 @@ function EditModal({ token, open, handleClose }) {
   const updateFunction = useCallback(
     (field) => (e) => {
       const newValue = e?.target?.value
-      newValue &&
+      if (newValue !== null && newValue !== undefined) {
         setEditedToken((prev) => {
-          console.log('wow')
-
           const newToken = { ...prev }
-          newToken[field] = newValue
+          newToken[field] = newValue || undefined
           return newToken
         })
+      }
     },
     []
   )
-  console.log(editedToken)
 
   const [tokenList, setTokenList] = useState(TokenList.UNISWAP_DEFAULT)
 
@@ -233,8 +241,12 @@ function EditModal({ token, open, handleClose }) {
 
   // TODO: save state and submit token here
   const addTokenSubmit = () => {
-    updateList(tokenList /** TODO: add tokenChangesMap */)
-    handleClose()
+    if (!metRequirements) {
+      setShowRequiredMessage(true)
+    } else {
+      // updateList(tokenList /** TODO: add tokenChangesMap */)
+      handleClose()
+    }
   }
 
   return (
@@ -246,10 +258,42 @@ function EditModal({ token, open, handleClose }) {
     >
       <Box sx={style}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <IconButton style={{ display: 'flex', alignItems: 'center' }} size="small" onClick={() => handleClose()}>
+          <IconButton style={{ display: 'flex', alignItems: 'center' }} size="small" onClick={handleClose}>
             <ClearIcon fontSize="small" />
           </IconButton>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <h2>{!!token ? 'Edit Token' : 'Add Token'}</h2>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+          <img style={{ width: '100px', height: '100px' }} src={editedToken?.logoURI} alt="icon" />
+          <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+            <TextField
+              id="outlined-address-input"
+              label={<Required>Address</Required>}
+              type="address"
+              value={editedToken?.address}
+              onInput={!token && updateFunction('address')}
+              disabled={!!token}
+            />
+            <TextField
+              id="chain-id-input"
+              label={<Required>Chain Id</Required>}
+              type="number"
+              onChange={!token && updateFunction('chainId')}
+              disabled={!!token}
+              value={editedToken?.chainId}
+            />
+          </div>
+        </div>
+        <TextField
+          id="logo-uri-input"
+          label="Logo URI"
+          type="logo-uri"
+          value={editedToken?.logoURI}
+          onInput={updateFunction('logoURI')}
+        />
         <TextField
           id="outlined-name-input"
           label="Name"
@@ -257,14 +301,7 @@ function EditModal({ token, open, handleClose }) {
           value={editedToken?.name}
           onChange={updateFunction('name')}
         />
-        <TextField
-          id="chain-id-input"
-          label="Chain ID"
-          type="number"
-          onChange={!token && updateFunction('chainId')}
-          disabled={!!token}
-          value={editedToken?.chainId}
-        />
+
         <TextField
           id="outlined-number"
           label="Symbol"
@@ -279,22 +316,6 @@ function EditModal({ token, open, handleClose }) {
           onInput={updateFunction('decimals')}
           value={editedToken?.decimals}
         />
-        <img style={{ width: '30px', height: '30px' }} src={editedToken?.logoURI} alt="icon" />
-        <TextField
-          id="logo-uri-input"
-          label="Logo URI"
-          type="logo-uri"
-          value={editedToken?.logoURI}
-          onInput={updateFunction('logoURI')}
-        />
-        <TextField
-          id="outlined-address-input"
-          label="Address"
-          type="address"
-          value={editedToken?.address}
-          onInput={!token && updateFunction('address')}
-          disabled={!!token}
-        />
         <Select
           id="token-list-select"
           value={tokenList}
@@ -305,8 +326,12 @@ function EditModal({ token, open, handleClose }) {
           <MenuItem value={TokenList.UNISWAP_EXTENDED}>Extended</MenuItem>
           <MenuItem value={TokenList.UNISWAP_UNSUPPORTED}>Unsupported</MenuItem>
         </Select>
-        <div>
-          <Button variant="outlined" onClick={addTokenSubmit}>
+        <div
+          style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '12px' }}
+          onClick={() => !metRequirements && setShowRequiredMessage(true)}
+        >
+          {showRequiredMessage && !metRequirements && 'ChainId and address are required'}
+          <Button variant="outlined" onClick={addTokenSubmit} disabled={!metRequirements}>
             Submit
           </Button>
         </div>
@@ -319,8 +344,12 @@ function EditModal({ token, open, handleClose }) {
 
 export default function Tokens({ tokens }) {
   const [addingNewToken, setAddingNewToken] = useState(false)
+  const [editToken, setEditToken] = useState(null)
   const handleOpen = () => setAddingNewToken(true)
-  const handleClose = () => setAddingNewToken(false)
+  const handleClose = () => {
+    setAddingNewToken(false)
+    setEditToken(null)
+  }
 
   const [value, setValue] = useState('')
   const sortedTokens = tokens.sort((a, b) => {
@@ -332,7 +361,6 @@ export default function Tokens({ tokens }) {
     setValue(value)
   }
 
-  const [editToken, setEditToken] = useState(null)
   function updateToken() {
     // Push to backend
     setEditToken(null)
@@ -345,7 +373,7 @@ export default function Tokens({ tokens }) {
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
         <Button onClick={handleOpen}>Edit</Button>
-        <EditModal open={shouldDisplayEditModal} token={editToken} handleClose={updateToken} />
+        <EditModal open={shouldDisplayEditModal} token={editToken} handleClose={handleClose} />
 
         <Search handleChange={handleChange} value={value} setValue={setValue} />
       </ListHeader>
