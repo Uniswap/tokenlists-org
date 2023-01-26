@@ -21,7 +21,7 @@ const TokenItem = styled.section`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 100px 120px 96px 148px;
+  grid-template-columns: 1fr 100px 100px 70px 148px 60px;
   margin-bottom: 1rem;
   a {
     color: #131313;
@@ -100,7 +100,7 @@ export const ListItem = memo(function ListItem({ token, onClick }) {
   const tokenAddress = toChecksumAddress(token.address)
   const scannerUrl = scanner === '' ? '' : scanner + tokenAddress
   return (
-    <TokenItem onClick={onClick}>
+    <TokenItem>
       <TokenInfo>
         <TokenIcon
           className="token-icon"
@@ -142,6 +142,14 @@ export const ListItem = memo(function ListItem({ token, onClick }) {
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
+      <div style={{ display: 'flex' }}>
+        <Button variant="outlined" onClick={onClick}>
+          Edit
+        </Button>
+        <Button variant="outlined" style={{ margin: '0px 12px' }} size="medium">
+          Remove
+        </Button>
+      </div>
     </TokenItem>
   )
 })
@@ -174,7 +182,7 @@ const ListTitle = styled.div`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 100px 120px 96px 148px;
+  grid-template-columns: 1fr 100px 100px 70px 148px 60px;
   margin-bottom: 1rem;
   @media screen and (max-width: 414px) {
     display: none;
@@ -347,6 +355,7 @@ function EditModal({ token, open, handleClose }) {
 export default function Tokens({ tokens }) {
   const [addingNewToken, setAddingNewToken] = useState(false)
   const [editToken, setEditToken] = useState(null)
+  const [isEditState, setIsEditState] = useState(false)
   const handleOpen = () => setAddingNewToken(true)
   const handleClose = () => {
     setAddingNewToken(false)
@@ -374,10 +383,13 @@ export default function Tokens({ tokens }) {
     <ListWrapper>
       <ListHeader className="flex-between" style>
         <Title>List Tokens</Title>
-        <Button onClick={handleOpen}>Edit</Button>
+        <div style={{ display: 'flex' }}>
+          <Button variant="outlined" onClick={() => setIsEditState(true)} style={{ margin: '0px 12px' }}>
+            Edit
+          </Button>
+          <Search handleChange={handleChange} value={value} setValue={setValue} />
+        </div>
         <EditModal open={shouldDisplayEditModal} token={editToken} handleClose={handleClose} />
-
-        <Search handleChange={handleChange} value={value} setValue={setValue} />
       </ListHeader>
 
       <TokenWrapper>
@@ -394,11 +406,21 @@ export default function Tokens({ tokens }) {
         <FilterResults
           value={value}
           data={sortedTokens}
-          renderResults={(results) =>
-            results.length === 0
-              ? 'None found!'
-              : results.map((data, i) => <ListItem onClick={() => setEditToken(data)} key={i} token={data} />)
-          }
+          renderResults={(results) => {
+            let resultListItems = results.map((data, i) => (
+              <ListItem onClick={() => setEditToken(data)} key={i} token={data} />
+            ))
+            if (isEditState) {
+              resultListItems.unshift(
+                <Button variant="outlined" onClick={handleOpen}>
+                  {' '}
+                  + Add Token
+                </Button>
+              )
+            }
+            /** add ADD TOKEN ROW here */
+            return results.length === 0 ? 'None found!' : resultListItems
+          }}
         />
       </TokenWrapper>
     </ListWrapper>
