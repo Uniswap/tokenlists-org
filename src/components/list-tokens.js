@@ -15,6 +15,7 @@ import { lookUpchain, lookupScanner } from '../utils/getChainId'
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
 import { TokenList, updateList } from '../utils/tokenListUpdater'
+import { uploadFileApi } from '../utils/github_api'
 
 const TokenItem = styled.section`
   display: grid;
@@ -244,6 +245,7 @@ function EditModal({ token, open, handleClose }) {
     if (!metRequirements) {
       setShowRequiredMessage(true)
     } else {
+      uploadFileApi({ test: 'hi' })
       // updateList(tokenList /** TODO: add tokenChangesMap */)
       handleClose()
     }
