@@ -242,7 +242,7 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
   const tokenListDisplayName = getTokenListDisplayName(tokenList)
 
   // TODO: save state and submit token here
-  const addTokenSubmit = () => {
+  const addTokenSubmit = async () => {
     if (!metRequirements) {
       setShowRequiredMessage(true)
     } else {
@@ -332,7 +332,7 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
           onClick={() => !metRequirements && setShowRequiredMessage(true)}
         >
           {showRequiredMessage && !metRequirements && 'ChainId and address are required'}
-          <Button variant="outlined" onClick={addTokenSubmit} disabled={!metRequirements}>
+          <Button variant="outlined" onClick={async () => {await addTokenSubmit()}} disabled={!metRequirements}>
             Submit
           </Button>
         </div>
@@ -345,9 +345,9 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
 
 export default function Tokens({ tokens, tokenList }) {
   const [addingNewToken, setAddingNewToken] = useState(false)
-  const [removedTokensSet, setRemovedTokensSet] = useState(new Set())
-  const [addedTokensSet, setAddedTokensSet] = useState(new Set())
-  const [editedTokensSet, setEditedTokensSet] = useState(new Set())
+  const [removedTokensMap, setRemovedTokensMap] = useState(new Map())
+  const [addedTokensMap, setAddedTokensMap] = useState(new Map())
+  const [editedTokensMap, setEditedTokensMap] = useState(new Map())
   const [editToken, setEditToken] = useState(null)
   const [isEditState, setIsEditState] = useState(false)
   const handleOpen = () => setAddingNewToken(true)
@@ -355,23 +355,20 @@ export default function Tokens({ tokens, tokenList }) {
     setAddingNewToken(false)
     setEditToken(null)
   }
-  const tokenChangesMap = new Map()
 
   const addToTokenChangesMap = (token, changeType) => {
     const tokenChange = getTokenChange(changeType, token)
     if (changeType === ChangeType.ADD) {
       console.log('ADD TO TOKEN CHANGES MAP TYPE', changeType)
       console.log('ADD TO TOKEN CHANGES MAP TOKEN', token)
-      setAddedTokensSet(new Set([...addedTokensSet, tokenChange.tokenChangeKey]))
+      setAddedTokensMap(new Map([...addedTokensMap, [tokenChange.tokenChangeKey, tokenChange.tokenChangeValue]]))
     }
     if (changeType === ChangeType.EDIT) {
-      setEditedTokensSet(new Set([...editedTokensSet, tokenChange.tokenChangeKey]))
+      setEditedTokensMap(new Map([...editedTokensMap, [tokenChange.tokenChangeKey, tokenChange.tokenChangeValue]]))
     }
     if (changeType === ChangeType.REMOVE) {
-      setRemovedTokensSet(new Set([...removedTokensSet, tokenChange.tokenChangeKey]))
+      setRemovedTokensMap(new Map([...removedTokensMap, [tokenChange.tokenChangeKey, tokenChange.tokenChangeValue]]))
     }
-    tokenChangesMap.set(tokenChange.tokenChangeKey, tokenChange.tokenChangeValue)
-    console.log('token changes map', tokenChangesMap)
   }
 
   const [value, setValue] = useState('')
@@ -385,14 +382,20 @@ export default function Tokens({ tokens, tokenList }) {
   }
 
   const onSubmitTokenChanges = () => {
-    updateList(tokenList, tokenChangesMap)
-    tokenChangesMap.clear()
+    updateList(tokenList, new Map([...addedTokensMap, ...removedTokensMap, ...editedTokensMap]))
+    addedTokensMap.clear()
+    removedTokensMap.clear()
+    editedTokensMap.clear()
     setIsEditState(false)
   }
 
   const onCancelTokenChanges = () => {
-    tokenChangesMap.clear()
-    console.log(tokenChangesMap)
+    addedTokensMap.clear()
+    removedTokensMap.clear()
+    editedTokensMap.clear()
+    console.log('added tokens map', addedTokensMap)
+    console.log('removed tokens map', removedTokensMap)
+    console.log('edited tokens map', editedTokensMap)
     setIsEditState(false)
   }
 
@@ -445,20 +448,22 @@ export default function Tokens({ tokens, tokenList }) {
                 onRemoveToken={() => addToTokenChangesMap(data, ChangeType.REMOVE)}
                 onEditToken={() => setEditToken(data)} key={tokenKey} token={data} />
 
-                if (removedTokensSet.has(tokenKey)) {
+                if (removedTokensMap.has(tokenKey)) {
                   changelistTokens.push(<div style={{ backgroundColor: "#FF8080", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
                 }
-                else if (editedTokensSet.has(tokenKey)) {
+                else if (editedTokensMap.has(tokenKey)) {
                   changelistTokens.push(<div style={{ backgroundColor: "#FAFA72", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
                 } else {
                   regularTokens.push(listItem)
                 }
               })
-            addedTokensSet.forEach((tokenKey) => {
-              console.log('adding token map', tokenChangesMap)
-              console.log('added token', tokenChangesMap.get(tokenKey))
-              const token = tokenChangesMap.get(tokenKey).newTokenInfo
-              changelistTokens.unshift(token)
+            Array.from(addedTokensMap.keys()).forEach((tokenKey) => {
+              const token = addedTokensMap.get(tokenKey).newTokenInfo
+              const listItem = <ListItem
+                isEditState={isEditState}
+                onRemoveToken={() => addToTokenChangesMap(token, ChangeType.REMOVE)}
+                onEditToken={() => setEditToken(token)} key={tokenKey} token={token} />
+              changelistTokens.unshift(<div style={{ backgroundColor: "#C0FFA1", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
             })
             const resultListItems =  [...changelistTokens, ...regularTokens]
             if (isEditState) {
