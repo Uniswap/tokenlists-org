@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
 import Box from '@material-ui/core/Box'
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
 import ClearIcon from '@material-ui/icons/Clear';
 import Select from '@material-ui/core/Select'
@@ -21,7 +20,7 @@ const TokenItem = styled.section`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 100px 120px 96px 148px;
+  grid-template-columns: 1fr 100px 100px 70px 148px 60px;
   margin-bottom: 1rem;
   a {
     color: #131313;
@@ -96,6 +95,10 @@ const Chain = styled.span`
 `
 
 export const ListItem = memo(function ListItem({ token }) {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const scanner = lookupScanner(token.chainId); 
   const tokenAddress = toChecksumAddress(token.address); 
   const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
@@ -142,6 +145,24 @@ export const ListItem = memo(function ListItem({ token }) {
         </a>
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
+      <div style={{display: 'flex'}}>
+        <Button variant="outlined">Edit</Button>
+        <Button variant="outlined" style={{ margin: '0px 12px'}} size="medium" onClick={handleOpen}>Remove</Button>
+      </div>
+      <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <IconButton style={{ display: 'flex', alignItems: 'center' }} size="small" onClick={() => setOpen(false)}>
+                <ClearIcon fontSize='small'/>
+              </IconButton>
+            </div>
+          </Box>
+        </Modal>
     </TokenItem>
   )
 })
@@ -174,7 +195,7 @@ const ListTitle = styled.div`
   display: grid;
   max-width: 960px;
   grid-gap: 1rem;
-  grid-template-columns: 1fr 100px 120px 96px 148px;
+  grid-template-columns: 1fr 100px 100px 70px 148px 60px;
   margin-bottom: 1rem;
   @media screen and (max-width: 414px) {
     display: none;
@@ -325,6 +346,7 @@ export default function Tokens({ tokens }) {
           <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
           </p>
+          {/* <p className="hide-small" /> */}
         </ListTitle>
 
         <FilterResults
