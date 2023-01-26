@@ -67,15 +67,6 @@ export default function Header({ back }) {
         <span className="title" style={{ marginLeft: '.5rem' }}>
           Token Lists
         </span>
-        <div
-          id="g_id_onload"
-          data-client_id="2636172353-1nlvvtqg963mc9hfclvb2p535b17qbne.apps.googleusercontent.com"
-          data-context="signin"
-          data-ux_mode="popup"
-          data-callback="test"
-          data-auto_prompt="true"
-          data-auto_select="true"
-        ></div>
       </Link>
 
       <Nav>

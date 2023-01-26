@@ -7,27 +7,13 @@ import Why from './pages/why'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile()
-  console.log('ID: ' + profile.getId()) // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName())
-  console.log('Image URL: ' + profile.getImageUrl())
-  console.log('Email: ' + profile.getEmail()) // This is null if the 'email' scope is not present.
-}
-
-function App() {
-  return (
+ReactDOM.render(
+  <React.StrictMode>
     <Router>
       <Route exact path="/" component={Home} />
       <Route path="/token-list" component={List} />
       <Route path="/why" component={Why} />
     </Router>
-  )
-}
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
   </React.StrictMode>,
   document.getElementById('root')
 )
