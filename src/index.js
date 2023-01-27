@@ -6,6 +6,7 @@ import Home from './pages/home'
 import Why from './pages/why'
 import * as serviceWorker from './serviceWorker'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { makeStyles } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const theme = createTheme({
@@ -15,15 +16,33 @@ const theme = createTheme({
       darker: '#E039DD',
     },
     secondary: {
-      // This is green.A700 as hex.
-      main: '#11cb5f',
+      main: '#48E500',
     },
-    neutral: {
-      main: '#64748B',
-      contrastText: '#fff',
+    error: {
+      main: '#F8110E',
+      darker: '#c62828',
     },
+    warning: {
+      main: '#F7D900',
+    },
+    success: {
+      main: '#48E500',
+    }
   },
 });
+
+export const useStyles = makeStyles((theme) => ({
+  warning: {
+    color: theme.palette.warning.main
+  },
+  error: {
+    color: theme.palette.error.main
+  },
+  success: {
+    color: theme.palette.error.success
+  }
+}));
+
 
 ReactDOM.render(
   <React.StrictMode>

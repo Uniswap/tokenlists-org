@@ -5,14 +5,18 @@ import CopyHelper from './copy'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
 import ClearIcon from '@material-ui/icons/Clear'
+import EditIcon from '@material-ui/icons/Edit'
+import DeleteIcon from '@material-ui/icons/Delete'
+
 import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import Modal from '@material-ui/core/Modal'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
-import { toChecksumAddress } from 'ethereumjs-util'
+import { toChecksumAddress, isValidAddress} from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
 import { ChangeType, getTokenChange, getTokenListDisplayName, updateList } from '../utils/tokenListUpdater'
+import { useStyles } from '..'
 
 const TokenItem = styled.section`
   display: grid;
@@ -92,7 +96,8 @@ const Chain = styled.span`
   }
 `
 
-export const ListItem = memo(function ListItem({ token, onEditToken, onRemoveToken, isEditState }) {
+export const ListItem = memo(function ListItem({ token, onEditToken, onRemoveToken, isEditState, isEditedToken }) {
+  const classes = useStyles()
   const scanner = lookupScanner(token.chainId)
   const tokenAddress = toChecksumAddress(token.address)
   const scannerUrl = scanner === '' ? '' : scanner + tokenAddress
@@ -140,10 +145,14 @@ export const ListItem = memo(function ListItem({ token, onEditToken, onRemoveTok
         <CopyHelper toCopy={token.address} />
       </TokenAddress>
       {
-        isEditState && (
+        isEditState && !isEditedToken && (
           <div style={{display: 'flex'}}>
-            <Button variant="outlined" onClick={onEditToken}>Edit</Button>
-            <Button variant="contained" style={{ margin: '0px 12px'}} onClick={onRemoveToken}>Remove</Button>
+            <IconButton style={{ display: 'flex', alignItems: 'center', marginLeft: '12px' }} size="small" onClick={onEditToken}>
+              <EditIcon fontSize="small" />
+            </IconButton>
+            <IconButton style={{ display: 'flex', alignItems: 'center', marginLeft: '12px' }} size="small" onClick={onRemoveToken}>
+              <DeleteIcon fontSize="small" />
+            </IconButton>
           </div>
         )
       }
@@ -219,10 +228,16 @@ const Required = styled.div`
 function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, addingNewToken = true}) {
   const [editedToken, setEditedToken] = useState(null)
   const [showRequiredMessage, setShowRequiredMessage] = useState(false)
-  const metRequirements = editedToken?.address && editedToken?.chainId
+  const addressIsValid = isValidAddress(editedToken?.address)
+  const metRequirements = addressIsValid && editedToken?.address && editedToken?.chainId && editedToken?.symbol && editedToken?.name && editedToken?.decimals
 
   useEffect(() => {
-    setEditedToken(token)
+    if (!!token) {
+      setEditedToken(token)
+    } else {
+      // default token decimals is 18
+      setEditedToken({decimals: 18})
+    }
   }, [token])
 
   const updateFunction = useCallback(
@@ -298,7 +313,7 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
         />
         <TextField
           id="outlined-name-input"
-          label="Name"
+          label={<Required>Name</Required>}
           type="name"
           value={editedToken?.name}
           onChange={updateFunction('name')}
@@ -306,19 +321,20 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
 
         <TextField
           id="outlined-number"
-          label="Symbol"
+          label={<Required>Symbol</Required>}
           type="symbol"
           onInput={updateFunction('symbol')}
           value={editedToken?.symbol}
         />
         <TextField
           id="outlined-number"
-          label="Decimals"
+          label={<Required>Decimals</Required>}
           type="number"
           onInput={updateFunction('decimals')}
           value={editedToken?.decimals}
         />
         <TextField
+          style={{ marginTop: '12px'}}
           id="readonly-token-list"
           label="Token List"
           defaultValue={tokenListDisplayName}
@@ -331,7 +347,9 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
           style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', paddingTop: '12px' }}
           onClick={() => !metRequirements && setShowRequiredMessage(true)}
         >
-          {showRequiredMessage && !metRequirements && 'ChainId and address are required'}
+          {showRequiredMessage && !metRequirements && 
+          <div style={{ color: 'red', margin: '8px 0px'}}>{ addressIsValid ? 'ChainId and address are required' : 'Token address must be valid'}</div>
+          }
           <Button variant="outlined" onClick={async () => {await addTokenSubmit()}} disabled={!metRequirements}>
             Submit
           </Button>
@@ -447,27 +465,35 @@ export default function Tokens({ tokens, tokenList }) {
             results.forEach(
               (data) => {
                 const tokenKey = data.chainId + '_' + data.address
-                const listItem = <ListItem
+
+                if (removedTokensMap.has(tokenKey)) {
+                  const listItem = <ListItem
+                  isEditedToken={true}
                 isEditState={isEditState}
                 onRemoveToken={() => addToTokenChangesMap(data, ChangeType.REMOVE)}
                 onEditToken={() => setEditToken(data)} key={tokenKey} token={data} />
-
-                if (removedTokensMap.has(tokenKey)) {
                   changelistTokens.push(<div key={tokenKey} style={{ backgroundColor: "#FF8080", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
                 }
                 else if (editedTokensMap.has(tokenKey)) {
                   const editedListItem =  <ListItem
+                  isEditedToken={true}
                   isEditState={isEditState}
                   onRemoveToken={() => addToTokenChangesMap(data, ChangeType.REMOVE)}
                   onEditToken={() => setEditToken(data)} key={tokenKey} token={editedTokensMap.get(tokenKey).newTokenInfo} />
                   changelistTokens.push(<div key={tokenKey} style={{ backgroundColor: "#FAFA72", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{editedListItem}</div>)
                 } else {
+                  const listItem = <ListItem
+                  isEditedToken={false}
+                isEditState={isEditState}
+                onRemoveToken={() => addToTokenChangesMap(data, ChangeType.REMOVE)}
+                onEditToken={() => setEditToken(data)} key={tokenKey} token={data} />
                   regularTokens.push(listItem)
                 }
               })
             Array.from(addedTokensMap.keys()).forEach((tokenKey) => {
               const token = addedTokensMap.get(tokenKey).newTokenInfo
               const listItem = <ListItem
+              isEditedToken={true}
                 isEditState={isEditState}
                 onRemoveToken={() => addToTokenChangesMap(token, ChangeType.REMOVE)}
                 onEditToken={() => setEditToken(token)} key={tokenKey} token={token} />
