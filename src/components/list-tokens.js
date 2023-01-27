@@ -12,7 +12,7 @@ import { lookUpchain, lookupScanner } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
-import { ChangeType, getTokenChange, getTokenList, getTokenListDisplayName, TokenList, updateList } from '../utils/tokenListUpdater'
+import { ChangeType, getTokenChange, getTokenListDisplayName, updateList } from '../utils/tokenListUpdater'
 
 const TokenItem = styled.section`
   display: grid;
@@ -276,14 +276,14 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
               label={<Required>Address</Required>}
               type="address"
               value={editedToken?.address}
-              onInput={!token && updateFunction('address')}
+              onInput={!token ? updateFunction('address') : undefined}
               disabled={!!token}
             />
             <TextField
               id="chain-id-input"
               label={<Required>Chain Id</Required>}
               type="number"
-              onChange={!token && updateFunction('chainId')}
+              onChange={!token ? updateFunction('chainId') : undefined}
               disabled={!!token}
               value={editedToken?.chainId}
             />
@@ -337,7 +337,11 @@ function EditModal({ token, open, handleClose, addToTokenChangesMap, tokenList, 
           </Button>
         </div>
         <br></br>
-        {JSON.stringify(editedToken, null, 4)}
+        {!!editedToken && 
+        <div style={{ wordWrap: "break-word"}}>
+          {JSON.stringify(editedToken, null, 4)}
+          </div>
+        }
       </Box>
     </Modal>
   )
@@ -449,10 +453,14 @@ export default function Tokens({ tokens, tokenList }) {
                 onEditToken={() => setEditToken(data)} key={tokenKey} token={data} />
 
                 if (removedTokensMap.has(tokenKey)) {
-                  changelistTokens.push(<div style={{ backgroundColor: "#FF8080", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
+                  changelistTokens.push(<div key={tokenKey} style={{ backgroundColor: "#FF8080", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
                 }
                 else if (editedTokensMap.has(tokenKey)) {
-                  changelistTokens.push(<div style={{ backgroundColor: "#FAFA72", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
+                  const editedListItem =  <ListItem
+                  isEditState={isEditState}
+                  onRemoveToken={() => addToTokenChangesMap(data, ChangeType.REMOVE)}
+                  onEditToken={() => setEditToken(data)} key={tokenKey} token={editedTokensMap.get(tokenKey).newTokenInfo} />
+                  changelistTokens.push(<div key={tokenKey} style={{ backgroundColor: "#FAFA72", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{editedListItem}</div>)
                 } else {
                   regularTokens.push(listItem)
                 }
@@ -463,11 +471,12 @@ export default function Tokens({ tokens, tokenList }) {
                 isEditState={isEditState}
                 onRemoveToken={() => addToTokenChangesMap(token, ChangeType.REMOVE)}
                 onEditToken={() => setEditToken(token)} key={tokenKey} token={token} />
-              changelistTokens.unshift(<div style={{ backgroundColor: "#C0FFA1", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
+              changelistTokens.unshift(<div key={tokenKey} style={{ backgroundColor: "#C0FFA1", borderRadius: "8px", padding: "4px", margin: "8px 0px", width: "100%"}}>{listItem}</div>)
             })
             const resultListItems =  [...changelistTokens, ...regularTokens]
             if (isEditState) {
               resultListItems.unshift(<Button variant="outlined" onClick={handleOpen} 
+              key="add-token-button"
               style={{ marginBottom: '16px', display: 'flex'}}> + Add Token</Button>)
             }
             return results.length === 0

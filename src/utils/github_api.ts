@@ -3,7 +3,7 @@ import { createPullRequest } from './pr-plugin'
 import { Changes } from './pr-plugin/types'
 
 const MyOctokit = Octokit.plugin(createPullRequest)
-let token = '<personal access token>'
+let token = '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'
 const octokit = new MyOctokit({
   auth: token,
 })

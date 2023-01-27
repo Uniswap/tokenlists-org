@@ -4,7 +4,6 @@ import Header from '../components/header'
 import Info from '../components/list-info'
 import Tokens from '../components/list-tokens'
 import { useMultiFetch } from '../utils/useMultiFetch'
-
 import { useLocation } from 'react-router-dom'
 
 import '../index.css'
