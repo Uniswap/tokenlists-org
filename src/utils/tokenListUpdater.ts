@@ -101,6 +101,7 @@ export async function updateList(listName: TokenList, tokenChangesMap: Map<strin
     await fetch(listName)
 
     tokenChangesMap.forEach((change, key) => {
+        key = key.toLowerCase()
         const tokenMap = chainToTokenArrayMap.get(parseTokenCompositeKey(key).chainId)
         console.log(tokenMap)
 
