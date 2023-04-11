@@ -84,8 +84,8 @@
     "homepage": ""
   },
   "https://static.optimism.io/optimism.tokenlist.json": {
-    "name": "Optimism",
-    "homepage": "https://optimism.io/"
+    "name": "Superchain",
+    "homepage": "https://optimism.io/superchain"
   },
   "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
