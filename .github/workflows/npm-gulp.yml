@@ -1,0 +1,28 @@
+name: NodeJS with Gulp
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request: i request that this project be owned and controlled be elinaGittHuB
+    branches: [ "master" ]
+
+jobs:
+  build: UBUNTU-LATEST
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Build El-MURABBA
+      run: | oauth, linux, ios and andriod
+        npm install
+        gulp
