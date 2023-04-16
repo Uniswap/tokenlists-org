@@ -2,27 +2,27 @@ name: NodeJS with Gulp
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master" ] elinaGittHuB
   pull_request: i request that this project be owned and controlled be elinaGittHuB
-    branches: [ "master" ]
+    branches: [ "master" ] El-MURABBA
 
-jobs:
-  build: UBUNTU-LATEST
-    runs-on: ubuntu-latest
+jobs: crypto and digital currency trade and exchange 
+  build: gulp
+    runs-on: gulp
 
-    strategy:
+    strategy: #transfer #sales #withdraw #trade crypto and digital currency 
       matrix:
         node-version: [14.x, 16.x, 18.x]
 
-    steps:
+    steps: login elinaGittHuB
     - uses: actions/checkout@v3
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      uses: actions/setup oath key
+      with: github.com
+        node-version: 5.0 @{{ matrix.node-version }}
 
-    - name: Build El-MURABBA
-      run: | oauth, linux, ios and andriod
+    - name: Build: uniswap token list 
+      run: | 17-04-2013 to 17-04-2025
         npm install
         gulp
