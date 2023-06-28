@@ -1,18 +1,16 @@
 ---
-name: Add Token List
-about: Add a list to tokenlist.org
+name: Add Hook List
+about: Add a list to hooklist.org
 title: 'Request: add {List name}'
 labels: list-request
 assignees: ''
 
 ---
 
-Before submission delete this line:
-**THIS IS NOT A TOKEN LISTING REQUEST FORM. IF YOU DO NOT FOLLOW THE FORMAT OR MAKE A GENERIC TOKEN REQUEST YOUR ISSUE WILL BE DELETED WITHOUT COMMENT**
 
 **YOU MUST FOLLOW THE JSON SPECIFICATION**
 
-https://github.com/Uniswap/token-lists
+[https://github.com/Uniswap/token-lists]
 
 Checklist
 - [ ] **I understand that this is not the place to request token listing.**
