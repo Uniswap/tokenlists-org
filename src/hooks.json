@@ -1,0 +1,42 @@
+{
+  "arrakis": {
+    "name": "Arrakis",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "blackrock": {
+    "name": "Blackrock",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "euler": {
+    "name": "Euler",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "froggy": {
+    "name": "Froggy Friends",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "infinity": {
+    "name": "Infinity Pool",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "chase": {
+    "name": "J.P. Morgan Chase",
+    "version": { "major": 0, "minor": 0, "patch": 420 },
+    "hooks": []
+  },
+  "panoptic": {
+    "name": "Panoptic",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "sushi": {
+    "name": "Sushiswap",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  }
+}
