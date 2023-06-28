@@ -1,9 +1,9 @@
 import React from 'react'
-import Moment from 'react-moment'
 import styled from 'styled-components'
-import { getListURLFromListID } from '../utils/useMultiFetch'
 import Card from './card'
+import Moment from 'react-moment'
 import CopyHelper from './copy'
+import { getListURLFromListID } from '../utils/useMultiFetch'
 
 const StyledInfo = styled.section`
   display: grid;
@@ -91,7 +91,8 @@ export default function Info({ listID, list }) {
           </p>
         </span>
         <span>
-          <small>Version</small> <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
+          <small>Version</small>
+          <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
         </span>
       </InfoDescription>
     </StyledInfo>
