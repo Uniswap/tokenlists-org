@@ -1,8 +1,8 @@
-import React, { useState, memo } from 'react'
+import React, { memo, useState } from 'react'
 import styled from 'styled-components'
-import Search from './search'
-import CopyHelper from './copy'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
+import CopyHelper from './copy'
+import Search from './search'
 
 import { toChecksumAddress } from 'ethereumjs-util'
 import FilterResults from 'react-filter-search'
@@ -86,9 +86,9 @@ const Chain = styled.span`
 `
 
 export const ListItem = memo(function ListItem({ token }) {
-  const scanner = lookupScanner(token.chainId); 
-  const tokenAddress = toChecksumAddress(token.address); 
-  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
+  const scanner = lookupScanner(token.chainId)
+  const tokenAddress = toChecksumAddress(token.address)
+  const scannerUrl = scanner == '' ? '' : scanner + tokenAddress
   return (
     <TokenItem>
       <TokenInfo>
@@ -182,9 +182,8 @@ const ListHeader = styled.div`
 
 export default function Tokens({ tokens }) {
   const [value, setValue] = useState('')
-  const sortedTokens = tokens.sort((a,b) =>{ 
-    return a.symbol > b.symbol ? 1 : 
-      a.symbol < b.symbol ? -1 : 0; 
+  const sortedTokens = tokens.sort((a, b) => {
+    return a.name > b.name ? 1 : a.name < b.name ? -1 : 0
   })
 
   function handleChange(e) {
