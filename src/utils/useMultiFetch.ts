@@ -1,4 +1,5 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import hooksLists from '../hooks.json'
 
 interface ListReturn {
   list: any | undefined | null // TODO replace any
@@ -7,14 +8,15 @@ interface ListReturn {
 }
 
 export function getListURLFromListID(listID: string): string {
-  if (listID.startsWith('https://')) {
-    return listID
-  } else if (listID?.endsWith('.eth')) {
-    // proxy http urls through a CF worker
-    return `https://wispy-bird-88a7.uniswap.workers.dev/?url=${`http://${listID}.link`}`
-  } else {
-    throw Error(`Unrecognized listId ${listID}`)
-  }
+  // if (listID.startsWith('https://')) {
+  //   return listID
+  // } else if (listID?.endsWith('.eth')) {
+  //   // proxy http urls through a CF worker
+  //   return `https://wispy-bird-88a7.uniswap.workers.dev/?url=${`http://${listID}.link`}`
+  // } else {
+  //   throw Error(`Unrecognized listId ${listID}`)
+  // }
+  return listID
 }
 
 export function useMultiFetch(listIDs: string[] = []): { [listID: string]: ListReturn } {
@@ -24,26 +26,10 @@ export function useMultiFetch(listIDs: string[] = []): { [listID: string]: ListR
     if (listIDs.length > 0) {
       let stale = false
 
-      listIDs.forEach((listID) =>
-        fetch(getListURLFromListID(listID))
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok')
-            }
-            return response.json()
-          })
-          .then((list) => {
-            if (!stale) {
-              setLists((lists) => ({ ...lists, [listID]: list }))
-            }
-          })
-          .catch((error) => {
-            if (!stale) {
-              console.error(`Failed to fetch ${listID} at ${getListURLFromListID(listID)}`, error)
-              setLists((lists) => ({ ...lists, [listID]: null }))
-            }
-          })
-      )
+      listIDs.forEach((listID) => {
+        const list = (hooksLists as Record<string, any>)[listID]
+        setLists((lists) => ({ ...lists, [listID]: list }))
+      })
 
       return () => {
         stale = true
