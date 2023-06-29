@@ -81,9 +81,7 @@ export default function Card({ id, list, name }) {
       />
       <section>
         <NameText>{actualName}</NameText>
-        <TokensListed>
-          {list?.hooks?.length >= 0 ? `${list.hooks.length} Hooks` : list === null ? 'Error' : 'Loading...'}
-        </TokensListed>
+        <TokensListed>{list?.ShortDesc ? `${list?.ShortDesc}` : list === null ? 'Error' : 'Loading...'}</TokensListed>
       </section>
     </StyledCard>
   )
