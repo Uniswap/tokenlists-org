@@ -5,19 +5,15 @@ import Header from '../components/header'
 import hooksList from '../hooks.json'
 import '../index.css'
 
-const Content = styled.div`
-`
-
+const Content = styled.div``
 
 const Hook = ({ hook, onChange, checked, disabled }) => {
   return (
     <tr>
-      <td>        <input
-          type="checkbox"
-          checked={checked}
-          onChange={onChange}
-        disabled={disabled}
-        /></td>
+      <td>
+        {' '}
+        <input type="checkbox" checked={checked} onChange={onChange} disabled={disabled} />
+      </td>
       <td>{hook.name}</td>
       <td>{hook.Fee}</td>
       <td>{hook.Type}</td>
@@ -31,32 +27,35 @@ const HookList = () => {
 
   return (
     <>
-    <table>
-<tr>
-      <th></th>
-      <th>Name</th>
-      <th>Fee</th>
-      <th>Type</th>
-      <th>Ownership</th>
-    </tr>
+      <table>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Fee</th>
+          <th>Type</th>
+          <th>Ownership</th>
+        </tr>
 
-    {
-      Object.keys(hooksList).map((hookName) => {
-        const hook = hooksList[hookName]
-        const checked = selected.includes(hookName)
-        const disabled = selected.some(name => name !== hookName && hooksList[name].Type === hook.Type)
-        return (
-          <Hook hook={hook} checked={checked} disabled={disabled} onChange={() => {
-            if (checked) {
-              setSelected(selected.filter(name => name !== hookName))
-            } else {
-              setSelected([...selected, hookName])
-            }
-          }}/>
-        )
-        })
-    }
-    </table>
+        {Object.keys(hooksList).map((hookName) => {
+          const hook = hooksList[hookName]
+          const checked = selected.includes(hookName)
+          const disabled = selected.some((name) => name !== hookName && hooksList[name].Type === hook.Type)
+          return (
+            <Hook
+              hook={hook}
+              checked={checked}
+              disabled={disabled}
+              onChange={() => {
+                if (checked) {
+                  setSelected(selected.filter((name) => name !== hookName))
+                } else {
+                  setSelected([...selected, hookName])
+                }
+              }}
+            />
+          )
+        })}
+      </table>
       Count: {selected.length}
     </>
   )
@@ -71,7 +70,7 @@ function Home() {
     <div className="app">
       <Header />
       <Content>
-        <HookList/>
+        <HookList />
       </Content>
     </div>
   )

@@ -1,19 +1,16 @@
 @font-face {
   font-family: 'MatterSQ-Medium';
-  src: local('MatterSQ-Medium'),
-    url(./fonts/MatterSQ-Medium.woff2) format('woff2');
+  src: local('MatterSQ-Medium'), url(./fonts/MatterSQ-Medium.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'MatterSQ-Regular';
-  src: local('MatterSQ-Regular'),
-    url(./fonts/MatterSQ-Regular.woff2) format('woff2');
+  src: local('MatterSQ-Regular'), url(./fonts/MatterSQ-Regular.woff2) format('woff2');
 }
 
 @font-face {
   font-family: 'MatterSQ-SemiBold';
-  src: local('MatterSQ-SemiBold'),
-    url(./fonts/MatterSQ-SemiBold.woff2) format('woff2');
+  src: local('MatterSQ-SemiBold'), url(./fonts/MatterSQ-SemiBold.woff2) format('woff2');
 }
 
 html {
@@ -34,9 +31,8 @@ h3 {
 
 body {
   margin: 0;
-  font-family: 'MatterSQ-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: 'MatterSQ-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   font-weight: 500;
   color: #131313;
 

@@ -80,8 +80,8 @@ export default function Header() {
       <p className="title">A Uniswap hook list standard.</p>
 
       <p style={{ fontSize: '20px', lineHeight: '150%' }} className="description" id="why-lists">
-        Hook Lists is a community-led initiative to improve discoverability, reputation and trust in Uniswap v4 hook lists
-        in a manner that is inclusive, transparent, and decentralized.
+        Hook Lists is a community-led initiative to improve discoverability, reputation and trust in Uniswap v4 hook
+        lists in a manner that is inclusive, transparent, and decentralized.
       </p>
 
       <HoverLink
