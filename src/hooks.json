@@ -7,60 +7,121 @@
     "Description": "Arrakis is the largest liquidity management protocol built on top of Uniswap. This hook allows Arrakis to manage liquidity on Uniswap before the swap occurs.",
     "ShortDesc": "LP hook",
     "AuditCertificates": [
-      { "name": "Trail of Bits", "signature": "0x12345" },
-      { "name": "CertiK", "signature": "0x12345" }
+      {
+        "name": "Trail of Bits",
+        "signature": "0x12345"
+      },
+      {
+        "name": "CertiK",
+        "signature": "0x12345"
+      }
     ],
     "Fee": "Dynamic",
     "FeeRate": "NA",
     "Ownership": "0x88215a2794ddc031439c72922ec8983bde831c78",
     "License": "GPL",
     "SourceCode": "github.com/Arrakis",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
     "hooks": [],
     "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
   },
   "blackrock": {
     "name": "Blackrock",
     "ShortDesc": "KYC hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "Type": "Before Swap",
+    "Fee": "1 bp",
+    "Ownership": "blackrock.eth",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
     "hooks": [],
-    "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
+    "logoURI": "https://www.blackrock.com/blk-one-c-assets/include/common/images/blackrock_logo.png"
   },
   "euler": {
     "name": "Euler",
     "ShortDesc": "Oracle hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "Type": "After Swap",
+    "Fee": "N/A",
+    "Ownership": "euler.eth",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "hooks": [],
+    "logoURI": "https://assets-global.website-files.com/6364e65656ab107e465325d2/637aeccebbca0440399b0ee1_upueafoI3e_kIoBPRukukDAF53oEGfn9fkCps2OwWfs.png"
   },
   "froggy": {
     "name": "Froggy Friends",
     "ShortDesc": "Community Donation hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "Type": "After Swap",
+    "Fee": "10 bps",
+    "Ownership": "froggy.eth",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "hooks": [],
+    "logoURI": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0hZbqD4vq5Q-jutqTN1--Nr88IDb_EmHXLj7AQiBcJQ&s"
   },
   "infinity": {
     "name": "Infinity Pool",
     "ShortDesc": "LP hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "hooks": [],
+    "logoURI": "https://cdn.dribbble.com/userupload/4488377/file/original-b2b923257681a3ab4bfa54a6c88099fa.png?compress=1&resize=752x"
   },
   "chase": {
     "name": "J.P. Morgan Chase",
     "ShortDesc": "KYC hook",
-    "version": { "major": 0, "minor": 0, "patch": 420 },
+    "Type": "After Swap",
+    "Fee": "1 bp",
+    "Ownership": "jpm.eth",
+    "version": {
+      "major": 0,
+      "minor": 0,
+      "patch": 420
+    },
     "hooks": [],
-    "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
+    "logoURI": "https://go.distance.ncsu.edu/gd203/wp-content/uploads/2020/04/704a1e534e8dc0138eee3ded449555d5-860x860.png"
   },
   "panoptic": {
     "name": "Panoptic",
     "ShortDesc": "LP hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "Type": "After Swap",
+    "Fee": "1 bp",
+    "Ownership": "panoptic.eth",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "hooks": [],
+    "logoURI": "https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,f_auto,q_auto:eco,dpr_1/e8gqh52osi6mdrbwjsvr"
   },
   "sushi": {
     "name": "Sushiswap",
     "ShortDesc": "Liquidity mining hook",
-    "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "Type": "Before Swap",
+    "Fee": "1 bp",
+    "Ownership": "sushi.eth",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    },
+    "hooks": [],
+    "logoURI": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStaLBV9r-vOSV2bgp3VD74Qhop_pZfzrGsOPamHbA&s"
   }
 }
