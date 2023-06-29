@@ -2,7 +2,7 @@
   "arrakis": {
     "name": "Arrakis",
     "chain": "1",
-    "address": "0x341252353464573674567547",
+    "address": "0x4E807E056354De33B619699f8491Ca8DbD67920d",
     "Type": "Before Swap",
     "Description": "Arrakis is the largest liquidity management protocol built on top of Uniswap. This hook allows Arrakis to manage liquidity on Uniswap before the swap occurs.",
     "ShortDesc": "LP hook",
@@ -12,7 +12,7 @@
     ],
     "Fee": "Dynamic",
     "FeeRate": "NA",
-    "Ownership": "0x00000000000000000",
+    "Ownership": "0x88215a2794ddc031439c72922ec8983bde831c78",
     "License": "GPL",
     "SourceCode": "github.com/Arrakis",
     "version": { "major": 1, "minor": 0, "patch": 0 },
