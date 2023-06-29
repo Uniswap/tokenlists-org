@@ -1,18 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+import App from './components/select'
 import './index.css'
-import List from './pages/list'
 import Home from './pages/home'
-import Why from './pages/why'
+import List from './pages/list'
 import * as serviceWorker from './serviceWorker'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Route exact path="/" component={Home} />
       <Route path="/token-list" component={List} />
-      <Route path="/why" component={Why} />
+      <Route path="/create" component={App} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')

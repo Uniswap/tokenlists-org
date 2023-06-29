@@ -16,13 +16,15 @@
     "License": "GPL",
     "SourceCode": "github.com/Arrakis",
     "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "hooks": [],
+    "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
   },
   "blackrock": {
     "name": "Blackrock",
     "ShortDesc": "KYC hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
-    "hooks": []
+    "hooks": [],
+    "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
   },
   "euler": {
     "name": "Euler",
@@ -46,7 +48,8 @@
     "name": "J.P. Morgan Chase",
     "ShortDesc": "KYC hook",
     "version": { "major": 0, "minor": 0, "patch": 420 },
-    "hooks": []
+    "hooks": [],
+    "logoURI": "https://icodrops.com/wp-content/uploads/2022/05/u-gKUVBD_400x400-150x150.jpg"
   },
   "panoptic": {
     "name": "Panoptic",
