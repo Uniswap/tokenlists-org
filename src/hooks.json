@@ -20,43 +20,43 @@
   },
   "blackrock": {
     "name": "Blackrock",
-    "Short Desc": "KYC hook",
+    "ShortDesc": "KYC hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   },
   "euler": {
     "name": "Euler",
-    "Short Desc": "Oracle hook",
+    "ShortDesc": "Oracle hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   },
   "froggy": {
     "name": "Froggy Friends",
-    "Short Desc": "Community Donation hook",
+    "ShortDesc": "Community Donation hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   },
   "infinity": {
     "name": "Infinity Pool",
-    "Short Desc": "LP hook",
+    "ShortDesc": "LP hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   },
   "chase": {
     "name": "J.P. Morgan Chase",
-    "Short Desc": "KYC hook",
+    "ShortDesc": "KYC hook",
     "version": { "major": 0, "minor": 0, "patch": 420 },
     "hooks": []
   },
   "panoptic": {
     "name": "Panoptic",
-    "Short Desc": "LP hook",
+    "ShortDesc": "LP hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   },
   "sushi": {
     "name": "Sushiswap",
-    "Short Desc": "Liquidity mining hook",
+    "ShortDesc": "Liquidity mining hook",
     "version": { "major": 1, "minor": 0, "patch": 0 },
     "hooks": []
   }
