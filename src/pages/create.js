@@ -19,7 +19,7 @@ const Hook = ({ hook, onChange, checked, disabled }) => {
         disabled={disabled}
         /></td>
       <td>{hook.name}</td>
-      <td>{hook.fee}</td>
+      <td>{hook.Fee}</td>
       <td>{hook.Type}</td>
       <td>{hook.Ownership}</td>
     </tr>
@@ -30,6 +30,7 @@ const HookList = () => {
   const [selected, setSelected] = useState([])
 
   return (
+    <>
     <table>
 <tr>
       <th></th>
@@ -56,6 +57,8 @@ const HookList = () => {
         })
     }
     </table>
+      Count: {selected.length}
+    </>
   )
 }
 

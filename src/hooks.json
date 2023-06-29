@@ -18,7 +18,7 @@
     ],
     "Fee": "Dynamic",
     "FeeRate": "NA",
-    "Ownership": "0x88215a2794ddc031439c72922ec8983bde831c78",
+    "Ownership": "Renounced",
     "License": "GPL",
     "SourceCode": "github.com/Arrakis",
     "version": {
@@ -47,7 +47,7 @@
     "name": "Euler",
     "ShortDesc": "Oracle hook",
     "Type": "After Swap",
-    "Fee": "N/A",
+    "Fee": "0",
     "Ownership": "euler.eth",
     "version": {
       "major": 1,
@@ -60,7 +60,7 @@
   "froggy": {
     "name": "Froggy Friends",
     "ShortDesc": "Community Donation hook",
-    "Type": "After Swap",
+    "Type": "Before Remove Liquidity",
     "Fee": "10 bps",
     "Ownership": "froggy.eth",
     "version": {
@@ -74,6 +74,9 @@
   "infinity": {
     "name": "Infinity Pool",
     "ShortDesc": "LP hook",
+    "Type": "After Swap",
+    "Fee": "Dynamic",
+    "Ownership": "Renounced",
     "version": {
       "major": 1,
       "minor": 0,
