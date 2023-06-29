@@ -1,0 +1,63 @@
+{
+  "arrakis": {
+    "name": "Arrakis",
+    "chain": "1",
+    "address": "0x4E807E056354De33B619699f8491Ca8DbD67920d",
+    "Type": "Before Swap",
+    "Description": "Arrakis is the largest liquidity management protocol built on top of Uniswap. This hook allows Arrakis to manage liquidity on Uniswap before the swap occurs.",
+    "ShortDesc": "LP hook",
+    "AuditCertificates": [
+      { "name": "Trail of Bits", "signature": "0x12345" },
+      { "name": "CertiK", "signature": "0x12345" }
+    ],
+    "Fee": "Dynamic",
+    "FeeRate": "NA",
+    "Ownership": "0x88215a2794ddc031439c72922ec8983bde831c78",
+    "License": "GPL",
+    "SourceCode": "github.com/Arrakis",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "blackrock": {
+    "name": "Blackrock",
+    "ShortDesc": "KYC hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "euler": {
+    "name": "Euler",
+    "ShortDesc": "Oracle hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "froggy": {
+    "name": "Froggy Friends",
+    "ShortDesc": "Community Donation hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "infinity": {
+    "name": "Infinity Pool",
+    "ShortDesc": "LP hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "chase": {
+    "name": "J.P. Morgan Chase",
+    "ShortDesc": "KYC hook",
+    "version": { "major": 0, "minor": 0, "patch": 420 },
+    "hooks": []
+  },
+  "panoptic": {
+    "name": "Panoptic",
+    "ShortDesc": "LP hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  },
+  "sushi": {
+    "name": "Sushiswap",
+    "ShortDesc": "Liquidity mining hook",
+    "version": { "major": 1, "minor": 0, "patch": 0 },
+    "hooks": []
+  }
+}

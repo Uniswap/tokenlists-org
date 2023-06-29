@@ -1,9 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
-import Card from './card'
 import Moment from 'react-moment'
-import CopyHelper from './copy'
+import styled from 'styled-components'
 import { getListURLFromListID } from '../utils/useMultiFetch'
+import Card from './card'
+import CopyHelper from './copy'
 
 const StyledInfo = styled.section`
   display: grid;
@@ -82,7 +82,7 @@ export default function Info({ listID, list }) {
           </span>
         </span>
 
-        <Helper>Copy to import this list anywhere Token Lists are supported.</Helper>
+        <Helper>Copy to import this hook.</Helper>
 
         <span>
           <small>Last Updated</small>
@@ -91,8 +91,7 @@ export default function Info({ listID, list }) {
           </p>
         </span>
         <span>
-          <small>Version</small>
-          <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
+          <small>Version</small> <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
         </span>
       </InfoDescription>
     </StyledInfo>

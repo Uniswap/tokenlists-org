@@ -69,7 +69,7 @@ function List() {
       ) : (
         <Content>
           <Info listID={listID} list={list} />
-          <Tokens tokens={list.tokens} />
+          <Tokens list={list} />
         </Content>
       )}
     </div>

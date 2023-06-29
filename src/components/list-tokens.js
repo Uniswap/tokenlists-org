@@ -1,11 +1,9 @@
-import React, { useState, memo } from 'react'
+import React, { memo } from 'react'
 import styled from 'styled-components'
-import Search from './search'
-import CopyHelper from './copy'
 import { lookUpchain, lookupScanner } from '../utils/getChainId'
+import CopyHelper from './copy'
 
 import { toChecksumAddress } from 'ethereumjs-util'
-import FilterResults from 'react-filter-search'
 
 const TokenItem = styled.section`
   display: grid;
@@ -86,9 +84,9 @@ const Chain = styled.span`
 `
 
 export const ListItem = memo(function ListItem({ token }) {
-  const scanner = lookupScanner(token.chainId); 
-  const tokenAddress = toChecksumAddress(token.address); 
-  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
+  const scanner = lookupScanner(token.chainId)
+  const tokenAddress = toChecksumAddress(token.address)
+  const scannerUrl = scanner == '' ? '' : scanner + tokenAddress
   return (
     <TokenItem>
       <TokenInfo>
@@ -161,7 +159,7 @@ const ListWrapper = styled.section`
 const ListTitle = styled.div`
   font-weight: 500;
   color: #1f1f1f80;
-  display: grid;
+  flex-direction: column;
   max-width: 960px;
   grid-gap: 1rem;
   grid-template-columns: 1fr 100px 120px 96px 148px;
@@ -180,43 +178,43 @@ const ListHeader = styled.div`
   }
 `
 
-export default function Tokens({ tokens }) {
-  const [value, setValue] = useState('')
-  const sortedTokens = tokens.sort((a,b) =>{ 
-    return a.symbol > b.symbol ? 1 : 
-      a.symbol < b.symbol ? -1 : 0; 
-  })
-
-  function handleChange(e) {
-    const { value } = e.target
-    setValue(value)
-  }
-
+export default function Tokens({ list }) {
   return (
     <ListWrapper>
       <ListHeader className="flex-between" style>
-        <Title>List Tokens</Title>
-        <Search handleChange={handleChange} value={value} setValue={setValue} />
+        <Title>Hook Details</Title>
       </ListHeader>
 
       <TokenWrapper>
         <ListTitle>
-          <p className="hide-small">Name</p>
-          <p className="hide-small">Chain</p>
-          <p className="hide-small">Symbol</p>
-          <p className="hide-small">Tags</p>
-          <p className="hide-small" style={{ textAlign: 'right' }}>
+          <b className="hide-small">Chain</b>
+          <p>{`${list.chain}`}</p>
+          <b className="hide-small">Contract Address</b>
+          <p>{`${list.address}`}</p>
+          <b className="hide-small">Type</b>
+          <p>{`${list.Type}`}</p>
+          <b className="hide-small">Description</b>
+          <p>{`${list.Description}`}</p>
+          <b className="hide-small">Owner</b>
+          <p>{`${list.Ownership}`}</p>
+          <b className="hide-small">License</b>
+          <p>{`${list.License}`}</p>
+          <b className="hide-small">Source Code</b>
+          <p>{`${list.SourceCode}`}</p>
+          <b className="hide-small">Audits</b>
+          <p>{`${list.AuditCertificates.map((audit) => ` ${audit.name}`)}`}</p>
+          {/* <p className="hide-small" style={{ textAlign: 'right' }}>
             Address
-          </p>
+          </p> */}
         </ListTitle>
 
-        <FilterResults
+        {/* <FilterResults
           value={value}
           data={sortedTokens}
           renderResults={(results) =>
             results.length === 0 ? 'None found!' : results.map((data, i) => <ListItem key={i} token={data} />)
           }
-        />
+        /> */}
       </TokenWrapper>
     </ListWrapper>
   )
