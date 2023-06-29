@@ -82,7 +82,7 @@ export default function Info({ listID, list }) {
           </span>
         </span>
 
-        <Helper>Copy to import this list anywhere Token Lists are supported.</Helper>
+        <Helper>Copy to import this hook.</Helper>
 
         <span>
           <small>Last Updated</small>
