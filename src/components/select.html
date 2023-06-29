@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hooks Checkout Page</title>
+    <style>
+        body {
+            background-color: #FC72FF;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        td, th {
+            padding: 15px;
+            text-align: left;
+        }
+        #footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f8f8;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Make Your Own Pool</h1>
+    <form id="form">
+        <h2>Select Your Hooks:</h2>
+        <table id="table">
+            <tr>
+                <th>Select</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Fee</th>
+                <th>Ownership</th>
+                <th>Details</th>
+            </tr>
+            <!-- Rows will be inserted here -->
+        </table>
+        
+    </form>
+    <div id="footer">
+        <p id="count">Selected Hooks: 0</p>
+        <p><a href="https://www.example.com">🛒</a></p>
+    </div>
+
+    <script>
+        // Define the data
+        var data = [
+        {name: "Arrakis Hook", Type: "Before Swap", Fee: "Dynamic", Ownership: "Renounced", Details: "Link"},
+        {name: "BlackRock Hook", Type: "Before Swap", Fee: "1 bp", Ownership: "blackrock.eth"},
+        {name: "JP Morgan Hook", Type: "After Swap", Fee: "1 bp", Ownership: "jpm.eth"},
+        {name: "Froggy Friends Hook", Type: "Before Add Liquidity", Fee: "1 bp", Ownership: "frog.eth"},
+        // Add more options as necessary
+        ];
+
+        // Get a reference to the table
+        var table = document.getElementById("table");
+        var countPara = document.getElementById("count");
+
+        // Counter for checked boxes
+        var checkedCount = 0;
+
+        // Keep track of checkboxes by type
+        var checkboxesByType = {};
+
+        // Iterate over each item in the data array
+        for (var i = 0; i < data.length; i++) {
+            // Create a new row
+            var row = document.createElement("tr");
+
+            // Create and set up the checkbox cell
+            var checkboxCell = document.createElement("td");
+            var checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.name = "option" + (i + 1);
+            checkbox.value = data[i].name;
+            checkbox.id = "option" + (i + 1);
+            checkbox.onchange = function () {
+                // Update the count when a checkbox is checked or unchecked
+                this.checked ? checkedCount++ : checkedCount--;
+                countPara.textContent = "Checked boxes: " + checkedCount;
+
+                // If checkbox is checked, disable all other checkboxes of the same type
+                if (this.checked) {
+                    checkboxesByType[this.dataset.type].forEach(function(cb) {
+                        if (cb !== this) {
+                            cb.disabled = true;
+                        }
+                    }, this);
+                } else {
+                    // If checkbox is unchecked, re-enable all other checkboxes of the same type
+                    checkboxesByType[this.dataset.type].forEach(function(cb) {
+                        cb.disabled = false;
+                    });
+                }
+            };
+            checkbox.dataset.type = data[i].type;
+            checkboxCell.appendChild(checkbox);
+
+            // Add the checkbox to the appropriate type group
+            if (!checkboxesByType[data[i].type]) {
+                checkboxesByType[data[i].type] = [];
+            }
+            checkboxesByType[data[i].type].push(checkbox);
+
+            // Create and set up the name cell
+            var nameCell = document.createElement("td");
+            nameCell.textContent = data[i].name;
+
+            // Create and set up the type cell
+            var typeCell = document.createElement("td");
+            typeCell.textContent = data[i].Type;
+
+            // Create and set up the fee cell
+            var feeCell = document.createElement("td");
+            feeCell.textContent = data[i].Fee;
+
+            // Create and set up the ownership cell
+            var ownerCell = document.createElement("td");
+            ownerCell.textContent = data[i].Ownership;
+
+            // Create and set up the Details cell
+            var detailCell = document.createElement("td");
+            detailCell.textContent = data[i].Details;
+
+            // Add the cells to the row
+            row.appendChild(checkboxCell);
+            row.appendChild(nameCell);
+            row.appendChild(typeCell);
+            row.appendChild(feeCell);
+            row.appendChild(ownerCell);
+            row.appendChild(detailCell);
+
+            // Add the row to the table
+            table.appendChild(row);
+        }
+    </script>
+</body>
+</html>
