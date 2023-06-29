@@ -4,15 +4,16 @@
     <title>Hooks Checkout Page</title>
     <style>
         body {
-            background-color: pink;
-            color: darkgrey;
+            background-color: #FC72FF;
+            color: black;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         }
         td, th {
-            padding: 5px;
+            padding: 15px;
             text-align: left;
         }
         #footer {
@@ -37,20 +38,21 @@
                 <th>Type</th>
                 <th>Fee</th>
                 <th>Ownership</th>
+                <th>Details</th>
             </tr>
             <!-- Rows will be inserted here -->
         </table>
-        <input type="submit" value="Submit">
+        
     </form>
     <div id="footer">
         <p id="count">Selected Hooks: 0</p>
-        <p>🛒</p>
+        <p><a href="https://www.example.com">🛒</a></p>
     </div>
 
     <script>
         // Define the data
         var data = [
-        {name: "Arrakis Hook", Type: "Before Swap", Fee: "Dynamic", Ownership: "Renounced"},
+        {name: "Arrakis Hook", Type: "Before Swap", Fee: "Dynamic", Ownership: "Renounced", Details: "Link"},
         {name: "BlackRock Hook", Type: "Before Swap", Fee: "1 bp", Ownership: "blackrock.eth"},
         {name: "JP Morgan Hook", Type: "After Swap", Fee: "1 bp", Ownership: "jpm.eth"},
         {name: "Froggy Friends Hook", Type: "Before Add Liquidity", Fee: "1 bp", Ownership: "frog.eth"},
@@ -111,17 +113,21 @@
             var nameCell = document.createElement("td");
             nameCell.textContent = data[i].name;
 
-            // Create and set up the chain cell
+            // Create and set up the type cell
             var typeCell = document.createElement("td");
             typeCell.textContent = data[i].Type;
 
-            // Create and set up the type cell
+            // Create and set up the fee cell
             var feeCell = document.createElement("td");
             feeCell.textContent = data[i].Fee;
 
-            // Create and set up the type cell
+            // Create and set up the ownership cell
             var ownerCell = document.createElement("td");
             ownerCell.textContent = data[i].Ownership;
+
+            // Create and set up the Details cell
+            var detailCell = document.createElement("td");
+            detailCell.textContent = data[i].Details;
 
             // Add the cells to the row
             row.appendChild(checkboxCell);
@@ -129,6 +135,7 @@
             row.appendChild(typeCell);
             row.appendChild(feeCell);
             row.appendChild(ownerCell);
+            row.appendChild(detailCell);
 
             // Add the row to the table
             table.appendChild(row);
