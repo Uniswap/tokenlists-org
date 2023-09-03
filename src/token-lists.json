@@ -11,6 +11,10 @@
     "name": "Agora dataFi Tokens",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/The-Blockchain-Association/sec-notice-list/master/ba-sec-list.json": {
+    "name": "Blockchain Association SEC Non Compliant List",
+    "homepage": ""
+  },
   "defi.cmc.eth": {
     "name": "CMC DeFi",
     "homepage": ""
@@ -79,6 +83,10 @@
     "name": "Opyn Token List",
     "homepage": ""
   },
+  "https://static.optimism.io/optimism.tokenlist.json": {
+    "name": "Optimism",
+    "homepage": "https://optimism.io/"
+  },
   "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
     "homepage": ""
@@ -95,6 +103,10 @@
     "name": "Testnet Tokens",
     "homepage": ""
   },
+  "list.tkn.eth": {
+    "name": "TokenDao",
+    "homepage": "https://tkn.eth.limo"
+  },
   "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
@@ -110,6 +122,10 @@
   "wrapped.tokensoft.eth": {
     "name": "Wrapped Tokens",
     "homepage": ""
+  },
+  "https://yearn.science/static/tokenlist.json": {
+    "name": "Yearn",
+    "homepage": "https://yearn.finance/"
   },
   "https://zapper.fi/api/token-list": {
     "name": "Zapper Token List",
