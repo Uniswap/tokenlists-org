@@ -86,9 +86,9 @@ const Chain = styled.span`
 `
 
 export const ListItem = memo(function ListItem({ token }) {
-  const scanner = lookupScanner(token.chainId); 
-  const tokenAddress = toChecksumAddress(token.address); 
-  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
+  const scanner = lookupScanner(token.chainId)
+  const tokenAddress = toChecksumAddress(token.address)
+  const scannerUrl = scanner == '' ? '' : scanner + tokenAddress
   return (
     <TokenItem>
       <TokenInfo>
@@ -127,7 +127,7 @@ export const ListItem = memo(function ListItem({ token }) {
         )}
       </TokenTagWrapper>
       <TokenAddress>
-        <a style={{ textAlign: 'right' }} href={scannerUrl}>
+        <a style={{ textAlign: 'right' }} href={scannerUrl} target="_blank" rel="noopener noreferrer">
           {`${tokenAddress?.slice(0, 6)}...${tokenAddress?.slice(38, 42)}`}
         </a>
         <CopyHelper toCopy={token.address} />
@@ -182,9 +182,8 @@ const ListHeader = styled.div`
 
 export default function Tokens({ tokens }) {
   const [value, setValue] = useState('')
-  const sortedTokens = tokens.sort((a,b) =>{ 
-    return a.symbol > b.symbol ? 1 : 
-      a.symbol < b.symbol ? -1 : 0; 
+  const sortedTokens = tokens.sort((a, b) => {
+    return a.symbol > b.symbol ? 1 : a.symbol < b.symbol ? -1 : 0
   })
 
   function handleChange(e) {
