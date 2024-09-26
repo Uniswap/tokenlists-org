@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const StyledCard = styled(Link)`
   border-radius: 8px;
@@ -34,57 +34,40 @@ const StyledCard = styled(Link)`
     line-height: 150%;
   }
 
-  a {
-    color: #0f0f0f;
-    text-decoration: none;
-  }
-
   img {
     max-width: 64px;
     width: fit-content;
     margin-bottom: 2rem;
   }
-`
+`;
 
-const TokensListed = styled.span`
+const DescriptionText = styled.span`
   font-size: 14px;
   line-height: 150%;
-`
+`;
 
 const NameText = styled.h3`
   word-wrap: break-word;
-`
+`;
 
-function getLogoURL(logoURI) {
-  if (logoURI?.startsWith('ipfs://')) {
-    return `https://ipfs.io/ipfs/${logoURI.split('//')[1]}`
-  } else if (typeof logoURI === 'string') {
-    return logoURI
-  } else {
-    return null
-  }
-}
-
-export default function Card({ id, list, name }) {
-  const actualName = list?.name ?? name // use the name from the list, falling back to the optional prop if necessary
-  const logoURL = getLogoURL(list?.logoURI ?? null)
+function Card({ data, name }) {
+  const logoURL = data.logo.startsWith('http') ? data.logo.trim() : `https://via.placeholder.com/150`;
 
   return (
-    <StyledCard to={`/token-list?url=${id}`} className="card">
+    <StyledCard to={`/schemas?id=${data.id}`} className="card">
       <img
-        alt="icon"
-        src={logoURL ?? 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'}
+        alt={`${name} logo`}
+        src={logoURL}
         onError={(e) => {
-          e.target.className = 'replace'
-          e.target.src = 'https://raw.githubusercontent.com/feathericons/feather/master/icons/help-circle.svg'
+          e.target.src = 'https://via.placeholder.com/150';
         }}
       />
       <section>
-        <NameText>{actualName}</NameText>
-        <TokensListed>
-          {list?.tokens?.length > 0 ? `${list.tokens.length} tokens` : list === null ? 'Error' : 'Loading...'}
-        </TokensListed>
+        <NameText>{name}</NameText>
+        <DescriptionText>{data.description}</DescriptionText>
       </section>
     </StyledCard>
-  )
+  );
 }
+
+export default Card;

@@ -1,9 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import Card from './card'
-import Moment from 'react-moment'
-import CopyHelper from './copy'
-import { getListURLFromListID } from '../utils/useMultiFetch'
+import React from 'react';
+import styled from 'styled-components';
+import Card from './card';  // Assuming this Card can be adapted for displaying attestation issuer details
+import CopyHelper from './copy';
 
 const StyledInfo = styled.section`
   display: grid;
@@ -16,12 +14,6 @@ const StyledInfo = styled.section`
   position: sticky;
   top: 3rem;
   height: 400px;
-
-  small {
-    font-size: 16px;
-    line-height: 150%;
-    color: #131313;
-  }
 
   @media screen and (max-width: 960px) {
     display: grid;
@@ -37,64 +29,53 @@ const StyledInfo = styled.section`
   }
 
   @media screen and (max-width: 414px) {
-    grid-template-columns: max-content;
+    grid-template-columns: 1fr;
     width: 100%;
-    max-width: 320px;
     overflow: hidden;
   }
-`
+`;
 
-const InfoDescription = styled.span`
+const InfoDescription = styled.div`
   display: grid;
   grid-gap: 1rem;
   font-size: 1rem;
-  max-width: 260px;
-  span p {
+  span {
     margin: 0.25rem 0;
     color: #797878;
   }
-
-  @media screen and (max-width: 960px) {
-    max-width: initial;
-    max-width: 260px;
-  }
-`
+`;
 
 const Helper = styled.div`
   padding: 0.5rem;
   background-color: #d6fdff;
-  color: rgba(0, 0, 0);
+  color: #000;
   border-radius: 8px;
   font-size: 14px;
-`
+`;
 
-export default function Info({ listID, list }) {
+export default function Info({ attestation }) {
   return (
     <StyledInfo>
-      <Card id={listID} list={list} />
+      <Card data={attestation} /> 
       <InfoDescription>
         <span className="grid">
-          <small style={{ fontWeight: 600 }}>
-            Source <CopyHelper toCopy={listID} />
-          </small>
+         API Docs URL
           <span>
-            <a href={getListURLFromListID(listID)}>{listID}</a>
+            <a href={attestation.apiDocsURI} target="_blank" rel="noopener noreferrer">{attestation.apiDocsURI}</a>
           </span>
         </span>
 
-        <Helper>Copy to import this list anywhere Token Lists are supported.</Helper>
-
+        {/* <Helper>Copy the API Docs URL to share or reference.</Helper> */}
+      
         <span>
-          <small>Last Updated</small>
-          <p>
-            <Moment fromNow>{list && list.timestamp}</Moment>
-          </p>
+          <small>Issuer Name</small>
+          <p>{attestation.issuerName}</p>
         </span>
         <span>
-          <small>Version</small>
-          <p>{`${list.version.major}.${list.version.minor}.${list.version.patch}`}</p>
+          <small>Issuer Description</small>
+          <p>{attestation.issuerDescription}</p>
         </span>
       </InfoDescription>
     </StyledInfo>
-  )
+  );
 }

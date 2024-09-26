@@ -71,20 +71,20 @@ export default function Header() {
     <Hero>
       <span style={{ marginBottom: '1rem' }}>
         A{' '}
-        <a href="https://uniswap.org/" className="uniswap">
-          Uniswap
+        <a href="https://daostar.org/" className="daostar">
+          DAOstar
         </a>{' '}
         Project
       </span>
 
-      <p className="title">An Ethereum token list standard.</p>
+      <p className="title">An Attestation standard for DAOs.</p>
 
       <p style={{ fontSize: '20px', lineHeight: '150%' }} className="description" id="why-lists">
-        Token Lists is a community-led initiative to improve discoverability, reputation and trust in ERC20 token lists
+        Attestation List is a community-led initiative to improve discoverability, reputation and trust of DAO-related attestations
         in a manner that is inclusive, transparent, and decentralized.
       </p>
-      <HoverLink target="_blank" rel="noopener noreferrer" href="https://uniswap.org/blog/token-lists/">
-        {'->'} Why token lists?
+      <HoverLink target="_blank" rel="noopener noreferrer" href="https://daostar.com/daoip6">
+        {'->'} Why Attestation List?
       </HoverLink>
       <HoverLink
         target="_blank"
@@ -93,10 +93,7 @@ export default function Header() {
       >
         {'->'} Make your own
       </HoverLink>
-      <HoverLink target="_blank" rel="noopener noreferrer" href="https://github.com/Uniswap/token-list-bridge-utils">
-        {'->'} Convert to multi-chain list
-      </HoverLink>
-      <HoverLink target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
+      <HoverLink target="_blank" rel="noopener noreferrer" href="https://discord.com/invite/PdrPkEZVFk">
         {'->'} Community
       </HoverLink>
     </Hero>

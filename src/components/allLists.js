@@ -1,15 +1,11 @@
-import React, { useState, useMemo } from 'react'
-import styled from 'styled-components'
-import FilterResults from 'react-filter-search'
+import React, { useState, useEffect, useMemo } from 'react';
+import styled from 'styled-components';
+import FilterResults from 'react-filter-search';
 
-import Card from './card'
-import Search from './search'
-import tokenLists from '../token-lists.json'
-import { useMultiFetch } from '../utils/useMultiFetch'
-// import { ListItem } from '../components/list-tokens'
-// import { toChecksumAddress } from 'ethereumjs-util'
+import Card from './card';
+import Search from './search';
 
-const listIDs = Object.keys(tokenLists)
+const apiUrl = "https://attestation-list-api.onrender.com/schema_attestations/0x25eb07102ee3f4f86cd0b0c4393457965b742b8acc94aa3ddbf2bc3f62ed1381";
 
 const StyledAllLists = styled.section`
   min-height: 80vh;
@@ -25,7 +21,7 @@ const StyledAllLists = styled.section`
     padding: 0;
     align-items: flex-start;
   }
-`
+`;
 
 const CardWrapper = styled.div`
   display: grid;
@@ -49,113 +45,77 @@ const CardWrapper = styled.div`
     min-width: initial;
     grid-template-columns: 1fr;
   }
-`
+`;
 
-const AddButton = styled.button`
-  cursor: pointer;
-  border: 0.75px solid #131313;
-  width: 100%;
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: transparent;
-  border-radius: 8px;
-
-  a {
-    color: #1f1f1f;
-  }
-`
+const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 export default function AllLists() {
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState('');
+  const [attestations, setAttestations] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
-    const { value } = e.target
-    setValue(value)
+    setValue(e.target.value);
   }
 
-  // fetch lists
-  const lists = useMultiFetch(listIDs)
+  useEffect(() => {
+    setLoading(true);
+    const fetchAttestations = async () => {
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setAttestations(data);
+      } catch (error) {
+        console.error('Failed to fetch attestations:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // format list data for search, using names from fetched lists if available, while falling back to hard-coded names
-  const data = useMemo(
-    () => listIDs.map((listID) => ({ id: listID, name: lists[listID].list?.name ?? tokenLists[listID].name })),
-    [lists]
-  )
+    fetchAttestations();
+  }, []);
 
-  // // the below is a naive way to get all tokens in all lists, unique by address
-  // const allTokensByListID = useMemo(
-  //   () =>
-  //     Object.keys(lists).map((listID) => {
-  //       const list = lists[listID]?.list
-  //       const tokensInList = (list?.tokens ?? []).reduce(
-  //         (accumulator, token) => ({ ...accumulator, [toChecksumAddress(token.address)]: token }),
-  //         {}
-  //       )
-  //       return tokensInList
-  //     }),
-  //   [lists]
-  // )
-  // const allTokens = useMemo(
-  //   () =>
-  //     Object.keys(allTokensByListID).reduce(
-  //       (accumulator, listID) => ({ ...accumulator, ...allTokensByListID[listID] }),
-  //       {}
-  //     ),
-  //   [allTokensByListID]
-  // )
-  // const tokenData = useMemo(
-  //   () =>
-  //     Object.keys(allTokens).map((tokenAddress) => ({
-  //       address: tokenAddress,
-  //       name: allTokens[tokenAddress]?.name ?? '',
-  //       symbol: allTokens[tokenAddress]?.symbol ?? '',
-  //     })),
-  //   [allTokens]
-  // )
+  // Memoize the formatted data for rendering
+  const data = useMemo(() => {
+    return attestations.map(attester => ({
+      id: attester.attesterAddress,
+      name: attester.issuerName,
+      description: attester.issuerDescription,
+      logo: attester.logo.trim(),
+      apiDocsURI: attester.apiDocsURI,
+      schemas: attester.schemas
+    }));
+  }, [attestations]);
 
   return (
     <StyledAllLists>
       <Search handleChange={handleChange} value={value} setValue={setValue} />
 
-      {/* <h1>Lists</h1> */}
-
       <CardWrapper>
-        <FilterResults
-          value={value}
-          data={data}
-          renderResults={(results) =>
-            results.length === 0
-              ? 'None found!'
-              : results.map((result) => (
-                  <Card key={result.id} id={result.id} list={lists[result.id]?.list} name={result.name} />
-                ))
-          }
-        />
-      </CardWrapper>
-
-      {/* {value?.length > 2 && (
-        <>
-          <h1>Tokens</h1>
-
+        {loading ? (
+          <Loader><div className="loader"></div></Loader>
+        ) : (
           <FilterResults
             value={value}
-            data={tokenData}
+            data={data}
             renderResults={(results) =>
               results.length === 0
                 ? 'None found!'
-                : results.map((data) => <ListItem key={data.address} token={allTokens[data.address]} />)
+                : results.map((result) => (
+                    <Card key={result.id} data={result} />
+                  ))
             }
           />
-        </>
-      )} */}
-
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/Uniswap/tokenlists-org/issues/new?assignees=&labels=list-request&template=add-list-request.md&title=Request%3A+add+%7BList+name%7D"
-      >
-        <AddButton>+ add a list</AddButton>
-      </a>
+        )}
+      </CardWrapper>
     </StyledAllLists>
-  )
+  );
 }

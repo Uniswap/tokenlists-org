@@ -1,0 +1,67 @@
+{
+  "context": "https://daostar.org/schemas",
+  "title": "Attestation Issuer and Schema Information",
+  "type": "object",
+  "properties": {
+    "issuer": {
+      "type": "object",
+      "properties": {
+        "issuerURL": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL of the issuer."
+        },
+        "issuerName": {
+          "type": "string",
+          "description": "The name of the issuer."
+        },
+        "listManagerHomepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "Link to the official homepage of the list manager."
+        },
+        "issuerLogo": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the issuer's logo."
+        },
+        "issuerDescription": {
+          "type": "string",
+          "description": "A description of the issuer."
+        }
+      },
+      "required": ["issuerURL", "issuerName", "listManagerHomepage", "issuerLogo", "issuerDescription"]
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "schemaName": {
+            "type": "string",
+            "description": "The name of the schema."
+          },
+          "easSchemaID": {
+            "type": "string",
+            "description": "The EAS Schema ID."
+          },
+          "schemaDescription": {
+            "type": "string",
+            "description": "A description of the schema."
+          },
+          "networkID": {
+            "type": "string",
+            "description": "The network ID associated with the schema."
+          },
+          "easExplorerLink": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link to the EAS explorer for this schema."
+          }
+        },
+        "required": ["schemaName", "easSchemaID", "schemaDescription", "networkID", "easExplorerLink"]
+      }
+    }
+  },
+  "required": ["issuer", "schemas"]
+}

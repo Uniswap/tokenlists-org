@@ -1,0 +1,25 @@
+{
+  "issuer": {
+    "issuerURL": "https://www.karmahq.xyz/",
+    "issuerName": "Karma",
+    "listManagerHomepage": "https://www.karmahq.xyz/",
+    "issuerLogo": "https://www.karmahq.xyz/images/karma-logo-dark.svg",
+    "issuerDescription": "Karma is an integrated DAO toolkit to measure contributions and enhance Governance"
+  },
+  "schemas": [
+    {
+      "schemaName": "Project",
+      "easSchemaID": "0x5b873b6e7a16207b526dde366e8164e95bcda2f009272306519667c5e94d2191",
+      "schemaDescription": "A schema attesting a project
+      "networkID": "10",
+      "easExplorerLink": "https://optimism.easscan.org/schema/view/0x5b873b6e7a16207b526dde366e8164e95bcda2f009272306519667c5e94d2191"
+    },
+    {
+      "schemaName": "Community",
+      "easSchemaID": "0x12837231f48acbca4e1e7f4416f684f3353bd4d71d4f03a09d29e5ffa6f21a50",
+      "schemaDescription": "An Attestation for Community UID",
+      "networkID": "10",
+      "easExplorerLink": "https://optimism.easscan.org/schema/view/0x12837231f48acbca4e1e7f4416f684f3353bd4d71d4f03a09d29e5ffa6f21a50"
+    }
+  ]
+}

@@ -1,13 +1,11 @@
-import React, { useEffect, useMemo } from 'react'
-import styled from 'styled-components'
-import Header from '../components/header'
-import Info from '../components/list-info'
-import Tokens from '../components/list-tokens'
-import { useMultiFetch } from '../utils/useMultiFetch'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import Header from '../components/header';
+import Info from '../components/list-info';
+import AttestationList from '../components/list-tokens';
+import { useLocation } from 'react-router-dom';
 
-import { useLocation } from 'react-router-dom'
-
-import '../index.css'
+import '../index.css';
 
 const Content = styled.section`
   display: grid;
@@ -18,11 +16,10 @@ const Content = styled.section`
 
   @media screen and (max-width: 960px) {
     grid-template-columns: 1fr;
-    width: 100%;
     grid-gap: 24px;
     padding: 0 1.5rem;
   }
-`
+`;
 
 const Loading = styled.div`
   height: 360px;
@@ -30,50 +27,50 @@ const Loading = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`
-
-export function getURLFromQuery(query) {
-  if (query?.startsWith('https://')) {
-    return query
-  } else if (query?.endsWith('.eth')) {
-    return `http://${query}.link`
-  } else {
-    return null
-  }
-}
+`;
 
 function List() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  const location = useLocation();
+  const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const search = useLocation()?.search
-  const listID = useMemo(() => new URLSearchParams(search).get('url'), [search])
-  const listIDs = useMemo(() => [listID], [listID])
-  const { list, loading, error } = useMultiFetch(listIDs)[listID]
+  useEffect(() => {
+    const fetchAttestationData = async () => {
+      try {
+        const searchParams = new URLSearchParams(location.search);
+        const attestationId = searchParams.get('id');
+        const response = await fetch(`https://attestation-list-api.onrender.com/attestations/${attestationId}`);
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (e) {
+        setError('Failed to fetch data.');
+        console.error(e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAttestationData();
+  }, [location.search]);
+
+  if (!data && loading) {
+    return <Loading>Loading...</Loading>;
+  }
+
+  if (error || !data) {
+    return <Loading>Error: {error || 'No data found.'}</Loading>;
+  }
 
   return (
     <div className="app">
       <Header back={true} />
-      {!!!listID ? (
-        <Loading>Invalid URL</Loading>
-      ) : error ? (
-        <Loading>
-          <p>Sorry, we're having trouble loading this list.</p>
-          <code>{listID}</code>
-        </Loading>
-      ) : loading ? (
-        <Loading>
-          <p>Loading...</p>
-        </Loading>
-      ) : (
-        <Content>
-          <Info listID={listID} list={list} />
-          <Tokens tokens={list.tokens} />
-        </Content>
-      )}
+      <Content>
+        <Info attestation={data} />
+        <AttestationList attestations={data.schemas} />
+      </Content>
     </div>
-  )
+  );
 }
 
-export default List
+export default List;

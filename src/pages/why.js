@@ -14,16 +14,16 @@ function Home() {
       <div className="home-content">
         <div>
           <section className="hero">
-            <small style={{ marginTop: '4rem', marginBottom: '1rem' }}>A Uniswap project</small>
-            <p className="title">Why tokens lists?</p>
+            <small style={{ marginTop: '4rem', marginBottom: '1rem' }}>A DAOstar project</small>
+            <p className="title">Why DAO Attestation list?</p>
 
             <p className="description" id="why-lists">
-              Token Lists aim to solve the problem of the Ethereum community creating, discovering and maintaining lists
-              of reputable tokens in a way that is inclusive, transparent, decentralized and open source.
+              DAO Attestation Lists aim to solve the problem of the Ethereum community creating, discovering and maintaining lists
+              of reputable DAO-related attestations in a way that is inclusive, transparent, decentralized and open source.
             </p>
             <p>
               As the Ethereum ecosystem continues to evolve and mature, we are continuing to see sustained exponential
-              growth in the number of ERC-20 tokens being created and used by participants of the network.
+              growth in the adoption of EIP-4824 being created and used by participants of the network.
             </p>
             <p>
               This is an exciting success of permissionless innovation enabled by the open nature of blockchain

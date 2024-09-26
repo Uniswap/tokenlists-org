@@ -65,7 +65,7 @@ export default function Header({ back }) {
       <Link style={{ display: 'flex', alignItems: 'center' }} to="/">
         <img width={32} src={logo} alt="logo" />
         <span className="title" style={{ marginLeft: '.5rem' }}>
-          Token Lists
+          DAO Attestation List
         </span>
       </Link>
 
