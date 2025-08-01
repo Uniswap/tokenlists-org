@@ -1,0 +1,22 @@
+{
+  "name": "NekoGoX Token List",
+  "timestamp": "2025-07-29T12:00:00+00:00",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://www.nekogox.com/nekogox.png",
+  "keywords": ["nekogox", "ngx", "meme", "token"],
+  "tokens": [
+    {
+      "chainId": 8453,
+      "address": "0xd913fb3f0a9426Ff7D147dEc3F09cCdAD95FAE8C",
+      "name": "NekoGoX",
+      "symbol": "NGX",
+      "decimals": 18,
+      "logoURI": "https://www.nekogox.com/nekogox.png"
+    }
+  ]
+}
