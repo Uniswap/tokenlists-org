@@ -2,10 +2,46 @@ import React, { useState, memo } from 'react'
 import styled from 'styled-components'
 import Search from './search'
 import CopyHelper from './copy'
-import { lookUpchain, lookupScanner } from '../utils/getChainId'
+import { lookUpchain, lookupScanner, isSolanaChain } from '../utils/getChainId'
 
 import { toChecksumAddress } from 'ethereumjs-util'
+import bs58 from 'bs58'
 import FilterResults from 'react-filter-search'
+
+function isValidSolanaAddress(address) {
+  try {
+    const decoded = bs58.decode(address)
+    return decoded.length === 32
+  } catch {
+    return false
+  }
+}
+
+// For Solana: validates base58 encoding and returns as-is
+// For EVM chains (default): applies checksum validation
+function safeToChecksumAddress(address, chainId) {
+  if (!address || typeof address !== 'string') {
+    return address
+  }
+
+  // Handle Solana addresses
+  if (isSolanaChain(chainId)) {
+    if (isValidSolanaAddress(address)) {
+      return address // Solana addresses are case-sensitive and don't need checksum conversion
+    } else {
+      console.warn('Invalid Solana address:', address)
+      return address
+    }
+  }
+
+  // Handle EVM addresses
+  try {
+    return toChecksumAddress(address)
+  } catch (e) {
+    console.warn('Failed to convert address to checksum:', address, e)
+    return address
+  }
+}
 
 const TokenItem = styled.section`
   display: grid;
@@ -87,8 +123,8 @@ const Chain = styled.span`
 
 export const ListItem = memo(function ListItem({ token }) {
   const scanner = lookupScanner(token.chainId); 
-  const tokenAddress = toChecksumAddress(token.address); 
-  const scannerUrl = scanner == "" ? "" : scanner + tokenAddress; 
+  const tokenAddress = safeToChecksumAddress(token.address, token.chainId); 
+  const scannerUrl = scanner === "" ? "" : scanner + tokenAddress; 
   return (
     <TokenItem>
       <TokenInfo>
@@ -97,8 +133,9 @@ export const ListItem = memo(function ListItem({ token }) {
           alt={`${token.name} token icon`}
           src={
             !token.logoURI
-              ? `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${toChecksumAddress(
-                  token.address
+              ? `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${safeToChecksumAddress(
+                  token.address,
+                  token.chainId
                 )}/logo.png`
               : token.logoURI.startsWith('ipfs')
               ? `https://ipfs.io/ipfs/${token.logoURI.split('//')[1]}`
