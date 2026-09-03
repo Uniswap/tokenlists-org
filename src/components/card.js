@@ -5,7 +5,6 @@ import styled from 'styled-components'
 const StyledCard = styled(Link)`
   border-radius: 8px;
   padding: 1.5rem;
-  height: 264px;
   max-width: 172px;
   display: flex;
   justify-content: space-between;
@@ -22,7 +21,7 @@ const StyledCard = styled(Link)`
     max-width: initial;
   }
   @media screen and (max-width: 414px) {
-    width: 100%;
+    width: 320px;
     box-sizing: border-box;
   }
   :hover {
@@ -52,6 +51,10 @@ const TokensListed = styled.span`
   line-height: 150%;
 `
 
+const NameText = styled.h3`
+  word-wrap: break-word;
+`
+
 function getLogoURL(logoURI) {
   if (logoURI?.startsWith('ipfs://')) {
     return `https://ipfs.io/ipfs/${logoURI.split('//')[1]}`
@@ -77,7 +80,7 @@ export default function Card({ id, list, name }) {
         }}
       />
       <section>
-        <h3>{actualName}</h3>
+        <NameText>{actualName}</NameText>
         <TokensListed>
           {list?.tokens?.length > 0 ? `${list.tokens.length} tokens` : list === null ? 'Error' : 'Loading...'}
         </TokensListed>
