@@ -103,7 +103,11 @@
     "name": "Testnet Tokens",
     "homepage": ""
   },
-  "https://gateway.ipfs.io/ipns/tokens.uniswap.org": {
+  "list.tkn.eth": {
+    "name": "TokenDao",
+    "homepage": "https://tkn.eth.limo"
+  },
+  "https://ipfs.io/ipns/tokens.uniswap.org": {
     "name": "Uniswap Default List",
     "homepage": ""
   },
