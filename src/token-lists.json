@@ -55,6 +55,10 @@
     "name": "Dharma Token List",
     "homepage": ""
   },
+  "https://dontblink.community/data/tokenlist.json": {
+    "name": "dontblink",
+    "homepage": "https://dontblink.community"
+  },
   "https://cdn.furucombo.app/furucombo.tokenlist.json": {
     "name": "Furucombo",
     "homepage": ""
