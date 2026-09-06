@@ -134,5 +134,12 @@
   "tokenlist.zerion.eth": {
     "name": "Zerion Explore",
     "homepage": ""
+  },
+  "ipfs://bafkreib3ierw73x5slsmfigtjxdzdn4l377lavtoyjmvrgqckkpojywwoe": {
+    "name": "Galaxy Token List",
+    "homepage": "https://galxtoken.com/"
   }
+
 }
+
+
