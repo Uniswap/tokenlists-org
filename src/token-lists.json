@@ -71,6 +71,10 @@
     "name": "Kyber",
     "homepage": ""
   },
+  "https://daistats.com/makerdao.tokenlist.json": {
+    "name": "MakerDAO",
+    "homepage": "https://daistats.com/"
+  },
   "https://messari.io/tokenlist/messari-verified": {
     "name": "Messari Verified",
     "homepage": ""
