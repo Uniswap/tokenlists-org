@@ -95,6 +95,10 @@
     "name": "Set Protocol",
     "homepage": ""
   },
+  "https://tokens.swipe.org": {
+    "name": "Swipe Swap",
+    "homepage": "https://swap.swipe.org"
+  },
   "synths.snx.eth": {
     "name": "Synthetix",
     "homepage": ""
