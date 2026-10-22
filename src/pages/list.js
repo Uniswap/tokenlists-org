@@ -36,7 +36,7 @@ export function getURLFromQuery(query) {
   if (query?.startsWith('https://')) {
     return query
   } else if (query?.endsWith('.eth')) {
-    return `http://${query}.link`
+    return `https://${query}.limo`
   } else {
     return null
   }
