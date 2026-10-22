@@ -77,7 +77,7 @@ export default function Header() {
         Project
       </span>
 
-      <p className="title">A new Ethereum token list standard.</p>
+      <p className="title">An Ethereum token list standard.</p>
 
       <p style={{ fontSize: '20px', lineHeight: '150%' }} className="description" id="why-lists">
         Token Lists is a community-led initiative to improve discoverability, reputation and trust in ERC20 token lists
@@ -92,6 +92,9 @@ export default function Header() {
         href="https://github.com/Uniswap/token-lists#authoring-token-lists"
       >
         {'->'} Make your own
+      </HoverLink>
+      <HoverLink target="_blank" rel="noopener noreferrer" href="https://github.com/Uniswap/token-list-bridge-utils">
+        {'->'} Convert to multi-chain list
       </HoverLink>
       <HoverLink target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
         {'->'} Community
