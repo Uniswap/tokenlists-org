@@ -55,6 +55,10 @@
     "name": "Dharma Token List",
     "homepage": ""
   },
+  "list.dhedge.eth": {
+    "name": "dHEDGE",
+    "homepage": "https://www.dhedge.org/"
+  },
   "https://cdn.furucombo.app/furucombo.tokenlist.json": {
     "name": "Furucombo",
     "homepage": ""
