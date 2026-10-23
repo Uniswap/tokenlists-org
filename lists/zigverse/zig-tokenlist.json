@@ -1,0 +1,26 @@
+{
+  "name": "ZiGVerse TokenList",
+  "logoURI": "https://cdn.jsdelivr.net/gh/kmafutah/zigverse-tokenlist@main/logo/zigverse.png",
+  "keywords": ["zigverse", "zig", "zigt", "gold", "stablecoin", "pan-african"],
+  "timestamp": "2025-07-16T12:00:00+00:00",
+  "version": { "major": 1, "minor": 1, "patch": 0 },
+  "tokens": [
+    {
+      "chainId": 1101,
+      "address": "0x9d485613b48f6617E90B4Dfe664Bf52127572BBa",
+      "name": "ZiG Token",
+      "symbol": "ZiG",
+      "decimals": 18,
+      "logoURI": "https://cdn.jsdelivr.net/gh/kmafutah/zigverse-tokenlist@main/logo/zig.png"
+    },
+    {
+      "chainId": 1101,
+      "address": "0xEbcF9FF0868F57F08d86e6a94889A0DECB99D43b",
+      "name": "ZiGT Stablecoin",
+      "symbol": "ZiGT",
+      "decimals": 18,
+      "logoURI": "https://cdn.jsdelivr.net/gh/kmafutah/zigverse-tokenlist@main/logo/zigt.png"
+    }
+  ]
+}
+

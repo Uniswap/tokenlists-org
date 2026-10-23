@@ -48,5 +48,9 @@
   },
   "devDependencies": {
     "prettier": "^2.1.1"
-  }
+  },
+  "description": "![Token lists](https://github.com/Uniswap/tokenlists-org/blob/master/public/card.png?raw=true)",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
