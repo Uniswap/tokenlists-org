@@ -3,7 +3,7 @@
     "name": "1inch",
     "homepage": ""
   },
-  "tokenlist.aave.eth": {
+  "https://raw.githubusercontent.com/bgd-labs/aave-tokenlist/main/tokenlist.json": {
     "name": "Aave Token List",
     "homepage": ""
   },
