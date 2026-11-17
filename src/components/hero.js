@@ -93,8 +93,8 @@ export default function Header() {
       >
         {'->'} Make your own
       </HoverLink>
-      <HoverLink target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
-        {'->'} Community
+      <HoverLink target="_blank" rel="noopener noreferrer" href="https://github.com/Uniswap/token-list-bridge-utils">
+        {'->'} Convert to multi-chain list
       </HoverLink>
     </Hero>
   )
