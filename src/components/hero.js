@@ -96,9 +96,6 @@ export default function Header() {
       <HoverLink target="_blank" rel="noopener noreferrer" href="https://github.com/Uniswap/token-list-bridge-utils">
         {'->'} Convert to multi-chain list
       </HoverLink>
-      <HoverLink target="_blank" rel="noopener noreferrer" href="http://community.tokenlists.org/">
-        {'->'} Community
-      </HoverLink>
     </Hero>
   )
 }
