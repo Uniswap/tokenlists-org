@@ -87,6 +87,10 @@
     "name": "Optimism",
     "homepage": "https://optimism.io/"
   },
+  "https://tokens.rootstock.io/tokens-list.json": {
+    "name": "Rootstock",
+    "homepage": "https://rootstock.io"
+  },
   "https://app.tryroll.com/tokens.json": {
     "name": "Roll Social Money",
     "homepage": ""
