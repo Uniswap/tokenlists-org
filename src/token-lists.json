@@ -63,6 +63,10 @@
     "name": "Gemini Token List",
     "homepage": "https://www.gemini.com/"
   },
+  "https://assets.grail.xyz/tokens.json": {
+    "name": "Grail",
+    "homepage": "https://grail.xyz"
+  },
   "t2crtokens.eth": {
     "name": "Kleros T2CR",
     "homepage": ""
