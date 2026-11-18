@@ -3,6 +3,10 @@
     "name": "1inch",
     "homepage": ""
   },
+  "https://raw.githubusercontent.com/disemino/fondart/main/fondart-tokenlist.json": {
+    "name": "Fondart Token List",
+    "homepage": "https://www.fondart.xyz"
+  },
   "tokenlist.aave.eth": {
     "name": "Aave Token List",
     "homepage": ""
@@ -135,4 +139,11 @@
     "name": "Zerion Explore",
     "homepage": ""
   }
+}
+{
+  name: "Fondart Token List",
+  url: "https://raw.githubusercontent.com/disemino/fondart/main/fondart-tokenlist.json",
+  logoURI: "https://www.fondart.xyz/fondart.png",
+  keywords: ["art","utility","base","amoarte"],
+  verified: false
 }
