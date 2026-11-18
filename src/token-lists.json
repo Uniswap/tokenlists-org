@@ -111,8 +111,12 @@
     "name": "Uniswap Default List",
     "homepage": ""
   },
-  "https://raw.githubusercontent.com/jab416171/uniswap-pairtokens/master/uniswap_pair_tokens.json": {
-    "name": "Uniswap Token Pairs",
+  "https://ipfs.io/ipfs/QmaQvV3pWKKaWJcHvSBuvQMrpckV3KKtGJ6p3HZjakwFtX": {
+    "name": "Uniswap Extended List",
+    "homepage": ""
+  },
+  "https://ipfs.io/ipfs/QmdA4ToJmX5WVrwtPf1tcXoJLRJTvB77FUJuL1dmuSRsdJ": {
+    "name": "Uniswap Unsupported Tokens List",
     "homepage": ""
   },
   "https://umaproject.org/uma.tokenlist.json": {
