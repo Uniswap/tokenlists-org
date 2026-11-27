@@ -135,10 +135,6 @@
     "name": "Zerion Explore",
     "homepage": ""
   },
-  "https://raw.githubusercontent.com/quant-oss/qone/main/qusd.tokenlist.json": {
-    "name": "QVTX Token List",
-    "homepage": "https://qvtx.net"
-  },
   "https://raw.githubusercontent.com/quant-oss/qone/main/token-lists/qvtx-tokenlist.json": {
     "name": "QVTX Token List",
     "homepage": "https://qvtx.net"
